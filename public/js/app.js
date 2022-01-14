@@ -95770,7 +95770,8 @@ var render = function () {
                                                 },
                                                 [
                                                   _c("i", {
-                                                    staticClass: "fas fa-trash",
+                                                    staticClass:
+                                                      "fas fa-exclamation-triangle",
                                                   }),
                                                   _vm._v(
                                                     "\n                      Desactivar\n                    "

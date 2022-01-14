@@ -115,7 +115,7 @@
                       Permisos
                     </router-link>
                     <router-link class="btn btn-primary btn-sm" :to="'/'">
-                      <i class="fas fa-trash"></i>
+                      <i class="fas fa-exclamation-triangle"></i>
                       Desactivar
                     </router-link>
                     </template>
