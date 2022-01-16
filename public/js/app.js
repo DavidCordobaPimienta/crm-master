@@ -8075,6 +8075,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -100498,14 +100503,37 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "content-header" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c(
+            "div",
+            { staticClass: "card-tools" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-info btn-sm",
+                  attrs: { to: "/usuarios/" },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-arrow-left" }),
+                  _vm._v("\n            Regresar\n            "),
+                ]
+              ),
+            ],
+            1
+          ),
+        ]),
+      ]),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "content container-fluid" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "card card-primary card-outline" }, [
             _c("div", { staticClass: "card-body box-profile" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c("h3", { staticClass: "profile-username text-center" }, [
                 _vm._v(
@@ -100521,7 +100549,7 @@ var render = function () {
                 _vm._v(_vm._s(_vm.fillVerUsuario.cApellidos)),
               ]),
               _vm._v(" "),
-              _vm._m(2),
+              _vm._m(1),
             ]),
           ]),
           _vm._v(" "),
@@ -100532,7 +100560,7 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _vm._m(3),
+            _vm._m(2),
           ]),
         ]),
         _vm._v(" "),
@@ -100554,7 +100582,7 @@ var render = function () {
               [
                 _c("div", { staticClass: "modal-content" }, [
                   _c("div", { staticClass: "modal-header" }, [
-                    _vm._m(4),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c("button", {
                       staticClass: "close",
@@ -100596,20 +100624,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "row mb-2" }, [
-        _c("div", { staticClass: "col-sm-6" }, [
-          _c("h1", { staticClass: "m-0" }, [
-            _c("strong", [_vm._v("USUARIOS")]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

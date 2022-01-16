@@ -1,13 +1,18 @@
 <template>
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0"><strong>USUARIOS</strong></h1>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
+        <div class="card">
+        <div class="card-header"> 
+        <div class="card-tools">
+          <router-link class="btn btn-info btn-sm" to="/usuarios/">
+            <i class="fas fa-arrow-left"></i>
+            Regresar
+            </router-link>
+        </div>
+        </div>
+        </div>
       </div><!-- /.container-fluid -->
-
+      
   <div class="content container-fluid"> <!--Creación del perfil-->
     <div class="row">
         <div class="col-md-12">
