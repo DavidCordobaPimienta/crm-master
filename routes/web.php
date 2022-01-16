@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('administracion/rol/getListarRoles', 'Administracion\RolesController@getListarRoles');
 Route::post('/setRegistrarUsuarios', 'Administracion\UsersController@setRegistrarUsuarios');
 Route::post('/setEditarUsuarios', 'Administracion\UsersController@setEditarUsuarios');
 Route::post('/setCambiarEstadoUsuario', 'Administracion\UsersController@setCambiarEstadoUsuario');

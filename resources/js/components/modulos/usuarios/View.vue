@@ -24,7 +24,7 @@
                   <img class="profile-user-img img-fluid img-circle" src="/img/konecta.png" alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">{{fillVerUsuario.cPrimerNombre + ' ' + fillVerUsuario.cSegundoNombre}}</h3>
+                <h3 class="profile-username text-center"><strong>{{fillVerUsuario.cPrimerNombre + ' ' + fillVerUsuario.cSegundoNombre}}</strong></h3>
 
                 <p class="text-muted text-center">{{fillVerUsuario.cApellidos}}</p>
 
@@ -44,7 +44,7 @@
             <!-- About Me Box -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Acerca de {{fillVerUsuario.cPrimerNombre}}</h3>
+                <h3 class="card-title"><strong>Acerca de {{fillVerUsuario.cPrimerNombre}}</strong></h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

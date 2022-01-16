@@ -11,7 +11,9 @@ export default new Router ({
         { path: '/permisos', component: require('./components/modulos/permisos/Index.vue').default },
         { path: '/productos', component: require('./components/modulos/productos/Index.vue').default },
         { path: '/reportes', component: require('./components/modulos/reportes/Index.vue').default },
+
         { path: '/roles', component: require('./components/modulos/roles/Index.vue').default },
+        
         { path: '/tipologias', component: require('./components/modulos/tipologias/Index.vue').default },
 
         { path: '/usuarios', component: require('./components/modulos/usuarios/Index.vue').default },
