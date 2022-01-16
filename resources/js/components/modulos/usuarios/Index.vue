@@ -45,6 +45,14 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
+                    <label class="col-md-3 col-form-label">Correo Electr&oacute;nico</label>
+                    <div class="col-md-5">
+                      <input type="email" class="form-control" v-model="fillBusqUsuario.cCorreo" @keyup.enter="getListarUsuarios">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
                     <label class="col-md-3 col-form-label">Estado</label>
                     <div class="col-md-5">
                        <el-select v-model="fillBusqUsuario.cEstado" placeholder="Seleccione un estado" cleareable>
@@ -66,8 +74,8 @@
         <div class="card-footer"> <!--Creación de boton buscar y limpiar-->
           <div class="row">
             <div class="col-md-4 offset-4">
-              <button class="btn btn-flat btn-info btnWidth" @click.prevent="getListarUsuarios"><strong>Buscar</strong></button>
-              <button class="btn btn-flat btn-default btnWidth" @click.prevent="limpiarCriteriosBsq"><strong>Limpiar</strong></button>
+              <button class="btn btn-info btnWidth" @click.prevent="getListarUsuarios" v-loading.fullscreen.lock="fullscreenLoading"><strong>Buscar</strong></button>
+              <button class="btn btn-default btnWidth" @click.prevent="limpiarCriteriosBsq"><strong>Limpiar</strong></button>
             </div>
           </div>
         </div>
@@ -77,10 +85,11 @@
           </div>
           <div class="card-body table-responsive">
             <template v-if="listarUsuariosPaginated.length">
-            <table class="table table-hover table-head-fixed text-nowrap projects"> <!--Creación de la tabla de resultados-->
+                          <table class="table table-hover table-head-fixed text-nowrap projects"> <!--Creación de la tabla de resultados-->
               <thead>
                 <tr>
                   <th>Nombre Completo</th>
+                  <th>Correo Electr&oacute;nico</th>
                   <th>Usuario de Red</th>
                   <th>Estado</th>
                   <th>Acciones</th>
@@ -88,7 +97,9 @@
               </thead>
               <tbody>
                 <tr v-for="(item,index) in listarUsuariosPaginated" :key="index">
-                  <td align="left" v-text="item.fullname">
+                  <td v-text="item.fullname">
+                  </td>
+                  <td v-text="item.email">
                   </td>
                   <td v-text="item.username">
                   </td>
@@ -106,20 +117,20 @@
                       <i class="fas fa-folder"></i>
                       Ver
                     </router-link>
-                    <router-link class="btn btn-primary btn-sm" :to="'/'">
+                    <router-link class="btn btn-primary btn-sm" :to="{name:'usuarios.editar', params:{id: item.id}}">
                       <i class="fas fa-pen"></i>
                       Editar
                     </router-link>
                     <router-link class="btn btn-primary btn-sm" :to="'/'">
                       <i class="fas fa-key"></i>
-                      Permisos
+                      Permiso
                     </router-link>
                     <router-link class="btn btn-primary btn-sm" :to="'/'">
-                      <i class="fas fa-exclamation-triangle"></i>
+                      <i class="fas fa-trash"></i>
                       Desactivar
                     </router-link>
                     </template>
-                    <template v-else>
+                    <template v-if="item.state=='I'">
                     <router-link class="btn btn-primary btn-sm" :to="'/'">
                       <i class="fas fa-check"></i>
                       Activar
@@ -149,7 +160,8 @@
               <div class="callout callout-info">
                 <h5>Lo sentimos: No se encontraron resultados para los criterios especificados o no ha ejecutado la búsqueda.</h5>
               </div>
-           </template>
+
+            </template>
           </div>
         </div>
       </div>
@@ -175,6 +187,7 @@ export default {
         {value: 'A', label: 'Activo'},
         {value: 'I', label: 'Inactivo'}
       ],
+      fullscreenLoading: false,
       pageNumber: 0,
       perPage: 5
     }
@@ -209,17 +222,20 @@ export default {
     limpiarCriteriosBsq(){
     this.fillBusqUsuario.cNombre = '';
     this.fillBusqUsuario.cUsuario = '';
+    this.fillBusqUsuario.cCorreo = '';
     this.fillBusqUsuario.cEstado = '';
     },
     limipiarBandejaUsuarios(){
       this.listUsuarios = [];
     },
     getListarUsuarios(){
+      this.fullscreenLoading = true;
       var url = 'administracion/usuarios/getListarUsuarios';
       axios.get(url, {
         params: {
           'cNombre' : this.fillBusqUsuario.cNombre,
           'cUsuario' :  this.fillBusqUsuario.cUsuario,
+          'cCorreo' :  this.fillBusqUsuario.cCorreo,
           'cEstado' :  this.fillBusqUsuario.cEstado,
         }
       }).then(response => {
@@ -237,6 +253,7 @@ export default {
       this.pageNumber = page;
     },
     inicializarPaginacion(){
+      this.fullscreenLoading = false;
       this.pageNumber = 0;
     }
   }

@@ -14,19 +14,24 @@ class UsersController extends Controller
     {
         if(!$request->ajax()) return redirect('/');
 
+        $nIdUsuario = $request->nIdUsuario;
         $cNombre = $request->cNombre;
         $cUsuario = $request->cUsuario;
         $cCorreo = $request->cCorreo;
         $cEstado = $request->cEstado;
         
+        $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = 0): $nIdUsuario;
         $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
         $cUsuario = ($cUsuario == NULL) ? ($cUsuario = ''): $cUsuario;
+        $cCorreo = ($cCorreo == NULL) ? ($cCorreo = ''): $cCorreo;
         $cEstado = ($cEstado == NULL) ? ($cEstado = ''): $cEstado;
 
-        $rpta = DB::select('call sp_Usuario_getListarUsuarios (?, ?, ?)',
-                                                            [
+        $rpta = DB::select('call sp_Usuario_getListarUsuarios (?, ?, ?, ?, ?)',
+                                                            [   
+                                                                $nIdUsuario,
                                                                 $cNombre, 
                                                                 $cUsuario, 
+                                                                $cCorreo, 
                                                                 $cEstado
                                                             ]);
         return $rpta;
@@ -39,7 +44,6 @@ class UsersController extends Controller
         $cPrimerNombre = $request->cPrimerNombre;
         $cSegundoNombre = $request->cSegundoNombre;
         $cApellidos = $request->cApellidos;
-        $cSegundoApellido = $request->cSegundoApellido;
         $cUsuario = $request->cUsuario;
         $cCorreo = $request->cCorreo;
         $cContrasena = Hash::make($request->cContrasena);
@@ -53,6 +57,42 @@ class UsersController extends Controller
 
         DB::select('call sp_Usuario_setRegistrarUsuarios (?, ?, ?, ?, ?, ?)',
                                                             [
+                                                                $cPrimerNombre, 
+                                                                $cSegundoNombre, 
+                                                                $cApellidos, 
+                                                                $cUsuario,
+                                                                $cCorreo,
+                                                                $cContrasena
+                                                            ]);
+    }
+
+    public function setEditarUsuarios(Request $request)
+    {
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdUsuario = $request->nIdUsuario;
+        $cPrimerNombre = $request->cPrimerNombre;
+        $cSegundoNombre = $request->cSegundoNombre;
+        $cApellidos = $request->cApellidos;
+        $cUsuario = $request->cUsuario;
+        $cCorreo = $request->cCorreo;
+        $cContrasena = $request->cContrasena;
+
+        if ($cContrasena != NULL) {
+            $cContrasena = Hash::make($request->cContrasena);                        
+        }
+
+        $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = ''): $nIdUsuario;
+        $cPrimerNombre = ($cPrimerNombre == NULL) ? ($cPrimerNombre = ''): $cPrimerNombre;
+        $cSegundoNombre = ($cSegundoNombre == NULL) ? ($cSegundoNombre = ''): $cSegundoNombre;
+        $cApellidos = ($cApellidos == NULL) ? ($cApellidos = ''): $cApellidos;
+        $cUsuario = ($cUsuario == NULL) ? ($cUsuario = ''): $cUsuario;
+        $cCorreo = ($cCorreo == NULL) ? ($cCorreo = ''): $cCorreo;
+        $cContrasena = ($cContrasena == NULL) ? ($cContrasena = ''): $cContrasena;
+
+        DB::select('call sp_Usuario_setEditarUsuarios (?, ?, ?, ?, ?, ?, ?)',
+                                                            [
+                                                                $nIdUsuario,
                                                                 $cPrimerNombre, 
                                                                 $cSegundoNombre, 
                                                                 $cApellidos, 
