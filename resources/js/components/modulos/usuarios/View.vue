@@ -16,22 +16,19 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="/img/user4-128x128.jpg" alt="User profile picture">
+                  <img class="profile-user-img img-fluid img-circle" src="/img/konecta.png" alt="User profile picture">
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">{{fillVerUsuario.cPrimerNombre + ' ' + fillVerUsuario.cSegundoNombre}}</h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">{{fillVerUsuario.cApellidos}}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>Followers</b> <a class="float-right">1,322</a>
+                    <b>Rol</b> <a class="float-right">Asesor</a>
                   </li>
                   <li class="list-group-item">
-                    <b>Following</b> <a class="float-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Friends</b> <a class="float-right">13,287</a>
+                    <b>Operación</b> <a class="float-right">SAC General</a>
                   </li>
                 </ul>
               </div>
@@ -42,39 +39,27 @@
             <!-- About Me Box -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">About Me</h3>
+                <h3 class="card-title">Acerca de {{fillVerUsuario.cPrimerNombre}}</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                <strong><i class="fas fa-book mr-1"></i>Educación</strong>
 
                 <p class="text-muted">
-                  B.S. in Computer Science from the University of Tennessee at Knoxville
+                  Bachiller
                 </p>
 
                 <hr>
 
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                <strong><i class="fas fa-map-marker-alt mr-1"></i>Sede</strong>
 
-                <p class="text-muted">Malibu, California</p>
-
-                <hr>
-
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
-
-                <p class="text-muted">
-                  <span class="tag tag-danger">UI Design</span>
-                  <span class="tag tag-success">Coding</span>
-                  <span class="tag tag-info">Javascript</span>
-                  <span class="tag tag-warning">PHP</span>
-                  <span class="tag tag-primary">Node.js</span>
-                </p>
+                <p class="text-muted">Puerto Seco - Medellín</p>
 
                 <hr>
 
-                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                <strong><i class="far fa-file-alt mr-1"></i> Notas</strong>
 
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                <p class="text-muted">El Asesor actualmente se encuentra en operación.</p>
               </div>
               <!-- /.card-body -->
             </div>
@@ -117,6 +102,15 @@ export default {
             cCorreo: '',
             cContrasena: ''
         },
+        fillVerUsuario: {
+            nIdUsuario: this.$attrs.id,
+            cPrimerNombre: '',
+            cSegundoNombre: '',
+            cApellidos: '',
+            cUsuario: '',
+            cCorreo: '',
+            cContrasena: ''
+        },
         fullscreenLoading: false,
         form: new FormData,
         modalShow: false,
@@ -143,12 +137,7 @@ export default {
                 'nIdUsuario' : this.fillEditarUsuario.nIdUsuario
             }
             }).then(response => {
-                this.fillEditarUsuario.cPrimerNombre = response.data[0].firstname;
-                this.fillEditarUsuario.cSegundoNombre = response.data[0].secondname;
-                this.fillEditarUsuario.cApellidos = response.data[0].lastname;
-                this.fillEditarUsuario.cUsuario = response.data[0].username;
-                this.fillEditarUsuario.cCorreo = response.data[0].email;
-                this.fillEditarUsuario.cContrasena = response.data[0].password;
+                this.getUsuarioVer(response.data[0]);
                 this.fullscreenLoading = false;     
         })
       },
@@ -156,6 +145,12 @@ export default {
         this.modalShow = !this.modalShow;
       },
       getUsuarioVer(data){
+        this.fillVerUsuario.cPrimerNombre = data.firstname;
+        this.fillVerUsuario.cSegundoNombre = data.secondname;
+        this.fillVerUsuario.cApellidos = data.lastname;
+        this.fillVerUsuario.cUsuario = data.username;
+        this.fillVerUsuario.cCorreo = data.email;
+
 
       }
     }
