@@ -105,11 +105,8 @@
                         <button class="btn btn-secundary" @click="abrirModal">Cerrar</button>
                     </div>
                 </div>
-
             </div>
-
         </div>
-
       </div>
     </div>
   </div>
@@ -196,6 +193,12 @@ export default {
                 'cContrasena'       : this.fillEditarUsuario.cContrasena
           }).then(response => {
             this.fullscreenLoading = false;
+            Swal.fire({
+              icon: 'success',
+              title: '¡El usuario ha sido actualizado correctamente!',
+              showConfirmButton: false,
+              timer: 1700
+            })
             this.$router.push('/usuarios');
           })
       },
@@ -218,7 +221,6 @@ export default {
           if(this.mensajeError.length){
               this.error = 1;
           }
-
           return this.error;
       }
   }

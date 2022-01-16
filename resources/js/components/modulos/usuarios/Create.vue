@@ -175,9 +175,14 @@ export default {
                 'cCorreo' : this.fillCrearUsuario.cCorreo,
                 'cContrasena' : this.fillCrearUsuario.cContrasena
           }).then(response => {
-              console.log("El usuario se registró exitosamente");
               this.fullscreenLoading = false;
-              this.$router.push('/usuarios');
+              Swal.fire({
+              icon: 'success',
+              title: '¡El usuario ha sido creado correctamente!',
+              showConfirmButton: false,
+              timer: 1700
+            })
+            this.$router.push('/usuarios');
           })
       },
       validarRegistrarUsuario(){

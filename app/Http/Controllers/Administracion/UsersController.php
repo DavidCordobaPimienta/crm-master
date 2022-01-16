@@ -101,5 +101,19 @@ class UsersController extends Controller
                                                                 $cContrasena
                                                             ]);
     }
+    public function setCambiarEstadoUsuario(Request $request){
+        if(!$request->ajax()) return redirect('/');
 
+        $nIdUsuario = $request->nIdUsuario;
+        $cEstado = $request->cEstado;
+
+        $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = ''): $nIdUsuario;    
+        $cEstado = ($cEstado == NULL) ? ($cEstado = ''): $cEstado;
+
+        DB::select('call sp_Usuario_setCambiarEstadoUsuario (?, ?)',
+                                                            [
+                                                                $nIdUsuario,
+                                                                $cEstado, 
+                                                            ]);
+    }
 }
