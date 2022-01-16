@@ -113,7 +113,7 @@
                   </td>
                   <td>
                     <template v-if="item.state=='A'">
-                    <router-link class="btn btn-primary btn-sm" :to="'/'">
+                    <router-link class="btn btn-primary btn-sm" :to="{name:'usuarios.ver', params:{id: item.id}}">
                       <i class="fas fa-folder"></i>
                       Ver
                     </router-link>
@@ -126,13 +126,13 @@
                       Permiso
                     </router-link>
                     <button class="btn btn-primary btn-sm" @click.prevent="setCambiarEstadoUsuario(1, item.id)">
-                      <i class="fas fa-trash"></i>
+                      <i class="fas fa-exclamation-triangle"></i>
                       Desactivar
                     </button>
                     </template>
                     <template v-if="item.state=='I'">
                     <button class="btn btn-primary btn-sm" @click.prevent="setCambiarEstadoUsuario(2, item.id)">
-                      <i class="fas fa-check"></i>
+                      <i class="fas fa-check-circle"></i>
                       Activar
                     </button>
                     </template>
@@ -239,6 +239,7 @@ export default {
           'cEstado' :  this.fillBusqUsuario.cEstado,
         }
       }).then(response => {
+        this.fullscreenLoading = false;
         this.inicializarPaginacion();
         this.listUsuarios = response.data;
       })
@@ -278,8 +279,8 @@ export default {
               showConfirmButton: false,
               timer: 1700
             })
-            this.getListarUsuarios;
             this.fullscreenLoading = false;
+            this.getListarUsuarios;
             })
           }
       })

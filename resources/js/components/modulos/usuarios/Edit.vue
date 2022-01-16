@@ -151,8 +151,7 @@ export default {
             params: {
                 'nIdUsuario' : this.fillEditarUsuario.nIdUsuario
             }
-         }).then(response => {
-          console.log(response.data);   
+         }).then(response => {  
           this.fillEditarUsuario.cPrimerNombre = response.data[0].firstname;
           this.fillEditarUsuario.cSegundoNombre = response.data[0].secondname;
           this.fillEditarUsuario.cApellidos = response.data[0].lastname;
