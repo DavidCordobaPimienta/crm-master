@@ -7957,7 +7957,7 @@ __webpack_require__.r(__webpack_exports__);
           }).then(function (response) {
             Swal.fire({
               icon: 'success',
-              title: 'Se' + (op == 1 ? ' desactivó ' : ' activó ') + 'el usuario correctamente!',
+              title: '¡Se' + (op == 1 ? ' desactivó ' : ' activó ') + 'el usuario correctamente!',
               showConfirmButton: false,
               timer: 1700
             });

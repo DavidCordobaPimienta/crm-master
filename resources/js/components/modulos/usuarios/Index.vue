@@ -274,7 +274,7 @@ export default {
             }).then(response =>{
               Swal.fire({
               icon: 'success',
-              title: 'Se' + ((op == 1) ? ' desactivó ' : ' activó ') + 'el usuario correctamente!',
+              title: '¡Se' + ((op == 1) ? ' desactivó ' : ' activó ') + 'el usuario correctamente!',
               showConfirmButton: false,
               timer: 1700
             })
