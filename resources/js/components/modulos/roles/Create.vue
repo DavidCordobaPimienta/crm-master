@@ -60,54 +60,28 @@
             <table class="table table-hover table-head-fixed text-nowrap projects"> <!--Creación de la tabla de resultados-->
               <thead>
                 <tr>
-                  <th>Nombre Completo</th>
+                  <th>Acción</th>
+                  <th>Nombre</th>
                   <th>URL Amigable</th>
-                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="(item,index) in listPermisos" :key="index">
                   <td>
-                    
+
                   </td>
                   <td v-text="item.name">
                   </td>
                   <td v-text="item.slug">
                   </td>
-                  <td>
-                    <router-link class="btn btn-primary btn-sm" :to="{name:'usuarios.ver', params:{id: item.id}}">
-                      <i class="fas fa-folder"></i>
-                      Ver
-                    </router-link>
-                    <router-link class="btn btn-primary btn-sm" :to="{name:'usuarios.editar', params:{id: item.id}}">
-                      <i class="fas fa-pen"></i>
-                      Editar
-                    </router-link>
-                  </td>
                 </tr>
               </tbody>
             </table>
-
-            <div class="card-footer"><!--Paginación-->
-            <ul class="pagination pagination-sm m-0 float-right">
-              <li class="page-item" v-if="pageNumber > 0">
-                <a href="#" class="page-link" @click.prevent="prevPage"><strong>Ant</strong></a>
-              </li>
-              <li class="page-item" v-for="(page, index) in pagesList" :key="index" :class="[page == pageNumber ? 'active' : '']">
-                <a href="#" class="page-link" @click.prevent="selectPage(page)">{{page+1}}</a>
-              </li>
-              <li class="page-item" v-if="pageNumber < pageCount - 1">
-                <a href="#" class="page-link" @click.prevent="nextPage"><strong>Sig</strong></a>
-              </li>
-            </ul>
-            </div>
-
             </template>
             <template v-else>
               <div class="callout callout-info">
                 <h5>Lo sentimos: No se encontraron resultados para los criterios especificados o no ha ejecutado la búsqueda.</h5>
               </div>
-
             </template>
           </div>
           </div>

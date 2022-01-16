@@ -7258,32 +7258,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -99546,56 +99520,6 @@ var render = function () {
                                           textContent: _vm._s(item.slug),
                                         },
                                       }),
-                                      _vm._v(" "),
-                                      _c(
-                                        "td",
-                                        [
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "btn btn-primary btn-sm",
-                                              attrs: {
-                                                to: {
-                                                  name: "usuarios.ver",
-                                                  params: { id: item.id },
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-folder",
-                                              }),
-                                              _vm._v(
-                                                "\n                      Ver\n                    "
-                                              ),
-                                            ]
-                                          ),
-                                          _vm._v(" "),
-                                          _c(
-                                            "router-link",
-                                            {
-                                              staticClass:
-                                                "btn btn-primary btn-sm",
-                                              attrs: {
-                                                to: {
-                                                  name: "usuarios.editar",
-                                                  params: { id: item.id },
-                                                },
-                                              },
-                                            },
-                                            [
-                                              _c("i", {
-                                                staticClass: "fas fa-pen",
-                                              }),
-                                              _vm._v(
-                                                "\n                      Editar\n                    "
-                                              ),
-                                            ]
-                                          ),
-                                        ],
-                                        1
-                                      ),
                                     ])
                                   }
                                 ),
@@ -99603,91 +99527,6 @@ var render = function () {
                               ),
                             ]
                           ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "card-footer" }, [
-                            _c(
-                              "ul",
-                              {
-                                staticClass:
-                                  "pagination pagination-sm m-0 float-right",
-                              },
-                              [
-                                _vm.pageNumber > 0
-                                  ? _c("li", { staticClass: "page-item" }, [
-                                      _c(
-                                        "a",
-                                        {
-                                          staticClass: "page-link",
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              $event.preventDefault()
-                                              return _vm.prevPage.apply(
-                                                null,
-                                                arguments
-                                              )
-                                            },
-                                          },
-                                        },
-                                        [_c("strong", [_vm._v("Ant")])]
-                                      ),
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _vm._l(_vm.pagesList, function (page, index) {
-                                  return _c(
-                                    "li",
-                                    {
-                                      key: index,
-                                      staticClass: "page-item",
-                                      class: [
-                                        page == _vm.pageNumber ? "active" : "",
-                                      ],
-                                    },
-                                    [
-                                      _c(
-                                        "a",
-                                        {
-                                          staticClass: "page-link",
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              $event.preventDefault()
-                                              return _vm.selectPage(page)
-                                            },
-                                          },
-                                        },
-                                        [_vm._v(_vm._s(page + 1))]
-                                      ),
-                                    ]
-                                  )
-                                }),
-                                _vm._v(" "),
-                                _vm.pageNumber < _vm.pageCount - 1
-                                  ? _c("li", { staticClass: "page-item" }, [
-                                      _c(
-                                        "a",
-                                        {
-                                          staticClass: "page-link",
-                                          attrs: { href: "#" },
-                                          on: {
-                                            click: function ($event) {
-                                              $event.preventDefault()
-                                              return _vm.nextPage.apply(
-                                                null,
-                                                arguments
-                                              )
-                                            },
-                                          },
-                                        },
-                                        [_c("strong", [_vm._v("Sig")])]
-                                      ),
-                                    ])
-                                  : _vm._e(),
-                              ],
-                              2
-                            ),
-                          ]),
                         ]
                       : [_vm._m(5)],
                   ],
@@ -99852,11 +99691,11 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Nombre Completo")]),
+        _c("th", [_vm._v("Acción")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("URL Amigable")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Acciones")]),
       ]),
     ])
   },
