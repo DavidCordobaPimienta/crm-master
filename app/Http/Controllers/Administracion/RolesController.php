@@ -24,4 +24,12 @@ class RolesController extends Controller
                                                             ]);
         return $rspta;
     }
+
+    public function getListarPermisosByRol(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $respta = DB::select('call sp_Rol_getListarPermisosByRol');
+        return $respta;
+    }
+
 }

@@ -13,7 +13,8 @@ export default new Router ({
         { path: '/reportes', component: require('./components/modulos/reportes/Index.vue').default },
 
         { path: '/roles', component: require('./components/modulos/roles/Index.vue').default },
-        
+        { path: '/roles/crear', component: require('./components/modulos/roles/Create.vue').default },
+
         { path: '/tipologias', component: require('./components/modulos/tipologias/Index.vue').default },
 
         { path: '/usuarios', component: require('./components/modulos/usuarios/Index.vue').default },

@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('administracion/rol/getListarRoles', 'Administracion\RolesController@getListarRoles');
+Route::get('/getListarRoles', 'Administracion\RolesController@getListarRoles');
+Route::get('/administracion/roles/getListarPermisosByRol', 'Administracion\RolesController@getListarPermisosByRol');
+
 Route::post('/setRegistrarUsuarios', 'Administracion\UsersController@setRegistrarUsuarios');
 Route::post('/setEditarUsuarios', 'Administracion\UsersController@setEditarUsuarios');
 Route::post('/setCambiarEstadoUsuario', 'Administracion\UsersController@setCambiarEstadoUsuario');
@@ -23,6 +25,3 @@ Route::get('/{optional?}', function () {
     return view('app');
 })->name('basepath')
   ->where('optional','.*');
-  
-
-

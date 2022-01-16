@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-header"> 
         <div class="card-tools">
-          <router-link class="btn btn-info btn-sm" to="/usuarios/crear">
+          <router-link class="btn btn-info btn-sm" to="/roles/crear">
             <i class="fas fa-plus-square"></i>
             Nuevo Rol
             </router-link>
@@ -62,7 +62,7 @@
           </div>
           <div class="card-body table-responsive">
             <template v-if="listarRolesPaginated.length">
-                          <table class="table table-hover table-head-fixed text-nowrap projects"> <!--Creación de la tabla de resultados-->
+            <table class="table table-hover table-head-fixed text-nowrap projects"> <!--Creación de la tabla de resultados-->
               <thead>
                 <tr>
                   <th>Nombre Completo</th>
@@ -171,7 +171,7 @@ export default {
     },
     getListarRoles(){
       this.fullscreenLoading = true;
-      var url = 'administracion/rol/getListarRoles';
+      var url = '/getListarRoles';
       axios.get(url, {
         params: {
           'cNombre' : this.fillBusqRol.cNombre,
