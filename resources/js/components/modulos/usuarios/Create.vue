@@ -29,48 +29,48 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Primer Nombre</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Primer Nombre</label>
+                    <div class="col-md-6">
                       <input type="text" class="form-control" v-model="fillCrearUsuario.cPrimerNombre">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Segundo Nombre</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Segundo Nombre</label>
+                    <div class="col-md-6">
                       <input type="text" class="form-control" v-model="fillCrearUsuario.cSegundoNombre">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Apellidos</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Apellidos</label>
+                    <div class="col-md-6">
                       <input type="text" class="form-control" v-model="fillCrearUsuario.cApellidos">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Usuario de Red</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Usuario de Red</label>
+                    <div class="col-md-6">
                       <input type="text" class="form-control" v-model="fillCrearUsuario.cUsuario">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Correo Electrónico</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Correo Electrónico</label>
+                    <div class="col-md-6">
                       <input type="email" class="form-control" v-model="fillCrearUsuario.cCorreo">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Contraseña</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Contraseña</label>
+                    <div class="col-md-6">
                     <el-input v-model="fillCrearUsuario.cContrasena" @keyup.enter="setRegistrarUsuarios" show-password></el-input>
                     </div>
                   </div>

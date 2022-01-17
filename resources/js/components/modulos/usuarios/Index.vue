@@ -29,32 +29,32 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Nombre</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Nombre</label>
+                    <div class="col-md-6">
                       <input type="text" class="form-control" v-model="fillBusqUsuario.cNombre" @keyup.enter="getListarUsuarios">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Usuario de Red</label>
-                    <div class="col-md-5">
+                    <label class="col-md-4 col-form-label">Usuario de Red</label>
+                    <div class="col-md-7">
                       <input type="text" class="form-control" v-model="fillBusqUsuario.cUsuario" @keyup.enter="getListarUsuarios">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Correo Electr&oacute;nico</label>
-                    <div class="col-md-5">
+                    <label class="col-md-5 col-form-label">Correo Electr&oacute;nico</label>
+                    <div class="col-md-6">
                       <input type="email" class="form-control" v-model="fillBusqUsuario.cCorreo" @keyup.enter="getListarUsuarios">
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Estado</label>
-                    <div class="col-md-5">
+                    <label class="col-md-4 col-form-label">Estado</label>
+                    <div class="col-md-7">
                        <el-select v-model="fillBusqUsuario.cEstado" placeholder="Seleccione un estado" cleareable>
                           <el-option
                             v-for="item in listEstados"

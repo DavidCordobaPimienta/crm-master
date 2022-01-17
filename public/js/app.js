@@ -99372,11 +99372,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
-                          [_vm._v("Nombre")]
+                          { staticClass: "col-md-4 col-form-label" },
+                          [_vm._v("Nombre del Rol")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "col-md-7" }, [
                           _c("input", {
                             directives: [
                               {
@@ -100292,11 +100292,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Primer Nombre")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("input", {
                             directives: [
                               {
@@ -100332,11 +100332,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Segundo Nombre")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("input", {
                             directives: [
                               {
@@ -100372,11 +100372,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Apellidos")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("input", {
                             directives: [
                               {
@@ -100412,11 +100412,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Usuario de Red")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("input", {
                             directives: [
                               {
@@ -100450,11 +100450,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Correo Electrónico")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("input", {
                             directives: [
                               {
@@ -100488,13 +100488,13 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Contraseña")]
                         ),
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col-md-5" },
+                          { staticClass: "col-md-6" },
                           [
                             _c("el-input", {
                               attrs: { "show-password": "" },
@@ -101184,11 +101184,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Nombre")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("input", {
                             directives: [
                               {
@@ -101240,11 +101240,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-4 col-form-label" },
                           [_vm._v("Usuario de Red")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-7" }, [
                           _c("input", {
                             directives: [
                               {
@@ -101296,11 +101296,11 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Correo Electrónico")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-5" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
                           _c("input", {
                             directives: [
                               {
@@ -101352,13 +101352,13 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-4 col-form-label" },
                           [_vm._v("Estado")]
                         ),
                         _vm._v(" "),
                         _c(
                           "div",
-                          { staticClass: "col-md-5" },
+                          { staticClass: "col-md-7" },
                           [
                             _c(
                               "el-select",

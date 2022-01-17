@@ -34,8 +34,8 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Nombre</label>
-                    <div class="col-md-6">
+                    <label class="col-md-4 col-form-label">Nombre del Rol</label>
+                    <div class="col-md-7">
                       <input type="text" class="form-control" v-model="fillCrearRol.cNombre" @:keyup.enter="setRegistrarRolPermisos">
                     </div>
                   </div>
