@@ -40,8 +40,9 @@ class RolesController extends Controller
 
         $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
         $cUrl = ($cUrl == NULL) ? ($cUrl = ''): $cUrl;
-        
-            
+
+        try {
+            DB::beginTransaction();
             $rpta = DB::select('call sp_Rol_setRegistrarRol (?, ?)',
                                                             [
                                                                 $cNombre,
@@ -50,8 +51,6 @@ class RolesController extends Controller
             $nIdRol = $rpta[0]->nIdRol;
 
 
-        try {
-            DB::beginTransaction();
             $listPermisos = $request->listPermisosFilter;
             $listPermisosSize = sizeof((array)$listPermisos);
             

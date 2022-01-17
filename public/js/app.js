@@ -7329,7 +7329,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(url, {
         'cNombre': this.fillCrearRol.cNombre,
         'cUrl': this.fillCrearRol.cUrl,
-        'listPermisosFilter': this.fillCrearRol.listPermisosFilter
+        'listPermisosFilter': this.listPermisosFilter
       }).then(function (response) {
         _this2.fullscreenLoading = false;
         Swal.fire({

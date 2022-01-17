@@ -192,7 +192,7 @@ export default {
           axios.post(url, {
                 'cNombre' : this.fillCrearRol.cNombre,
                 'cUrl' : this.fillCrearRol.cUrl,
-                'listPermisosFilter': this.fillCrearRol.listPermisosFilter
+                'listPermisosFilter': this.listPermisosFilter
 
           }).then(response => {
               this.fullscreenLoading = false;
