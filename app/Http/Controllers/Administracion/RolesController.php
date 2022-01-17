@@ -32,4 +32,44 @@ class RolesController extends Controller
         return $respta;
     }
 
+    public function setRegistrarRolPermisos(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $cNombre = $request->cNombre;
+        $cUrl = $request->cUrl;
+
+        $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
+        $cUrl = ($cUrl == NULL) ? ($cUrl = ''): $cUrl;
+        
+            
+            $rpta = DB::select('call sp_Rol_setRegistrarRol (?, ?)',
+                                                            [
+                                                                $cNombre,
+                                                                $cUrl
+                                                            ]);
+            $nIdRol = $rpta[0]->nIdRol;
+
+
+        try {
+            DB::beginTransaction();
+            $listPermisos = $request->listPermisosFilter;
+            $listPermisosSize = sizeof($listPermisos);
+            
+            if ($listPermisosSize>0) {
+                foreach ($listPermisos as $key => $value) {
+                    if ($value['checked'] == true) {
+                        DB::select('call sp_Rol_setRegistrarRolPermisos (?, ?)',
+                                                            [
+                                                                $nIdRol,
+                                                                $value['id']
+                                                            ]);
+                    }
+                }
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+        }
+    }
+
 }

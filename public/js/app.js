@@ -7267,6 +7267,7 @@ __webpack_require__.r(__webpack_exports__);
       },
       fullscreenLoading: false,
       listPermisos: [],
+      listPermisosFilter: [],
       modalShow: false,
       mostrarModal: {
         display: 'block',
@@ -7284,12 +7285,28 @@ __webpack_require__.r(__webpack_exports__);
     this.getListarPermisosByRol();
   },
   methods: {
+    marcarFila: function marcarFila(index) {
+      this.listPermisosFilter[index].checked = !this.listPermisosFilter[index].checked;
+    },
+    filterPermisosByRol: function filterPermisosByRol() {
+      var me = this;
+      me.listPermisos.map(function (x, y) {
+        me.listPermisosFilter.push({
+          'id': x.id,
+          'name': x.name,
+          'slug': x.slug,
+          'checked': false
+        });
+      });
+    },
     getListarPermisosByRol: function getListarPermisosByRol() {
       var _this = this;
 
       var ruta = '/administracion/roles/getListarPermisosByRol';
       axios.get(ruta).then(function (response) {
         _this.listPermisos = response.data;
+
+        _this.filterPermisosByRol();
       });
     },
     limpiarCriteriosBsq: function limpiarCriteriosBsq() {
@@ -7300,21 +7317,19 @@ __webpack_require__.r(__webpack_exports__);
       this.modalShow = !this.modalShow;
     },
     setRegistrarRolPermisos: function setRegistrarRolPermisos() {
+      var _this2 = this;
+
       if (this.validarRegistrarRolPermisos()) {
         this.modalShow = true;
         return;
       }
 
-      this.setRegistraRolPermisos();
       this.fullscreenLoading = true;
-    },
-    setRegistraRolPermisos: function setRegistraRolPermisos() {
-      var _this2 = this;
-
       var url = '/setRegistrarRolPermisos';
       axios.post(url, {
         'cNombre': this.fillCrearRol.cNombre,
-        'cUrl': this.fillCrearRol.cUrl
+        'cUrl': this.fillCrearRol.cUrl,
+        'listPermisosFilter': this.fillCrearRol.listPermisosFilter
       }).then(function (response) {
         _this2.fullscreenLoading = false;
         Swal.fire({
@@ -7324,7 +7339,7 @@ __webpack_require__.r(__webpack_exports__);
           timer: 1700
         });
 
-        _this2.$router.push('/usuarios');
+        _this2.$router.push('/roles');
       });
     },
     validarRegistrarRolPermisos: function validarRegistrarRolPermisos() {
@@ -7337,6 +7352,17 @@ __webpack_require__.r(__webpack_exports__);
 
       if (!this.fillCrearRol.cUrl) {
         this.mensajeError.push("La URL es un campo obligatorio.");
+      }
+
+      var contador = 0;
+      this.listPermisosFilter.map(function (x, y) {
+        if (x.checked == true) {
+          contador++;
+        }
+      });
+
+      if (contador == 0) {
+        this.mensajeError.push("Debe de seleccionar por lo menos un permiso para este rol.");
       }
 
       if (this.mensajeError.length) {
@@ -99490,7 +99516,7 @@ var render = function () {
                   "div",
                   { staticClass: "card-body table-responsive" },
                   [
-                    _vm.listPermisos.length
+                    _vm.listPermisosFilter.length
                       ? [
                           _c(
                             "table",
@@ -99504,19 +99530,30 @@ var render = function () {
                               _c(
                                 "tbody",
                                 _vm._l(
-                                  _vm.listPermisos,
+                                  _vm.listPermisosFilter,
                                   function (item, index) {
                                     return _c("tr", { key: index }, [
                                       _c(
                                         "td",
+                                        {
+                                          staticStyle: {
+                                            "align-items": "center",
+                                          },
+                                        },
                                         [
                                           _c("el-checkbox", {
-                                            model: {
-                                              value: _vm.checked,
-                                              callback: function ($$v) {
-                                                _vm.checked = $$v
+                                            on: {
+                                              click: function ($event) {
+                                                $event.preventDefault()
+                                                return _vm.marcarFila(index)
                                               },
-                                              expression: "checked",
+                                            },
+                                            model: {
+                                              value: item.checked,
+                                              callback: function ($$v) {
+                                                _vm.$set(item, "checked", $$v)
+                                              },
+                                              expression: "item.checked",
                                             },
                                           }),
                                         ],
@@ -99555,15 +99592,6 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      directives: [
-                        {
-                          name: "loading",
-                          rawName: "v-loading.fullscreen.lock",
-                          value: _vm.fullscreenLoading,
-                          expression: "fullscreenLoading",
-                          modifiers: { fullscreen: true, lock: true },
-                        },
-                      ],
                       staticClass: "btn btn-info btnWidth",
                       on: {
                         click: function ($event) {

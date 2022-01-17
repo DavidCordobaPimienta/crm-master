@@ -56,7 +56,7 @@
               <h3 class="card-title"><strong>SELECCIONAR PERMISOS</strong></h3>
             </div>
             <div class="card-body table-responsive">
-            <template v-if="listPermisos.length">
+            <template v-if="listPermisosFilter.length">
             <table class="table table-hover table-head-fixed text-nowrap projects"> <!--Creación de la tabla de resultados-->
               <thead>
                 <tr>
@@ -66,9 +66,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(item,index) in listPermisos" :key="index">
-                  <td>
-                    <el-checkbox v-model="checked"></el-checkbox>
+                <tr v-for="(item,index) in listPermisosFilter" :key="index">
+                  <td style="align-items:center">
+                    <el-checkbox v-model="item.checked" @click.prevent="marcarFila(index)"></el-checkbox>
                   </td>
                   <td v-text="item.name">
                   </td>
@@ -89,7 +89,7 @@
         <div class="card-footer"> <!--Creación de boton registrar y limpiar-->
           <div class="row">
             <div class="col-md-4 offset-4">
-              <button class="btn btn-info btnWidth" @click.prevent="setRegistrarRolPermisos" v-loading.fullscreen.lock="fullscreenLoading"><strong>Registrar</strong></button>
+              <button class="btn btn-info btnWidth" @click.prevent="setRegistrarRolPermisos" ><strong>Registrar</strong></button>
               <button class="btn btn-default btnWidth" @click.prevent="limpiarCriteriosBsq"><strong>Limpiar</strong></button>
             </div>
           </div>
@@ -132,6 +132,7 @@ export default {
       },
       fullscreenLoading: false,
       listPermisos: [],
+      listPermisosFilter: [],
       modalShow: false,
       mostrarModal: {
           display: 'block',
@@ -151,10 +152,25 @@ export default {
     this.getListarPermisosByRol();
   },
   methods:{
+      marcarFila(index){
+        this.listPermisosFilter[index].checked = !this.listPermisosFilter[index].checked;
+      },
+      filterPermisosByRol(){
+        let me = this;
+        me.listPermisos.map(function(x,y){
+          me.listPermisosFilter.push({
+            'id': x.id,
+            'name': x.name,
+            'slug': x.slug,
+            'checked': false
+          })
+        })
+      },
       getListarPermisosByRol(){ 
         var ruta = '/administracion/roles/getListarPermisosByRol';
         axios.get(ruta).then( response => {
           this.listPermisos = response.data;
+          this.filterPermisosByRol();
         }) 
       },
       limpiarCriteriosBsq(){
@@ -169,14 +185,14 @@ export default {
               this.modalShow = true;
               return;              
           }
-          this.setRegistraRolPermisos();
+
           this.fullscreenLoading = true;
-      },
-      setRegistraRolPermisos(){
+    
           var url = '/setRegistrarRolPermisos';
           axios.post(url, {
                 'cNombre' : this.fillCrearRol.cNombre,
-                'cUrl' : this.fillCrearRol.cUrl
+                'cUrl' : this.fillCrearRol.cUrl,
+                'listPermisosFilter': this.fillCrearRol.listPermisosFilter
 
           }).then(response => {
               this.fullscreenLoading = false;
@@ -186,7 +202,7 @@ export default {
               showConfirmButton: false,
               timer: 1700
             })
-            this.$router.push('/usuarios');
+            this.$router.push('/roles');
           })
       },
       validarRegistrarRolPermisos(){
@@ -198,6 +214,16 @@ export default {
           }
           if(!this.fillCrearRol.cUrl){
               this.mensajeError.push("La URL es un campo obligatorio.")
+          }
+
+          let contador = 0;
+          this.listPermisosFilter.map(function(x,y){
+            if (x.checked == true) {
+              contador++;              
+            }
+          })
+          if (contador == 0) {
+            this.mensajeError.push("Debe de seleccionar por lo menos un permiso para este rol.")            
           }
 
           if(this.mensajeError.length){
