@@ -99507,7 +99507,21 @@ var render = function () {
                                   _vm.listPermisos,
                                   function (item, index) {
                                     return _c("tr", { key: index }, [
-                                      _c("td"),
+                                      _c(
+                                        "td",
+                                        [
+                                          _c("el-checkbox", {
+                                            model: {
+                                              value: _vm.checked,
+                                              callback: function ($$v) {
+                                                _vm.checked = $$v
+                                              },
+                                              expression: "checked",
+                                            },
+                                          }),
+                                        ],
+                                        1
+                                      ),
                                       _vm._v(" "),
                                       _c("td", {
                                         domProps: {
@@ -99681,7 +99695,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-title" }, [
-        _c("strong", [_vm._v("PERMISOS")]),
+        _c("strong", [_vm._v("SELECCIONAR PERMISOS")]),
       ]),
     ])
   },

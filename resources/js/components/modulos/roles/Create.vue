@@ -53,7 +53,7 @@
           </div>
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title"><strong>PERMISOS</strong></h3>
+              <h3 class="card-title"><strong>SELECCIONAR PERMISOS</strong></h3>
             </div>
             <div class="card-body table-responsive">
             <template v-if="listPermisos.length">
@@ -68,7 +68,7 @@
               <tbody>
                 <tr v-for="(item,index) in listPermisos" :key="index">
                   <td>
-
+                    <el-checkbox v-model="checked"></el-checkbox>
                   </td>
                   <td v-text="item.name">
                   </td>
