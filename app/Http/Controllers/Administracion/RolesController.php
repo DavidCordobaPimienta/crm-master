@@ -53,7 +53,7 @@ class RolesController extends Controller
         try {
             DB::beginTransaction();
             $listPermisos = $request->listPermisosFilter;
-            $listPermisosSize = sizeof($listPermisos);
+            $listPermisosSize = sizeof((array)$listPermisos);
             
             if ($listPermisosSize>0) {
                 foreach ($listPermisos as $key => $value) {
