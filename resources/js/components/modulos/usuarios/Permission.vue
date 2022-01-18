@@ -12,7 +12,7 @@
     <div class="card">
         <div class="card-header"> 
         <div class="card-tools">
-          <router-link class="btn btn-info btn-sm" to="/roles">
+          <router-link class="btn btn-info btn-sm" to="/usuarios">
             <i class="fas fa-arrow-left"></i>
             Regresar
             </router-link>
@@ -119,7 +119,7 @@ export default {
   },
   mounted(){
     this.getListarPermisosByRolAsignado();
-    this.getListarPermisosByRol();
+    //this.getListarPermisosByRol();
   },
   methods:{
       getListarPermisosByRolAsignado(){

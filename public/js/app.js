@@ -9504,8 +9504,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {},
   mounted: function mounted() {
-    this.getListarPermisosByRolAsignado();
-    this.getListarPermisosByRol();
+    this.getListarPermisosByRolAsignado(); //this.getListarPermisosByRol();
   },
   methods: {
     getListarPermisosByRolAsignado: function getListarPermisosByRolAsignado() {
@@ -104893,7 +104892,10 @@ var render = function () {
             [
               _c(
                 "router-link",
-                { staticClass: "btn btn-info btn-sm", attrs: { to: "/roles" } },
+                {
+                  staticClass: "btn btn-info btn-sm",
+                  attrs: { to: "/usuarios" },
+                },
                 [
                   _c("i", { staticClass: "fas fa-arrow-left" }),
                   _vm._v("\n          Regresar\n          "),
