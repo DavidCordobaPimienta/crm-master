@@ -16,6 +16,7 @@ export default new Router ({
         //MODULO PERMISOS:
         { path: '/permisos', component: require('./components/modulos/permisos/Index.vue').default },
         { path: '/permisos/crear', component: require('./components/modulos/permisos/Create.vue').default },
+        { path: '/permisos/editar/:id', name:'permisos.editar', component: require('./components/modulos/permisos/Edit.vue').default, props: true },
 
         //MODULO PRODUCTOS:
         { path: '/productos', component: require('./components/modulos/productos/Index.vue').default },

@@ -20,6 +20,7 @@ Route::post('/setEditarRolPermisos','Administracion\RolesController@setEditarRol
 
 Route::get('/administracion/permisos/getListarPermisos', 'Administracion\PermissionController@getListarPermisos');
 Route::post('/setRegistrarPermiso','Administracion\PermissionController@setRegistrarPermiso');
+Route::post('/setEditarPermiso','Administracion\PermissionController@setEditarPermiso');
 
 Route::post('/setRegistrarUsuarios', 'Administracion\UsersController@setRegistrarUsuarios');
 Route::post('/setEditarUsuarios', 'Administracion\UsersController@setEditarUsuarios');

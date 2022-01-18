@@ -11,11 +11,11 @@ class PermissionController extends Controller
     public function getListarPermisos (Request $request){
         if(!$request->ajax()) return redirect('/');
 
-        $nIdPermiso = $request->nIdRol;
+        $nIdPermiso = $request->nIdPermiso;
         $cNombre = $request->cNombre;
         $cUrl = $request->cUrl;
 
-        $nIdPermiso = ($nIdPermiso == NULL) ? ($nIdnIdPermisoRol = 0): $nIdPermiso;
+        $nIdPermiso = ($nIdPermiso == NULL) ? ($nIdPermiso = 0): $nIdPermiso;
         $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
         $cUrl = ($cUrl == NULL) ? ($cUrl = ''): $cUrl;
 
@@ -39,6 +39,25 @@ class PermissionController extends Controller
 
         DB::select('call sp_Permiso_setRegistrarPermiso (?, ?)',
                                                             [
+                                                                $cNombre,
+                                                                $cUrl
+                                                            ]);
+    }
+
+    public function setEditarPermiso(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdPermiso = $request->nIdPermiso;
+        $cNombre = $request->cNombre;
+        $cUrl = $request->cUrl;
+
+        $nIdPermiso = ($nIdPermiso == NULL) ? ($nIdPermiso = 0): $nIdPermiso;
+        $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
+        $cUrl = ($cUrl == NULL) ? ($cUrl = ''): $cUrl;
+
+        DB::select('call sp_Permiso_setEditarPermiso (?, ?, ?)',
+                                                            [   
+                                                                $nIdPermiso,
                                                                 $cNombre,
                                                                 $cUrl
                                                             ]);

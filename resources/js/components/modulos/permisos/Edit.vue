@@ -3,7 +3,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"><strong>CREAR PERMISO</strong></h1>
+            <h1 class="m-0"><strong>EDITAR PERMISO</strong></h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -27,7 +27,7 @@
           </div>
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title"><strong>REGISTRAR PERMISO</strong></h3>
+              <h3 class="card-title"><strong>ACTUALIZAR PERMISO</strong></h3>
             </div>
             <div class="card-body">
               <form role="form">
@@ -36,7 +36,7 @@
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label">Nombre del Permiso</label>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" v-model="fillCrearPermiso.cNombre" @:keyup.enter="setRegistrarPermiso">
+                      <input type="text" class="form-control" v-model="fillEditarPermiso.cNombre" @:keyup.enter="setEditarPermiso">
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label">URL Amigable</label>
                     <div class="col-md-8">
-                      <input type="text" class="form-control" v-model="fillCrearPermiso.cUrl" @:keyup.enter="setRegistrarPermiso">
+                      <input type="text" class="form-control" v-model="fillEditarPermiso.cUrl" @:keyup.enter="setEditarPermiso">
                     </div>
                   </div>
                 </div>
@@ -55,7 +55,7 @@
         <div class="card-footer"> <!--Creación de boton registrar y limpiar-->
           <div class="row">
             <div class="col-md-4 offset-4">
-              <button class="btn btn-info btnWidth" @click.prevent="setRegistrarPermiso" ><strong>Registrar</strong></button>
+              <button class="btn btn-info btnWidth" @click.prevent="setEditarPermiso" ><strong>Editar</strong></button>
               <button class="btn btn-default btnWidth" @click.prevent="limpiarCriteriosBsq"><strong>Limpiar</strong></button>
             </div>
           </div>
@@ -92,7 +92,8 @@
 export default {
   data(){
     return{
-      fillCrearPermiso: {
+      fillEditarPermiso: {
+        nIdPermiso: this.$attrs.id,
         cNombre: '',
         cUrl: ''
       },
@@ -109,48 +110,62 @@ export default {
       mensajeError: []
     }
   },
-  computed:{
-  
+  mounted(){
+      this.getListarPermisos();
   },
   methods:{
       limpiarCriteriosBsq(){
-        this.fillCrearPermiso.cNombre = '';
-        this.fillCrearPermiso.cUrl = '';   
-    },
+        this.fillEditarPermiso.cNombre = '';
+        this.fillEditarPermiso.cUrl = '';   
+      },
       abrirModal(){
           this.modalShow = !this.modalShow;
       },
-      setRegistrarPermiso(){
-          if (this.validarRegistrarPermisos()) {
+      getListarPermisos(){
+      this.fullscreenLoading = true;
+      var url = '/administracion/permisos/getListarPermisos';
+      axios.get(url, {
+        params: {
+          'nIdPermiso' : this.fillEditarPermiso.nIdPermiso
+        }
+      }).then(response => {
+        this.fillEditarPermiso.cNombre = response.data[0].name;
+        this.fillEditarPermiso.cUrl = response.data[0].slug;
+        this.fullscreenLoading = false;
+      })
+      },
+      setEditarPermiso(){
+          if (this.validarEditarPermisos()) {
               this.modalShow = true;
               return;              
           }
 
           this.fullscreenLoading = true;
-    
-          var url = '/setRegistrarPermiso';
+          var url = '/setEditarPermiso';
+          
           axios.post(url, {
-                'cNombre' : this.fillCrearPermiso.cNombre,
-                'cUrl' : this.fillCrearPermiso.cUrl
+                'nIdPermiso' :  this.fillEditarPermiso.nIdPermiso,
+                'cNombre' :     this.fillEditarPermiso.cNombre,
+                'cUrl' :        this.fillEditarPermiso.cUrl
           }).then(response => {
               this.fullscreenLoading = false;
               Swal.fire({
               icon: 'success',
-              title: '¡El permiso ha sido creado correctamente!',
+              title: '¡El permiso ha sido actualizado correctamente!',
               showConfirmButton: false,
               timer: 1700
             })
             this.$router.push('/permisos');
           })
       },
-      validarRegistrarPermisos(){
+      validarEditarPermisos(){
           this.error = 0;
           this.mensajeError = [];
 
-          if(!this.fillCrearPermiso.cNombre){
+          if(!this.fillEditarPermiso.cNombre){
               this.mensajeError.push("El Nombre es un campo obligatorio.")
           }
-          if(!this.fillCrearPermiso.cUrl){
+          if(!this.fillEditarPermiso.cUrl){
               this.mensajeError.push("La URL es un campo obligatorio.")
           }
 
