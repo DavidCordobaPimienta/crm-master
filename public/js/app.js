@@ -7065,7 +7065,190 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      fillBusqPermiso: {
+        cNombre: '',
+        cUrl: ''
+      },
+      listPermisos: [],
+      fullscreenLoading: false,
+      pageNumber: 0,
+      perPage: 5
+    };
+  },
+  computed: {
+    pageCount: function pageCount() {
+      //Obtener el número de páginas
+      var a = this.listPermisos.length,
+          b = this.perPage;
+      return Math.ceil(a / b);
+    },
+    listarPermisosPaginated: function listarPermisosPaginated() {
+      var inicio = this.pageNumber * this.perPage,
+          fin = inicio + this.perPage;
+      return this.listPermisos.slice(inicio, fin);
+    },
+    pagesList: function pagesList() {
+      var a = this.listPermisos.length,
+          b = this.perPage;
+      var pageCount = Math.ceil(a / b);
+      var count = 0,
+          pagesArray = [];
+
+      while (count < pageCount) {
+        pagesArray.push(count);
+        count++;
+      }
+
+      return pagesArray;
+    }
+  },
+  methods: {
+    limpiarCriteriosBsq: function limpiarCriteriosBsq() {
+      this.fillBusqPermiso.cNombre = '';
+      this.fillBusqPermiso.cUrl = '';
+    },
+    getListarPermisos: function getListarPermisos() {
+      var _this = this;
+
+      this.fullscreenLoading = true;
+      var url = '/administracion/permisos/getListarPermisos';
+      axios.get(url, {
+        params: {
+          'cNombre': this.fillBusqPermiso.cNombre,
+          'cUrl': this.fillBusqPermiso.cUrl
+        }
+      }).then(function (response) {
+        _this.fullscreenLoading = false;
+
+        _this.inicializarPaginacion();
+
+        _this.listPermisos = response.data;
+      });
+    },
+    nextPage: function nextPage() {
+      this.pageNumber++;
+    },
+    prevPage: function prevPage() {
+      this.pageNumber--;
+    },
+    selectPage: function selectPage(page) {
+      this.pageNumber = page;
+    },
+    inicializarPaginacion: function inicializarPaginacion() {
+      this.fullscreenLoading = false;
+      this.pageNumber = 0;
+    }
+  }
+});
 
 /***/ }),
 
@@ -99617,20 +99800,424 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "content-header" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "content container-fluid" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c(
+            "div",
+            { staticClass: "card-tools" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-info btn-sm",
+                  attrs: { to: "/roles/crear" },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-plus-square" }),
+                  _vm._v("\n            Nuevo Permiso\n            "),
+                ]
+              ),
+            ],
+            1
+          ),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "containter" }, [
+            _c("div", { staticClass: "card card-info" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _c("form", { attrs: { role: "form" } }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-3 col-form-label" },
+                          [_vm._v("Nombre")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-5" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fillBusqPermiso.cNombre,
+                                expression: "fillBusqPermiso.cNombre",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.fillBusqPermiso.cNombre },
+                            on: {
+                              keyup: function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.getListarPermisos.apply(
+                                  null,
+                                  arguments
+                                )
+                              },
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fillBusqPermiso,
+                                  "cNombre",
+                                  $event.target.value
+                                )
+                              },
+                            },
+                          }),
+                        ]),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-3 col-form-label" },
+                          [_vm._v("URL Amigable")]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-5" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fillBusqPermiso.cUrl,
+                                expression: "fillBusqPermiso.cUrl",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.fillBusqPermiso.cUrl },
+                            on: {
+                              keyup: function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.getListarPermisos.apply(
+                                  null,
+                                  arguments
+                                )
+                              },
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fillBusqPermiso,
+                                  "cUrl",
+                                  $event.target.value
+                                )
+                              },
+                            },
+                          }),
+                        ]),
+                      ]),
+                    ]),
+                  ]),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-footer" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-4 offset-4" }, [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "loading",
+                          rawName: "v-loading.fullscreen.lock",
+                          value: _vm.fullscreenLoading,
+                          expression: "fullscreenLoading",
+                          modifiers: { fullscreen: true, lock: true },
+                        },
+                      ],
+                      staticClass: "btn btn-info btnWidth",
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.getListarPermisos.apply(null, arguments)
+                        },
+                      },
+                    },
+                    [_c("strong", [_vm._v("Buscar")])]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default btnWidth",
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.limpiarCriteriosBsq.apply(null, arguments)
+                        },
+                      },
+                    },
+                    [_c("strong", [_vm._v("Limpiar")])]
+                  ),
+                ]),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card card-info" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "card-body table-responsive" },
+                [
+                  _vm.listarPermisosPaginated.length
+                    ? [
+                        _c(
+                          "table",
+                          {
+                            staticClass:
+                              "table table-hover table-head-fixed text-nowrap projects",
+                          },
+                          [
+                            _vm._m(3),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.listarPermisosPaginated,
+                                function (item, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", {
+                                      domProps: {
+                                        textContent: _vm._s(item.name),
+                                      },
+                                    }),
+                                    _vm._v(" "),
+                                    _c("td", {
+                                      domProps: {
+                                        textContent: _vm._s(item.slug),
+                                      },
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "td",
+                                      [
+                                        _c(
+                                          "router-link",
+                                          {
+                                            staticClass:
+                                              "btn btn-primary btn-sm",
+                                            attrs: {
+                                              to: {
+                                                name: "roles.editar",
+                                                params: { id: item.id },
+                                              },
+                                            },
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fas fa-pen",
+                                            }),
+                                            _vm._v(
+                                              "\n                      Editar\n                    "
+                                            ),
+                                          ]
+                                        ),
+                                      ],
+                                      1
+                                    ),
+                                  ])
+                                }
+                              ),
+                              0
+                            ),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "card-footer" }, [
+                          _c(
+                            "ul",
+                            {
+                              staticClass:
+                                "pagination pagination-sm m-0 float-right",
+                            },
+                            [
+                              _vm.pageNumber > 0
+                                ? _c("li", { staticClass: "page-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.prevPage.apply(
+                                              null,
+                                              arguments
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [_c("strong", [_vm._v("Ant")])]
+                                    ),
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm._l(_vm.pagesList, function (page, index) {
+                                return _c(
+                                  "li",
+                                  {
+                                    key: index,
+                                    staticClass: "page-item",
+                                    class: [
+                                      page == _vm.pageNumber ? "active" : "",
+                                    ],
+                                  },
+                                  [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.selectPage(page)
+                                          },
+                                        },
+                                      },
+                                      [_vm._v(_vm._s(page + 1))]
+                                    ),
+                                  ]
+                                )
+                              }),
+                              _vm._v(" "),
+                              _vm.pageNumber < _vm.pageCount - 1
+                                ? _c("li", { staticClass: "page-item" }, [
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass: "page-link",
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.nextPage.apply(
+                                              null,
+                                              arguments
+                                            )
+                                          },
+                                        },
+                                      },
+                                      [_c("strong", [_vm._v("Sig")])]
+                                    ),
+                                  ])
+                                : _vm._e(),
+                            ],
+                            2
+                          ),
+                        ]),
+                      ]
+                    : [_vm._m(4)],
+                ],
+                2
+              ),
+            ]),
+          ]),
+        ]),
+      ]),
+    ]),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "content-header" }, [
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row mb-2" }, [
-          _c("div", { staticClass: "col-sm-6" }, [
-            _c("h1", { staticClass: "m-0" }, [_vm._v("Permisos")]),
+    return _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row mb-2" }, [
+        _c("div", { staticClass: "col-sm-6" }, [
+          _c("h1", { staticClass: "m-0" }, [
+            _c("strong", [_vm._v("PERMISOS")]),
           ]),
         ]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _c("strong", [_vm._v("CRITERIOS DE BÚSQUEDA")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _c("strong", [_vm._v("RESULTADOS DE LA BÚSQUEDA")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre Completo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("URL Amigable")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acción")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "callout callout-info" }, [
+      _c("h5", [
+        _vm._v(
+          "Lo sentimos: No se encontraron resultados para los criterios especificados o no ha ejecutado la búsqueda."
+        ),
       ]),
     ])
   },

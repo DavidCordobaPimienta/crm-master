@@ -8,7 +8,9 @@ export default new Router ({
         { path: '/', component: require('./components/modulos/dashboard/Index.vue').default },
         { path: '/casos', component: require('./components/modulos/casos/Index.vue').default },
         { path: '/cuentas', component: require('./components/modulos/cuentas/Index.vue').default },
+
         { path: '/permisos', component: require('./components/modulos/permisos/Index.vue').default },
+
         { path: '/productos', component: require('./components/modulos/productos/Index.vue').default },
         { path: '/reportes', component: require('./components/modulos/reportes/Index.vue').default },
 
