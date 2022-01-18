@@ -104117,7 +104117,7 @@ var render = function () {
                                                     staticClass: "fas fa-key",
                                                   }),
                                                   _vm._v(
-                                                    "\n                      Permiso\n                    "
+                                                    "\n                      Permisos\n                    "
                                                   ),
                                                 ]
                                               ),

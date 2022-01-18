@@ -123,7 +123,7 @@
                     </router-link>
                     <router-link class="btn btn-primary btn-sm" :to="'/'">
                       <i class="fas fa-key"></i>
-                      Permiso
+                      Permisos
                     </router-link>
                     <button class="btn btn-primary btn-sm" @click.prevent="setCambiarEstadoUsuario(1, item.id)">
                       <i class="fas fa-exclamation-triangle"></i>
