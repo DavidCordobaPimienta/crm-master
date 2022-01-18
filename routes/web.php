@@ -27,6 +27,7 @@ Route::post('/setEditarUsuarios', 'Administracion\UsersController@setEditarUsuar
 Route::post('/setCambiarEstadoUsuario', 'Administracion\UsersController@setCambiarEstadoUsuario');
 Route::get('administracion/usuarios/getListarUsuarios', 'Administracion\UsersController@getListarUsuarios');
 Route::post('/setEditarRolByUsuario', 'Administracion\UsersController@setEditarRolByUsuario');
+Route::get('/getRolByUsuario', 'Administracion\UsersController@getRolByUsuario');
 
 
 Route::get('/{optional?}', function () {

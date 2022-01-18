@@ -29,7 +29,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Primer Nombre</label>
+                    <label class="col-md-5 col-form-label">Primer Nombre</label>
                     <div class="col-md-5">
                       <input type="text" class="form-control" v-model="fillEditarUsuario.cPrimerNombre">
                     </div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Segundo Nombre</label>
+                    <label class="col-md-5 col-form-label">Segundo Nombre</label>
                     <div class="col-md-5">
                       <input type="text" class="form-control" v-model="fillEditarUsuario.cSegundoNombre">
                     </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Apellidos</label>
+                    <label class="col-md-5 col-form-label">Apellidos</label>
                     <div class="col-md-5">
                       <input type="text" class="form-control" v-model="fillEditarUsuario.cApellidos">
                     </div>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Usuario de Red</label>
+                    <label class="col-md-5 col-form-label">Usuario de Red</label>
                     <div class="col-md-5">
                       <input type="text" class="form-control" v-model="fillEditarUsuario.cUsuario">
                     </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Correo Electrónico</label>
+                    <label class="col-md-5 col-form-label">Correo Electrónico</label>
                     <div class="col-md-5">
                       <input type="email" class="form-control" v-model="fillEditarUsuario.cCorreo">
                     </div>
@@ -69,9 +69,24 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-3 col-form-label">Contraseña</label>
+                    <label class="col-md-5 col-form-label">Contraseña</label>
                     <div class="col-md-5">
                     <el-input v-model="fillEditarUsuario.cContrasena" @keyup.enter="setEditarUsuarios" show-password></el-input>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-5 col-form-label">Rol</label>
+                    <div class="col-md-5">
+                       <el-select v-model="fillEditarUsuario.nIdRol" placeholder="Seleccione un Rol" cleareable>
+                          <el-option
+                            v-for="item in listRoles"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                          </el-option>
+                        </el-select>
                     </div>
                   </div>
                 </div>
@@ -124,8 +139,10 @@ export default {
         cApellidos: '',
         cUsuario: '',
         cCorreo: '',
-        cContrasena: ''
+        cContrasena: '',
+        nIdRol: ''
       },
+      listRoles: [],
       fullscreenLoading: false,
       form: new FormData,
       modalShow: false,
@@ -142,8 +159,31 @@ export default {
   },
   mounted(){
       this.getUsuarioById();
+      this.getListarRoles();
   },
   methods:{
+      getListarRoles(){
+      this.fullscreenLoading = true;
+      var url = '/getListarRoles';
+      axios.get(url).then(response => {
+        this.fullscreenLoading = false;
+        this.listRoles = response.data;
+        this.getRolByUsuario();
+      })
+      },
+      getRolByUsuario(){
+        var url = '/getRolByUsuario';
+        axios.get(url, {
+          params:{
+            'nIdUsuario': this.fillEditarUsuario.nIdUsuario
+          }
+        }).then(response => {
+        this.fullscreenLoading = false;
+        this.fillEditarUsuario.nIdRol = (response.data.length == 0) ? '' : response.data[0].nIdRol;
+        //this.listRoles = response.data;
+        })
+        
+      },
       getUsuarioById(){
           this.fullscreenLoading = true;
           var url = '/administracion/usuarios/getListarUsuarios';
@@ -160,6 +200,22 @@ export default {
           this.fillEditarUsuario.cContrasena = response.data[0].password;
           this.fullscreenLoading = false;     
         })
+      },
+      setEditarRolByUsuario(){
+        var url = '/setEditarRolByUsuario';
+        axios.post(url, {
+                'nIdUsuario' : this.fillEditarUsuario.nIdUsuario,
+                'nIdRol' : this.fillEditarUsuario.nIdRol
+          }).then(response => {
+            this.fullscreenLoading = false;
+              Swal.fire({
+              icon: 'success',
+              title: '¡El usuario ha sido actualizado correctamente!',
+              showConfirmButton: false,
+              timer: 1700
+            });
+             this.$router.push('/usuarios');
+          })
       },
       limpiarCriteriosBsq(){
         this.fillEditarUsuario.cPrimerNombre = '';
@@ -191,14 +247,7 @@ export default {
                 'cCorreo'           : this.fillEditarUsuario.cCorreo,
                 'cContrasena'       : this.fillEditarUsuario.cContrasena
           }).then(response => {
-            this.fullscreenLoading = false;
-            Swal.fire({
-              icon: 'success',
-              title: '¡El usuario ha sido actualizado correctamente!',
-              showConfirmButton: false,
-              timer: 1700
-            })
-            this.$router.push('/usuarios');
+            this.setEditarRolByUsuario();
           })
       },
       validarRegistrarUsuario(){

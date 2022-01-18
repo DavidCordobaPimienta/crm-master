@@ -8878,6 +8878,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -8888,8 +8903,10 @@ __webpack_require__.r(__webpack_exports__);
         cApellidos: '',
         cUsuario: '',
         cCorreo: '',
-        cContrasena: ''
+        cContrasena: '',
+        nIdRol: ''
       },
+      listRoles: [],
       fullscreenLoading: false,
       form: new FormData(),
       modalShow: false,
@@ -8906,10 +8923,36 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getUsuarioById();
+    this.getListarRoles();
   },
   methods: {
-    getUsuarioById: function getUsuarioById() {
+    getListarRoles: function getListarRoles() {
       var _this = this;
+
+      this.fullscreenLoading = true;
+      var url = '/getListarRoles';
+      axios.get(url).then(function (response) {
+        _this.fullscreenLoading = false;
+        _this.listRoles = response.data;
+
+        _this.getRolByUsuario();
+      });
+    },
+    getRolByUsuario: function getRolByUsuario() {
+      var _this2 = this;
+
+      var url = '/getRolByUsuario';
+      axios.get(url, {
+        params: {
+          'nIdUsuario': this.fillEditarUsuario.nIdUsuario
+        }
+      }).then(function (response) {
+        _this2.fullscreenLoading = false;
+        _this2.fillEditarUsuario.nIdRol = response.data.length == 0 ? '' : response.data[0].nIdRol; //this.listRoles = response.data;
+      });
+    },
+    getUsuarioById: function getUsuarioById() {
+      var _this3 = this;
 
       this.fullscreenLoading = true;
       var url = '/administracion/usuarios/getListarUsuarios';
@@ -8918,13 +8961,32 @@ __webpack_require__.r(__webpack_exports__);
           'nIdUsuario': this.fillEditarUsuario.nIdUsuario
         }
       }).then(function (response) {
-        _this.fillEditarUsuario.cPrimerNombre = response.data[0].firstname;
-        _this.fillEditarUsuario.cSegundoNombre = response.data[0].secondname;
-        _this.fillEditarUsuario.cApellidos = response.data[0].lastname;
-        _this.fillEditarUsuario.cUsuario = response.data[0].username;
-        _this.fillEditarUsuario.cCorreo = response.data[0].email;
-        _this.fillEditarUsuario.cContrasena = response.data[0].password;
-        _this.fullscreenLoading = false;
+        _this3.fillEditarUsuario.cPrimerNombre = response.data[0].firstname;
+        _this3.fillEditarUsuario.cSegundoNombre = response.data[0].secondname;
+        _this3.fillEditarUsuario.cApellidos = response.data[0].lastname;
+        _this3.fillEditarUsuario.cUsuario = response.data[0].username;
+        _this3.fillEditarUsuario.cCorreo = response.data[0].email;
+        _this3.fillEditarUsuario.cContrasena = response.data[0].password;
+        _this3.fullscreenLoading = false;
+      });
+    },
+    setEditarRolByUsuario: function setEditarRolByUsuario() {
+      var _this4 = this;
+
+      var url = '/setEditarRolByUsuario';
+      axios.post(url, {
+        'nIdUsuario': this.fillEditarUsuario.nIdUsuario,
+        'nIdRol': this.fillEditarUsuario.nIdRol
+      }).then(function (response) {
+        _this4.fullscreenLoading = false;
+        Swal.fire({
+          icon: 'success',
+          title: '¡El usuario ha sido actualizado correctamente!',
+          showConfirmButton: false,
+          timer: 1700
+        });
+
+        _this4.$router.push('/usuarios');
       });
     },
     limpiarCriteriosBsq: function limpiarCriteriosBsq() {
@@ -8948,7 +9010,7 @@ __webpack_require__.r(__webpack_exports__);
       this.fullscreenLoading = true;
     },
     setGuardarUsuario: function setGuardarUsuario() {
-      var _this2 = this;
+      var _this5 = this;
 
       var url = '/setEditarUsuarios';
       axios.post(url, {
@@ -8960,15 +9022,7 @@ __webpack_require__.r(__webpack_exports__);
         'cCorreo': this.fillEditarUsuario.cCorreo,
         'cContrasena': this.fillEditarUsuario.cContrasena
       }).then(function (response) {
-        _this2.fullscreenLoading = false;
-        Swal.fire({
-          icon: 'success',
-          title: '¡El usuario ha sido actualizado correctamente!',
-          showConfirmButton: false,
-          timer: 1700
-        });
-
-        _this2.$router.push('/usuarios');
+        _this5.setEditarRolByUsuario();
       });
     },
     validarRegistrarUsuario: function validarRegistrarUsuario() {
@@ -103363,7 +103417,7 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Primer Nombre")]
                         ),
                         _vm._v(" "),
@@ -103403,7 +103457,7 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Segundo Nombre")]
                         ),
                         _vm._v(" "),
@@ -103443,7 +103497,7 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Apellidos")]
                         ),
                         _vm._v(" "),
@@ -103483,7 +103537,7 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Usuario de Red")]
                         ),
                         _vm._v(" "),
@@ -103521,7 +103575,7 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Correo Electrónico")]
                         ),
                         _vm._v(" "),
@@ -103559,7 +103613,7 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-3 col-form-label" },
+                          { staticClass: "col-md-5 col-form-label" },
                           [_vm._v("Contraseña")]
                         ),
                         _vm._v(" "),
@@ -103601,6 +103655,51 @@ var render = function () {
                                 expression: "fillEditarUsuario.cContrasena",
                               },
                             }),
+                          ],
+                          1
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-5 col-form-label" },
+                          [_vm._v("Rol")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-5" },
+                          [
+                            _c(
+                              "el-select",
+                              {
+                                attrs: {
+                                  placeholder: "Seleccione un Rol",
+                                  cleareable: "",
+                                },
+                                model: {
+                                  value: _vm.fillEditarUsuario.nIdRol,
+                                  callback: function ($$v) {
+                                    _vm.$set(
+                                      _vm.fillEditarUsuario,
+                                      "nIdRol",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "fillEditarUsuario.nIdRol",
+                                },
+                              },
+                              _vm._l(_vm.listRoles, function (item) {
+                                return _c("el-option", {
+                                  key: item.id,
+                                  attrs: { label: item.name, value: item.id },
+                                })
+                              }),
+                              1
+                            ),
                           ],
                           1
                         ),

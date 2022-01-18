@@ -102,6 +102,7 @@ class UsersController extends Controller
                                                                 $cContrasena
                                                             ]);
     }
+
     public function setCambiarEstadoUsuario(Request $request){
         if(!$request->ajax()) return redirect('/');
 
@@ -132,5 +133,19 @@ class UsersController extends Controller
                                                                 $nIdUsuario, 
                                                                 $nIdRol
                                                             ]);
+    }
+
+    public function getRolByUsuario(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdUsuario = $request->nIdUsuario;
+
+        $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = 0): $nIdUsuario;
+
+        $rspta = DB::select('call sp_Usuario_getRolByUsuario (?)',
+                                                            [
+                                                                $nIdUsuario
+                                                            ]);
+        return $rspta;
     }
 }
