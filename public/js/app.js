@@ -9481,34 +9481,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -104924,7 +104896,7 @@ var render = function () {
                 { staticClass: "btn btn-info btn-sm", attrs: { to: "/roles" } },
                 [
                   _c("i", { staticClass: "fas fa-arrow-left" }),
-                  _vm._v("\n            Regresar\n            "),
+                  _vm._v("\n          Regresar\n          "),
                 ]
               ),
             ],
@@ -104939,232 +104911,146 @@ var render = function () {
             _c("div", { staticClass: "card card-info" }, [
               _vm._m(2),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("form", { attrs: { role: "form" } }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group row" }, [
+              _c(
+                "div",
+                { staticClass: "card-body table-responsive" },
+                [
+                  _vm.listPermisosByRolAsignado.length
+                    ? [
                         _c(
-                          "label",
-                          { staticClass: "col-md-4 col-form-label" },
-                          [_vm._v("Nombre del Permiso")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-7" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.fillPermiso.cNombre,
-                                expression: "fillPermiso.cNombre",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.fillPermiso.cNombre },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
+                          "table",
+                          {
+                            staticClass:
+                              "table table-hover table-head-fixed text-nowrap projects",
+                          },
+                          [
+                            _vm._m(3),
+                            _vm._v(" "),
+                            _c(
+                              "tbody",
+                              _vm._l(
+                                _vm.listPermisosByRolAsignado,
+                                function (item, index) {
+                                  return _c("tr", { key: index }, [
+                                    _c("td", {
+                                      domProps: {
+                                        textContent: _vm._s(item.name),
+                                      },
+                                    }),
+                                    _vm._v(" "),
+                                    _c("td", {
+                                      domProps: {
+                                        textContent: _vm._s(item.slug),
+                                      },
+                                    }),
+                                  ])
                                 }
-                                _vm.$set(
-                                  _vm.fillPermiso,
-                                  "cNombre",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          { staticClass: "col-md-3 col-form-label" },
-                          [_vm._v("URL Amigable")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-8" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.fillPermiso.cUrl,
-                                expression: "fillPermiso.cUrl",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.fillPermiso.cUrl },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.fillPermiso,
-                                  "cUrl",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                ]),
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card card-info" }, [
-                _vm._m(3),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "card-body table-responsive" },
-                  [
-                    _vm.listPermisosByRolAsignado.length
-                      ? [
-                          _c(
-                            "table",
-                            {
-                              staticClass:
-                                "table table-hover table-head-fixed text-nowrap projects",
-                            },
-                            [
-                              _vm._m(4),
-                              _vm._v(" "),
-                              _c(
-                                "tbody",
-                                _vm._l(
-                                  _vm.listPermisosByRolAsignado,
-                                  function (item, index) {
-                                    return _c("tr", { key: index }, [
-                                      _c("td", {
-                                        domProps: {
-                                          textContent: _vm._s(item.name),
-                                        },
-                                      }),
-                                      _vm._v(" "),
-                                      _c("td", {
-                                        domProps: {
-                                          textContent: _vm._s(item.slug),
-                                        },
-                                      }),
-                                    ])
-                                  }
-                                ),
-                                0
                               ),
-                            ]
-                          ),
-                        ]
-                      : [_vm._m(5)],
-                  ],
-                  2
-                ),
-              ]),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-4 offset-4" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-info btnWidth",
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.setRegistrarRolPermisos.apply(
-                            null,
-                            arguments
-                          )
-                        },
-                      },
-                    },
-                    [_c("strong", [_vm._v("Registrar")])]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-default btnWidth",
-                      on: {
-                        click: function ($event) {
-                          $event.preventDefault()
-                          return _vm.limpiarCriteriosBsq.apply(null, arguments)
-                        },
-                      },
-                    },
-                    [_c("strong", [_vm._v("Limpiar")])]
-                  ),
-                ]),
-              ]),
+                              0
+                            ),
+                          ]
+                        ),
+                      ]
+                    : [_vm._m(4)],
+                ],
+                2
+              ),
             ]),
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "modal fade",
-              class: { show: _vm.modalShow },
-              style: _vm.modalShow ? _vm.mostrarModal : _vm.ocultarModal,
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass: "modal-dialog",
-                  staticStyle: { "max-height": "10px" },
-                  attrs: { role: "document" },
-                },
-                [
-                  _c("div", { staticClass: "modal-content" }, [
-                    _c("div", { staticClass: "modal-header" }, [
-                      _vm._m(6),
-                      _vm._v(" "),
-                      _c("button", {
-                        staticClass: "close",
-                        on: { click: _vm.abrirModal },
-                      }),
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "modal-body" },
-                      _vm._l(_vm.mensajeError, function (item, index) {
-                        return _c("div", {
-                          key: index,
-                          staticClass: "callout callout-danger",
-                          staticStyle: { padding: "5px" },
-                          domProps: { textContent: _vm._s(item) },
-                        })
-                      }),
-                      0
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "modal-footer" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-secundary",
-                          on: { click: _vm.abrirModal },
-                        },
-                        [_vm._v("Cerrar")]
-                      ),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]
-          ),
+          _c("div", { staticClass: "card-footer" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4 offset-4" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-info btnWidth",
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        return _vm.setRegistrarRolPermisos.apply(
+                          null,
+                          arguments
+                        )
+                      },
+                    },
+                  },
+                  [_c("strong", [_vm._v("Registrar")])]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-default btnWidth",
+                    on: {
+                      click: function ($event) {
+                        $event.preventDefault()
+                        return _vm.limpiarCriteriosBsq.apply(null, arguments)
+                      },
+                    },
+                  },
+                  [_c("strong", [_vm._v("Limpiar")])]
+                ),
+              ]),
+            ]),
+          ]),
         ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            class: { show: _vm.modalShow },
+            style: _vm.modalShow ? _vm.mostrarModal : _vm.ocultarModal,
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "modal-dialog",
+                staticStyle: { "max-height": "10px" },
+                attrs: { role: "document" },
+              },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("button", {
+                      staticClass: "close",
+                      on: { click: _vm.abrirModal },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "modal-body" },
+                    _vm._l(_vm.mensajeError, function (item, index) {
+                      return _c("div", {
+                        key: index,
+                        staticClass: "callout callout-danger",
+                        staticStyle: { padding: "5px" },
+                        domProps: { textContent: _vm._s(item) },
+                      })
+                    }),
+                    0
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-secundary",
+                        on: { click: _vm.abrirModal },
+                      },
+                      [_vm._v("Cerrar")]
+                    ),
+                  ]),
+                ]),
+              ]
+            ),
+          ]
+        ),
       ]),
     ]),
   ])
@@ -105206,20 +105092,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [
-        _c("strong", [_vm._v("SELECCIONAR PERMISOS")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("thead", [
       _c("tr", [
-        _c("th", [_vm._v("Acción")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
         _c("th", [_vm._v("URL Amigable")]),

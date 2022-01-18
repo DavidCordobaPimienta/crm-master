@@ -24,43 +24,16 @@
             <div class="col-md-5">
               
             </div>
-          </div>
+          </div>            
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title"><strong>PERMISOS DEL USUARIO</strong></h3>
-            </div>
-            <div class="card-body">
-              <form role="form">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-md-4 col-form-label">Nombre del Permiso</label>
-                    <div class="col-md-7">
-                      <input type="text" class="form-control" v-model="fillPermiso.cNombre">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group row">
-                    <label class="col-md-3 col-form-label">URL Amigable</label>
-                    <div class="col-md-8">
-                      <input type="text" class="form-control" v-model="fillPermiso.cUrl">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="card card-info">
-            <div class="card-header">
-              <h3 class="card-title"><strong>SELECCIONAR PERMISOS</strong></h3>
             </div>
             <div class="card-body table-responsive">
             <template v-if="listPermisosByRolAsignado.length">
             <table class="table table-hover table-head-fixed text-nowrap projects"> <!--Creación de la tabla de resultados-->
               <thead>
                 <tr>
-                  <th>Acción</th>
                   <th>Nombre</th>
                   <th>URL Amigable</th>
                 </tr>
@@ -116,7 +89,6 @@
       </div>
     </div>
   </div>
-</div>
 </template>
 
 
