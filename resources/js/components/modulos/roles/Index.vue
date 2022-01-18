@@ -67,7 +67,7 @@
                 <tr>
                   <th>Nombre Completo</th>
                   <th>URL Amigable</th>
-                  <th>Acciones</th>
+                  <th>Acción</th>
                 </tr>
               </thead>
               <tbody>
@@ -77,10 +77,6 @@
                   <td v-text="item.slug">
                   </td>
                   <td>
-                    <router-link class="btn btn-primary btn-sm" :to="{name:'usuarios.ver', params:{id: item.id}}">
-                      <i class="fas fa-folder"></i>
-                      Ver
-                    </router-link>
                     <router-link class="btn btn-primary btn-sm" :to="{name:'roles.editar', params:{id: item.id}}">
                       <i class="fas fa-pen"></i>
                       Editar
@@ -113,11 +109,11 @@
             </template>
           </div>
         </div>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
-  
 </div>
 </template>
 
@@ -129,10 +125,25 @@ export default {
         cNombre: '',
         cUrl: ''
       },
+      fillVerRol: {
+        cNombre: '',
+        cUrl: ''
+      },
       listRoles: [],
+      listPermisos: [],
       fullscreenLoading: false,
       pageNumber: 0,
-      perPage: 5
+      perPage: 5,
+      modalShow: false,
+      mostrarModal: {
+          display: 'block',
+          background: '#0000006b'
+      },
+      ocultarModal: {
+          display: 'none'
+      },
+      error: 0,
+      mensajeError: []
     }
   },
   computed:{
@@ -162,6 +173,9 @@ export default {
     }   
   },
   methods:{
+    abrirModal(){
+          this.modalShow = !this.modalShow;
+      },
     limpiarCriteriosBsq(){
     this.fillBusqRol.cNombre = '';
     this.fillBusqRol.cUrl = '';
@@ -195,6 +209,18 @@ export default {
     inicializarPaginacion(){
       this.fullscreenLoading = false;
       this.pageNumber = 0;
+    },
+    getListarPermisosByRol(id){ 
+        var ruta = '/administracion/roles/getListarPermisosByRol';
+        axios.get(ruta,{
+          params: {
+            'nIdRol' : id            
+          }
+        }).then( response => {
+          this.listPermisos = response.data;
+          this.modalShow = true;
+          this.modalOption = 2; 
+        }) 
     },
   }
 }

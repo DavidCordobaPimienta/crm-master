@@ -7510,7 +7510,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -7778,10 +7777,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -7789,10 +7784,25 @@ __webpack_require__.r(__webpack_exports__);
         cNombre: '',
         cUrl: ''
       },
+      fillVerRol: {
+        cNombre: '',
+        cUrl: ''
+      },
       listRoles: [],
+      listPermisos: [],
       fullscreenLoading: false,
       pageNumber: 0,
-      perPage: 5
+      perPage: 5,
+      modalShow: false,
+      mostrarModal: {
+        display: 'block',
+        background: '#0000006b'
+      },
+      ocultarModal: {
+        display: 'none'
+      },
+      error: 0,
+      mensajeError: []
     };
   },
   computed: {
@@ -7823,6 +7833,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    abrirModal: function abrirModal() {
+      this.modalShow = !this.modalShow;
+    },
     limpiarCriteriosBsq: function limpiarCriteriosBsq() {
       this.fillBusqRol.cNombre = '';
       this.fillBusqRol.cUrl = '';
@@ -7860,6 +7873,20 @@ __webpack_require__.r(__webpack_exports__);
     inicializarPaginacion: function inicializarPaginacion() {
       this.fullscreenLoading = false;
       this.pageNumber = 0;
+    },
+    getListarPermisosByRol: function getListarPermisosByRol(id) {
+      var _this2 = this;
+
+      var ruta = '/administracion/roles/getListarPermisosByRol';
+      axios.get(ruta, {
+        params: {
+          'nIdRol': id
+        }
+      }).then(function (response) {
+        _this2.listPermisos = response.data;
+        _this2.modalShow = true;
+        _this2.modalOption = 2;
+      });
     }
   }
 });
@@ -100780,28 +100807,6 @@ var render = function () {
                                               "btn btn-primary btn-sm",
                                             attrs: {
                                               to: {
-                                                name: "usuarios.ver",
-                                                params: { id: item.id },
-                                              },
-                                            },
-                                          },
-                                          [
-                                            _c("i", {
-                                              staticClass: "fas fa-folder",
-                                            }),
-                                            _vm._v(
-                                              "\n                      Ver\n                    "
-                                            ),
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "router-link",
-                                          {
-                                            staticClass:
-                                              "btn btn-primary btn-sm",
-                                            attrs: {
-                                              to: {
                                                 name: "roles.editar",
                                                 params: { id: item.id },
                                               },
@@ -100966,7 +100971,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("URL Amigable")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Acciones")]),
+        _c("th", [_vm._v("Acción")]),
       ]),
     ])
   },

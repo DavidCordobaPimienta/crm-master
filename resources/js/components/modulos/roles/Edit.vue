@@ -94,7 +94,6 @@
             </div>
           </div>
         </div>
-
         </div>
 
         <div class="modal fade" :class="{show: modalShow}" :style=" modalShow ? mostrarModal : ocultarModal">
