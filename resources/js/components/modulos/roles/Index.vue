@@ -81,7 +81,7 @@
                       <i class="fas fa-folder"></i>
                       Ver
                     </router-link>
-                    <router-link class="btn btn-primary btn-sm" :to="{name:'usuarios.editar', params:{id: item.id}}">
+                    <router-link class="btn btn-primary btn-sm" :to="{name:'roles.editar', params:{id: item.id}}">
                       <i class="fas fa-pen"></i>
                       Editar
                     </router-link>

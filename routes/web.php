@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/getListarRoles', 'Administracion\RolesController@getListarRoles');
 Route::get('/administracion/roles/getListarPermisosByRol', 'Administracion\RolesController@getListarPermisosByRol');
 Route::post('/setRegistrarRolPermisos','Administracion\RolesController@setRegistrarRolPermisos');
+Route::post('/setEditarRolPermisos','Administracion\RolesController@setEditarRolPermisos');
 
 
 Route::post('/setRegistrarUsuarios', 'Administracion\UsersController@setRegistrarUsuarios');

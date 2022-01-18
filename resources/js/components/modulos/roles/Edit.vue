@@ -27,7 +27,7 @@
           </div>
           <div class="card card-info">
             <div class="card-header">
-              <h3 class="card-title"><strong>REGISTRAR ROL</strong></h3>
+              <h3 class="card-title"><strong>ACTUALIZAR ROL</strong></h3>
             </div>
             <div class="card-body">
               <form role="form">
@@ -36,7 +36,7 @@
                   <div class="form-group row">
                     <label class="col-md-4 col-form-label">Nombre del Rol</label>
                     <div class="col-md-7">
-                      <input type="text" class="form-control" v-model="fillCrearRol.cNombre" @:keyup.enter="setRegistrarRolPermisos">
+                      <input type="text" class="form-control" v-model="fillEditarRol.cNombre" @:keyup.enter="setEditarRolPermisos">
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
                   <div class="form-group row">
                     <label class="col-md-3 col-form-label">URL Amigable</label>
                     <div class="col-md-8">
-                      <input type="text" class="form-control" v-model="fillCrearRol.cUrl" @:keyup.enter="setRegistrarRolPermisos">
+                      <input type="text" class="form-control" v-model="fillEditarRol.cUrl" @:keyup.enter="setEditarRolPermisos">
                     </div>
                   </div>
                 </div>
@@ -68,7 +68,7 @@
               <tbody>
                 <tr v-for="(item,index) in listPermisosFilter" :key="index">
                   <td style="align-items:center">
-                    <el-checkbox v-model="item.checked" @click.prevent="marcarFila(index)"></el-checkbox>
+                    <el-checkbox v-model="item.checked"></el-checkbox>
                   </td>
                   <td v-text="item.name">
                   </td>
@@ -89,7 +89,7 @@
         <div class="card-footer"> <!--Creación de boton registrar y limpiar-->
           <div class="row">
             <div class="col-md-4 offset-4">
-              <button class="btn btn-info btnWidth" @click.prevent="setRegistrarRolPermisos" ><strong>Registrar</strong></button>
+              <button class="btn btn-info btnWidth" @click.prevent="setEditarRolPermisos" ><strong>Editar</strong></button>
               <button class="btn btn-default btnWidth" @click.prevent="limpiarCriteriosBsq"><strong>Limpiar</strong></button>
             </div>
           </div>
@@ -126,7 +126,8 @@
 export default {
   data(){
     return{
-      fillCrearRol: {
+      fillEditarRol: {
+        nIdRol: this.$attrs.id,
         cNombre: '',
         cUrl: ''
       },
@@ -149,11 +150,22 @@ export default {
   
   },
   mounted(){
+    this.getListarRoles();
     this.getListarPermisosByRol();
   },
   methods:{
-      marcarFila(index){
-        this.listPermisosFilter[index].checked = !this.listPermisosFilter[index].checked;
+      getListarRoles(){
+      this.fullscreenLoading = true;
+      var url = '/getListarRoles';
+      axios.get(url, {
+        params: {
+          'nIdRol' : this.fillEditarRol.nIdRol,
+        }
+      }).then(response => {
+        this.fillEditarRol.cNombre = response.data[0].name;
+        this.fillEditarRol.cUrl = response.data[0].slug;
+        this.fullscreenLoading = false;
+      })
       },
       filterPermisosByRol(){
         let me = this;
@@ -162,57 +174,62 @@ export default {
             'id': x.id,
             'name': x.name,
             'slug': x.slug,
-            'checked': false
+            'checked': (x.checked == 1) ? true : false
           })
         })
       },
       getListarPermisosByRol(){ 
         var ruta = '/administracion/roles/getListarPermisosByRol';
-        axios.get(ruta).then( response => {
+        axios.get(ruta,{
+          params: {
+            'nIdRol' : this.fillEditarRol.nIdRol,            
+          }
+        }).then( response => {
           this.listPermisos = response.data;
           this.filterPermisosByRol();
         }) 
       },
       limpiarCriteriosBsq(){
-        this.fillCrearRol.cNombre = '';
-        this.fillCrearRol.cUrl = '';   
+        this.fillEditarRol.cNombre = '';
+        this.fillEditarRol.cUrl = '';   
     },
       abrirModal(){
           this.modalShow = !this.modalShow;
       },
-      setRegistrarRolPermisos(){
-          if (this.validarRegistrarRolPermisos()) {
+      setEditarRolPermisos(){
+          if (this.validarEditarRolPermisos()) {
               this.modalShow = true;
               return;              
           }
 
           this.fullscreenLoading = true;
     
-          var url = '/setRegistrarRolPermisos';
+          var url = '/setEditarRolPermisos';
           axios.post(url, {
-                'cNombre' : this.fillCrearRol.cNombre,
-                'cUrl' : this.fillCrearRol.cUrl,
+                'nIdRol' : this.fillEditarRol.nIdRol,
+                'cNombre' : this.fillEditarRol.cNombre,
+                'cUrl' : this.fillEditarRol.cUrl,
                 'listPermisosFilter': this.listPermisosFilter
 
           }).then(response => {
               this.fullscreenLoading = false;
               Swal.fire({
               icon: 'success',
-              title: '¡El rol ha sido creado correctamente!',
+              title: '¡El rol ha sido actualizado correctamente!',
               showConfirmButton: false,
               timer: 1700
             })
             this.$router.push('/roles');
           })
       },
-      validarRegistrarRolPermisos(){
+      validarEditarRolPermisos(){
           this.error = 0;
           this.mensajeError = [];
 
-          if(!this.fillCrearRol.cNombre){
+          if(!this.fillEditarRol.cNombre){
               this.mensajeError.push("El Nombre es un campo obligatorio.")
           }
-          if(!this.fillCrearRol.cUrl){
+          if(!this.fillEditarRol.cUrl){
               this.mensajeError.push("La URL es un campo obligatorio.")
           }
 

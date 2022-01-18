@@ -14,6 +14,8 @@ export default new Router ({
 
         { path: '/roles', component: require('./components/modulos/roles/Index.vue').default },
         { path: '/roles/crear', component: require('./components/modulos/roles/Create.vue').default },
+        { path: '/roles/editar/:id', name:'roles.editar', component: require('./components/modulos/roles/Edit.vue').default, props: true },
+
 
         { path: '/tipologias', component: require('./components/modulos/tipologias/Index.vue').default },
 
