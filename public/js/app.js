@@ -8607,6 +8607,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -8616,8 +8631,10 @@ __webpack_require__.r(__webpack_exports__);
         cApellidos: '',
         cUsuario: '',
         cCorreo: '',
-        cContrasena: ''
+        cContrasena: '',
+        nIdRol: ''
       },
+      listRoles: [],
       fullscreenLoading: false,
       form: new FormData(),
       modalShow: false,
@@ -8632,8 +8649,20 @@ __webpack_require__.r(__webpack_exports__);
       mensajeError: []
     };
   },
-  computed: {},
+  mounted: function mounted() {
+    this.getListarRoles();
+  },
   methods: {
+    getListarRoles: function getListarRoles() {
+      var _this = this;
+
+      this.fullscreenLoading = true;
+      var url = '/getListarRoles';
+      axios.get(url).then(function (response) {
+        _this.fullscreenLoading = false;
+        _this.listRoles = response.data;
+      });
+    },
     limpiarCriteriosBsq: function limpiarCriteriosBsq() {
       this.fillCrearUsuario.cPrimerNombre = '';
       this.fillCrearUsuario.cSegundoNombre = '';
@@ -8655,7 +8684,7 @@ __webpack_require__.r(__webpack_exports__);
       this.fullscreenLoading = true;
     },
     setGuardarUsuario: function setGuardarUsuario() {
-      var _this = this;
+      var _this2 = this;
 
       var url = '/setRegistrarUsuarios';
       axios.post(url, {
@@ -8666,7 +8695,18 @@ __webpack_require__.r(__webpack_exports__);
         'cCorreo': this.fillCrearUsuario.cCorreo,
         'cContrasena': this.fillCrearUsuario.cContrasena
       }).then(function (response) {
-        _this.fullscreenLoading = false;
+        _this2.setEditarRolByUsuario(response.data);
+      });
+    },
+    setEditarRolByUsuario: function setEditarRolByUsuario(nIdUsuario) {
+      var _this3 = this;
+
+      var url = '/setEditarRolByUsuario';
+      axios.post(url, {
+        'nIdUsuario': nIdUsuario,
+        'nIdRol': this.fillCrearUsuario.nIdRol
+      }).then(function (response) {
+        _this3.fullscreenLoading = false;
         Swal.fire({
           icon: 'success',
           title: '¡El usuario ha sido creado correctamente!',
@@ -8674,7 +8714,7 @@ __webpack_require__.r(__webpack_exports__);
           timer: 1700
         });
 
-        _this.$router.push('/usuarios');
+        _this3.$router.push('/usuarios');
       });
     },
     validarRegistrarUsuario: function validarRegistrarUsuario() {
@@ -103070,6 +103110,51 @@ var render = function () {
                                 expression: "fillCrearUsuario.cContrasena",
                               },
                             }),
+                          ],
+                          1
+                        ),
+                      ]),
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-5 col-form-label" },
+                          [_vm._v("Rol")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          [
+                            _c(
+                              "el-select",
+                              {
+                                attrs: {
+                                  placeholder: "Seleccione un Rol",
+                                  cleareable: "",
+                                },
+                                model: {
+                                  value: _vm.fillCrearUsuario.nIdRol,
+                                  callback: function ($$v) {
+                                    _vm.$set(
+                                      _vm.fillCrearUsuario,
+                                      "nIdRol",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "fillCrearUsuario.nIdRol",
+                                },
+                              },
+                              _vm._l(_vm.listRoles, function (item) {
+                                return _c("el-option", {
+                                  key: item.id,
+                                  attrs: { label: item.name, value: item.id },
+                                })
+                              }),
+                              1
+                            ),
                           ],
                           1
                         ),

@@ -55,7 +55,7 @@ class UsersController extends Controller
         $cCorreo = ($cCorreo == NULL) ? ($cCorreo = ''): $cCorreo;
         $cContrasena = ($cContrasena == NULL) ? ($cContrasena = ''): $cContrasena;
 
-        DB::select('call sp_Usuario_setRegistrarUsuarios (?, ?, ?, ?, ?, ?)',
+        $rpta = DB::select('call sp_Usuario_setRegistrarUsuarios (?, ?, ?, ?, ?, ?)',
                                                             [
                                                                 $cPrimerNombre, 
                                                                 $cSegundoNombre, 
@@ -64,6 +64,7 @@ class UsersController extends Controller
                                                                 $cCorreo,
                                                                 $cContrasena
                                                             ]);
+        return $rpta[0]->nIdUsuario;
     }
 
     public function setEditarUsuarios(Request $request)
@@ -114,6 +115,22 @@ class UsersController extends Controller
                                                             [
                                                                 $nIdUsuario,
                                                                 $cEstado, 
+                                                            ]);
+    }
+
+    public function setEditarRolByUsuario(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdUsuario = $request->nIdUsuario;
+        $nIdRol = $request->nIdRol;
+
+        $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = 0): $nIdUsuario;
+        $nIdRol = ($nIdRol == NULL) ? ($nIdRol = 0): $nIdRol;
+
+        DB::select('call sp_Usuario_setEditarRolByUsuario (?, ?)',
+                                                            [
+                                                                $nIdUsuario, 
+                                                                $nIdRol
                                                             ]);
     }
 }

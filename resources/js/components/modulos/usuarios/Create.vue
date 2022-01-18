@@ -75,6 +75,21 @@
                     </div>
                   </div>
                 </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-5 col-form-label">Rol</label>
+                    <div class="col-md-6">
+                       <el-select v-model="fillCrearUsuario.nIdRol" placeholder="Seleccione un Rol" cleareable>
+                          <el-option
+                            v-for="item in listRoles"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                          </el-option>
+                        </el-select>
+                    </div>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
@@ -126,8 +141,10 @@ export default {
         cApellidos: '',
         cUsuario: '',
         cCorreo: '',
-        cContrasena: ''
+        cContrasena: '',
+        nIdRol: ''
       },
+      listRoles: [],
       fullscreenLoading: false,
       form: new FormData,
       modalShow: false,
@@ -142,10 +159,18 @@ export default {
       mensajeError: []
     }
   },
-  computed:{
-  
+  mounted(){
+    this.getListarRoles();
   },
   methods:{
+      getListarRoles(){
+      this.fullscreenLoading = true;
+      var url = '/getListarRoles';
+      axios.get(url).then(response => {
+        this.fullscreenLoading = false;
+        this.listRoles = response.data;
+      })
+      },
       limpiarCriteriosBsq(){
         this.fillCrearUsuario.cPrimerNombre = '';
         this.fillCrearUsuario.cSegundoNombre = '';
@@ -175,14 +200,23 @@ export default {
                 'cCorreo' : this.fillCrearUsuario.cCorreo,
                 'cContrasena' : this.fillCrearUsuario.cContrasena
           }).then(response => {
-              this.fullscreenLoading = false;
+            this.setEditarRolByUsuario(response.data);
+          })
+      },
+      setEditarRolByUsuario(nIdUsuario){
+        var url = '/setEditarRolByUsuario';
+        axios.post(url, {
+                'nIdUsuario' : nIdUsuario,
+                'nIdRol' : this.fillCrearUsuario.nIdRol
+          }).then(response => {
+            this.fullscreenLoading = false;
               Swal.fire({
               icon: 'success',
               title: '¡El usuario ha sido creado correctamente!',
               showConfirmButton: false,
               timer: 1700
-            })
-            this.$router.push('/usuarios');
+            });
+             this.$router.push('/usuarios');
           })
       },
       validarRegistrarUsuario(){
