@@ -121,7 +121,7 @@
                       <i class="fas fa-pen"></i>
                       Editar
                     </router-link>
-                    <router-link class="btn btn-primary btn-sm" :to="'/'">
+                    <router-link class="btn btn-primary btn-sm" :to="{name:'usuarios.permiso', params:{id: item.id}}">
                       <i class="fas fa-key"></i>
                       Permisos
                     </router-link>

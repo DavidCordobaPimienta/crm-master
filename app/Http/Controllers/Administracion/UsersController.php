@@ -148,4 +148,18 @@ class UsersController extends Controller
                                                             ]);
         return $rspta;
     }
+
+    public function getListarPermisosByRolAsignado(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdUsuario = $request->nIdUsuario;
+
+        $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = 0): $nIdUsuario;
+
+        $rspta = DB::select('call sp_Usuario_getListarPermisosByRolAsignado (?)',
+                                                            [
+                                                                $nIdUsuario
+                                                            ]);
+        return $rspta;
+    }
 }

@@ -266,6 +266,9 @@ export default {
           if(!this.fillEditarUsuario.cCorreo){
               this.mensajeError.push("El Correo Electrónico es un campo obligatorio.")
           }
+          if(!this.fillEditarUsuario.nIdRol){
+              this.mensajeError.push("El Rol es un campo obligatorio.")
+          }
           if(this.mensajeError.length){
               this.error = 1;
           }
