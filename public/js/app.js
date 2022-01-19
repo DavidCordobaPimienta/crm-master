@@ -6950,7 +6950,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['ruta'],
+  props: ['ruta', 'usuario'],
   components: {
     Navbar: _plantilla_Navbar__WEBPACK_IMPORTED_MODULE_0__["default"],
     Sidebar: _plantilla_Sidebar_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -10909,7 +10909,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['ruta'],
+  props: ['ruta', 'usuario'],
   data: function data() {
     return {
       fullscreenLoading: false
@@ -100922,7 +100922,7 @@ var render = function () {
     [
       _c("Navbar", { attrs: { ruta: _vm.ruta } }),
       _vm._v(" "),
-      _c("Sidebar", { attrs: { ruta: _vm.ruta } }),
+      _c("Sidebar", { attrs: { ruta: _vm.ruta, usuario: _vm.usuario } }),
       _vm._v(" "),
       _c(
         "div",
@@ -101055,6 +101055,15 @@ var render = function () {
               attrs: { type: "password", placeholder: "Contraseña" },
               domProps: { value: _vm.fillLogin.password },
               on: {
+                keyup: function ($event) {
+                  if (
+                    !$event.type.indexOf("key") &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.login.apply(null, arguments)
+                },
                 input: function ($event) {
                   if ($event.target.composing) {
                     return
@@ -107864,7 +107873,11 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "info" }, [
+            _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
+              _vm._v(_vm._s(_vm.usuario.fullname)),
+            ]),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [
@@ -107898,7 +107911,7 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _vm._m(2),
+        _vm._m(1),
         _vm._v(" "),
         _c("nav", { staticClass: "mt-2" }, [
           _c(
@@ -107933,7 +107946,7 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c(
                 "li",
@@ -107971,7 +107984,7 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "li",
@@ -108007,7 +108020,7 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _vm._m(5),
+              _vm._m(4),
               _vm._v(" "),
               _c(
                 "li",
@@ -108059,7 +108072,7 @@ var render = function () {
                 1
               ),
               _vm._v(" "),
-              _vm._m(6),
+              _vm._m(5),
               _vm._v(" "),
               _c(
                 "li",
@@ -108091,16 +108104,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "brand-text font-weight-light" }, [
       _c("strong", [_vm._v("CRM")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "info" }, [
-      _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-        _vm._v("David Córdoba Pimienta"),
-      ]),
     ])
   },
   function () {

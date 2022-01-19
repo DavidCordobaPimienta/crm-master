@@ -6,7 +6,7 @@
 <body class="hold-transition sidebar-mini">
   <div class="wrapper" id="app">
     @if(Auth::check())
-      <app ruta="{{route('basepath')}}"></app>
+      <app ruta="{{route('basepath')}}" :usuario="{{Auth::user()}}"></app>
     @else
       <Auth ruta="{{route('basepath')}}"></Auth>
     @endif

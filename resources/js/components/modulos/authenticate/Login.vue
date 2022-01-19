@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" v-model="fillLogin.password" class="form-control" placeholder="Contraseña">
+          <input type="password" @keyup.enter="login" v-model="fillLogin.password" class="form-control" placeholder="Contraseña">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

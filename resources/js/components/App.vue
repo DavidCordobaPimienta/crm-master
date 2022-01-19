@@ -5,7 +5,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-    <Sidebar :ruta="ruta"></Sidebar>
+    <Sidebar :ruta="ruta" :usuario="usuario"></Sidebar>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -33,7 +33,7 @@
     import Content from './plantilla/Content.vue'
     import Footer from './plantilla/Footer.vue'
     export default {
-        props: ['ruta'],
+        props: ['ruta', 'usuario'],
         components: {Navbar, Sidebar, Content, Footer}
     }
 </script>

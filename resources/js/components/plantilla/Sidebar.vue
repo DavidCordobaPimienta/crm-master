@@ -14,7 +14,7 @@
           <img :src="ruta + './img/david.jpg'" class="img-circle elevation-2" alt="Imagen Usuario">
         </div>
         <div class="info">
-          <a href="#" class="d-block">David Córdoba Pimienta</a>
+          <a href="#" class="d-block">{{usuario.fullname}}</a>
         </div>
       </div>
 
@@ -118,7 +118,7 @@
 
 <script>
   export default {
-    props: ['ruta'],
+    props: ['ruta', 'usuario'],
     data() {
       return {
         fullscreenLoading: false
