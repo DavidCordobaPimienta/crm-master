@@ -7046,12 +7046,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       fillLogin: {
-        email: '',
-        password: ''
+        email: "",
+        password: ""
       },
       fullscreenLoading: false,
       error: 0,
@@ -7067,10 +7086,10 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.fullscreenLoading = true;
-      var url = '/authenticate/login';
+      var url = "/authenticate/login";
       axios.post(url, {
-        'email': this.fillLogin.email,
-        'password': this.fillLogin.password
+        email: this.fillLogin.email,
+        password: this.fillLogin.password
       }).then(function (response) {
         if (response.data.code == 401) {
           _this.loginFailed();
@@ -7086,11 +7105,11 @@ __webpack_require__.r(__webpack_exports__);
       this.mensajeError = [];
 
       if (!this.fillLogin.email) {
-        this.mensajeError.push('El correo electronico es un campo obligatorio');
+        this.mensajeError.push("El correo electronico es un campo obligatorio");
       }
 
       if (!this.fillLogin.password) {
-        this.mensajeError.push('La contraseña es un campo obligatorio');
+        this.mensajeError.push("La contraseña es un campo obligatorio");
       }
 
       if (this.mensajeError.length) {
@@ -7102,8 +7121,8 @@ __webpack_require__.r(__webpack_exports__);
     loginFailed: function loginFailed() {
       this.error = 0;
       this.mensajeError = [];
-      this.mensajeError.push('ERROR: ¡Las credenciales ingresadas son incorrectas o no existen!');
-      this.fillLogin.password = '';
+      this.mensajeError.push("ERROR: ¡Las credenciales ingresadas son incorrectas o no existen!");
+      this.fillLogin.password = "";
 
       if (this.mensajeError.length) {
         this.error = 1;
@@ -7113,10 +7132,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     loginSuccess: function loginSuccess() {
       this.$router.push({
-        name: 'dashboard.index'
+        name: "dashboard.index"
       });
       location.reload();
-    }
+    },
+    getListarRolPermisosByUsuario: function getListarRolPermisosByUsuario() {}
   }
 });
 
@@ -9642,6 +9662,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -9653,11 +9721,11 @@ __webpack_require__.r(__webpack_exports__);
       listPermisos: [],
       modalShow: false,
       mostrarModal: {
-        display: 'block',
-        background: '#0000006b'
+        display: "block",
+        background: "#0000006b"
       },
       ocultarModal: {
-        display: 'none'
+        display: "none"
       },
       error: 0,
       mensajeError: []
@@ -9671,10 +9739,10 @@ __webpack_require__.r(__webpack_exports__);
     getListarPermisosByRolAsignado: function getListarPermisosByRolAsignado() {
       var _this = this;
 
-      var ruta = '/getListarPermisosByRolAsignado';
+      var ruta = "/getListarPermisosByRolAsignado";
       axios.get(ruta, {
         params: {
-          'nIdUsuario': this.fillPermiso.nIdUsuario
+          nIdUsuario: this.fillPermiso.nIdUsuario
         }
       }).then(function (response) {
         _this.listPermisosByRolAsignado = response.data;
@@ -9684,17 +9752,17 @@ __webpack_require__.r(__webpack_exports__);
       var me = this;
       me.listPermisos.map(function (x, y) {
         me.listPermisosByRolAsignado.push({
-          'id': x.id,
-          'name': x.name,
-          'slug': x.slug,
-          'checked': false
+          id: x.id,
+          name: x.name,
+          slug: x.slug,
+          checked: false
         });
       });
     },
     getListarPermisosByRol: function getListarPermisosByRol() {
       var _this2 = this;
 
-      var ruta = '/administracion/roles/getListarPermisosByRol';
+      var ruta = "/administracion/roles/getListarPermisosByRol";
       axios.get(ruta).then(function (response) {
         _this2.listPermisos = response.data;
 
@@ -9703,8 +9771,8 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /*limpiarCriteriosBsq(){
-      this.fillPermiso.cNombre = '';
-      this.fillPermiso.cUrl = '';   
+    this.fillPermiso.cNombre = '';
+    this.fillPermiso.cUrl = '';   
     },*/
     abrirModal: function abrirModal() {
       this.modalShow = !this.modalShow;
@@ -9718,21 +9786,21 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.fullscreenLoading = true;
-      var url = '/setRegistrarRolPermisos';
+      var url = "/setRegistrarRolPermisos";
       axios.post(url, {
-        'cNombre': this.fillPermiso.cNombre,
-        'cUrl': this.fillPermiso.cUrl,
-        'listPermisosByRolAsignado': this.listPermisosByRolAsignado
+        cNombre: this.fillPermiso.cNombre,
+        cUrl: this.fillPermiso.cUrl,
+        listPermisosByRolAsignado: this.listPermisosByRolAsignado
       }).then(function (response) {
         _this3.fullscreenLoading = false;
         Swal.fire({
-          icon: 'success',
-          title: '¡El rol ha sido creado correctamente!',
+          icon: "success",
+          title: "¡El rol ha sido creado correctamente!",
           showConfirmButton: false,
           timer: 1700
         });
 
-        _this3.$router.push('/roles');
+        _this3.$router.push("/roles");
       });
     },
     validarRegistrarRolPermisos: function validarRegistrarRolPermisos() {
@@ -101118,7 +101186,7 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("\r\n          Iniciar Sesión\r\n        ")]
+            [_vm._v("\n                    Iniciar Sesión\n                ")]
           ),
         ]),
       ]),
@@ -105451,7 +105519,9 @@ var render = function () {
                 },
                 [
                   _c("i", { staticClass: "fas fa-arrow-left" }),
-                  _vm._v("\n          Regresar\n          "),
+                  _vm._v(
+                    "\n                        Regresar\n                    "
+                  ),
                 ]
               ),
             ],
@@ -105598,7 +105668,11 @@ var render = function () {
                         staticClass: "btn btn-secundary",
                         on: { click: _vm.abrirModal },
                       },
-                      [_vm._v("Cerrar")]
+                      [
+                        _vm._v(
+                          "\n                                Cerrar\n                            "
+                        ),
+                      ]
                     ),
                   ]),
                 ]),
@@ -105662,7 +105736,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "callout callout-info" }, [
       _c("h5", [
         _vm._v(
-          "Lo sentimos: No se encontraron resultados para los criterios especificados o no ha ejecutado la búsqueda."
+          "\n                                        Lo sentimos: No se encontraron\n                                        resultados para los criterios\n                                        especificados o no ha ejecutado la\n                                        búsqueda.\n                                    "
         ),
       ]),
     ])
