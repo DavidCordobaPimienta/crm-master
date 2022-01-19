@@ -32,6 +32,7 @@ Route::get('administracion/usuarios/getListarUsuarios', 'Administracion\UsersCon
 Route::post('/setEditarRolByUsuario', 'Administracion\UsersController@setEditarRolByUsuario');
 Route::get('/getRolByUsuario', 'Administracion\UsersController@getRolByUsuario');
 Route::get('/getListarPermisosByRolAsignado', 'Administracion\UsersController@getListarPermisosByRolAsignado');
+Route::get('/getListarRolPermisosByUsuario', 'Administracion\UsersController@getListarRolPermisosByUsuario');
 
 Route::get('/{optional?}', function () {
     return view('app');

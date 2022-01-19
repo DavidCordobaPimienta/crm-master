@@ -7074,7 +7074,8 @@ __webpack_require__.r(__webpack_exports__);
       },
       fullscreenLoading: false,
       error: 0,
-      mensajeError: []
+      mensajeError: [],
+      listRolPermisosByUsuario: []
     };
   },
   methods: {
@@ -7094,7 +7095,8 @@ __webpack_require__.r(__webpack_exports__);
         if (response.data.code == 401) {
           _this.loginFailed();
         } else if (response.data.code == 200) {
-          _this.loginSuccess();
+          //this.loginSuccess();
+          _this.getListarRolPermisosByUsuario(response.data.authUser.id);
         }
 
         _this.fullscreenLoading = false;
@@ -7136,7 +7138,18 @@ __webpack_require__.r(__webpack_exports__);
       });
       location.reload();
     },
-    getListarRolPermisosByUsuario: function getListarRolPermisosByUsuario() {}
+    getListarRolPermisosByUsuario: function getListarRolPermisosByUsuario(id) {
+      var _this2 = this;
+
+      var ruta = '/administracion/usuarios/getListarRolPermisosByUsuario';
+      axios.get(ruta, {
+        params: {
+          'nIdUsuario': id
+        }
+      }).then(function (response) {
+        _this2.listRolPermisosByUsuario = response.data;
+      });
+    }
   }
 });
 
