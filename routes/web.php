@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/authenticate/login', 'Auth\LoginController@login');
+Route::post('/authenticate/logout', 'Auth\LoginController@logout');
+
 
 Route::get('/getListarRoles', 'Administracion\RolesController@getListarRoles');
 Route::get('/administracion/roles/getListarPermisosByRol', 'Administracion\RolesController@getListarPermisosByRol');
@@ -34,3 +37,6 @@ Route::get('/{optional?}', function () {
     return view('app');
 })->name('basepath')
   ->where('optional','.*');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

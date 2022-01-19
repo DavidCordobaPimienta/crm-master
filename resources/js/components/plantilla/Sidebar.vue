@@ -18,6 +18,14 @@
         </div>
       </div>
 
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <a href="#" class="d-block" @click.prevent="logout" v-loading.fullscreen.lock="fullscreenLoading">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          </a>
+        </div>
+      </div>
+
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -110,7 +118,23 @@
 
 <script>
   export default {
-    props: ['ruta']
+    props: ['ruta'],
+    data() {
+      return {
+        fullscreenLoading: false
+      }
+    },
+    methods: {
+      logout(){
+        this.fullscreenLoading = true;
+        var url = '/authenticate/logout';
+        axios.post(url).then(response => {
+          this.$router.push({name: 'login'});
+          location.reload();
+          this.fullscreenLoading = false;
+        })
+      }
+    },
 }  
 </script>
 

@@ -27,15 +27,6 @@
                 <h3 class="profile-username text-center"><strong>{{fillVerUsuario.cPrimerNombre + ' ' + fillVerUsuario.cSegundoNombre}}</strong></h3>
 
                 <p class="text-muted text-center">{{fillVerUsuario.cApellidos}}</p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Rol</b> <a class="float-right">Asesor</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Operación</b> <a class="float-right">SAC General</a>
-                  </li>
-                </ul>
               </div>
               <!-- /.card-body -->
             </div>
@@ -114,7 +105,8 @@ export default {
             cApellidos: '',
             cUsuario: '',
             cCorreo: '',
-            cContrasena: ''
+            cContrasena: '',
+            cNombreRol: ''
         },
         fullscreenLoading: false,
         form: new FormData,
@@ -131,9 +123,21 @@ export default {
         }
     },
     mounted(){
-        this.getUsuarioById();
+      this.getRolByUsuario();
+      this.getUsuarioById();
     },
     methods:{
+      getRolByUsuario(){
+        var url = '/getRolByUsuario'
+        axios.get(url, {
+          params: {
+            'nIdUsuario'  : this.fillEditarUsuario.nIdUsuario
+          }
+        }).then(response => {
+          this.fillVerUsuario.cNombreRol = (response.data.length == 0) ? '' : response.data[0].name;
+          this.fullscreenLoading = false;
+        })
+      },
       getUsuarioById(){
           this.fullscreenLoading = true;
           var url = '/administracion/usuarios/getListarUsuarios';
