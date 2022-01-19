@@ -14,7 +14,9 @@
           <img :src="ruta + './img/david.jpg'" class="img-circle elevation-2" alt="Imagen Usuario">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{usuario.fullname}}</a>
+          <router-link class="d-block" :to="{name: 'usuarios.ver', params:{id: usuario.id}}">
+            {{usuario.fullname}}
+          </router-link>
         </div>
       </div>
 

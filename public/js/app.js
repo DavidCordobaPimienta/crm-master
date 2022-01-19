@@ -10908,6 +10908,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['ruta', 'usuario'],
   data: function data() {
@@ -107873,11 +107875,30 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "info" }, [
-            _c("a", { staticClass: "d-block", attrs: { href: "#" } }, [
-              _vm._v(_vm._s(_vm.usuario.fullname)),
-            ]),
-          ]),
+          _c(
+            "div",
+            { staticClass: "info" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "d-block",
+                  attrs: {
+                    to: {
+                      name: "usuarios.ver",
+                      params: { id: _vm.usuario.id },
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n          " + _vm._s(_vm.usuario.fullname) + "\n        "
+                  ),
+                ]
+              ),
+            ],
+            1
+          ),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "user-panel mt-3 pb-3 mb-3 d-flex" }, [

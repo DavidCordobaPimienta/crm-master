@@ -12,7 +12,7 @@ class LoginController extends Controller
         $email = $request->email;
         $password =  $request->password;
 
-        $rpta = Auth::attempt(['email' => $email, 'password' => $password]);
+        $rpta = Auth::attempt(['email' => $email, 'password' => $password, 'state' => 'A']);
 
         if ($rpta) {
             return response()->json([
