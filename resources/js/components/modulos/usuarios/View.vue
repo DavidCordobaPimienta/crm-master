@@ -159,7 +159,7 @@ export default {
         this.fillVerUsuario.cApellidos = data.lastname;
         this.fillVerUsuario.cUsuario = data.username;
         this.fillVerUsuario.cCorreo = data.email;
-      }
+      },
     }
 }
 </script>

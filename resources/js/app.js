@@ -20,6 +20,9 @@ window.Swal = Swal;
 Vue.component('app', require('./components/App.vue').default);
 Vue.component('Auth', require('./components/Auth.vue').default);
 
+export const EventBus = new Vue();
+window.EventBus = EventBus;
+
 import router from './routes'; 
 
 const app = new Vue({

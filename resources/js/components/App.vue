@@ -5,7 +5,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-    <Sidebar :ruta="ruta" :usuario="usuario"></Sidebar>
+    <Sidebar :ruta="ruta" :usuario="authUser"></Sidebar>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -34,7 +34,17 @@
     import Footer from './plantilla/Footer.vue'
     export default {
         props: ['ruta', 'usuario'],
-        components: {Navbar, Sidebar, Content, Footer}
+        components: {Navbar, Sidebar, Content, Footer},
+        data() {
+          return {
+            authUser: this.usuario
+          }
+        },
+        mounted() {
+          EventBus.$on('verifyAuthenticatedUser', data =>{
+            this.authUser = data;
+          })
+        },
     }
 </script>
 

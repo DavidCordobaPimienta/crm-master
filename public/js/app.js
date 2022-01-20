@@ -6956,6 +6956,18 @@ __webpack_require__.r(__webpack_exports__);
     Sidebar: _plantilla_Sidebar_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     Content: _plantilla_Content_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
     Footer: _plantilla_Footer_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
+  data: function data() {
+    return {
+      authUser: this.usuario
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    EventBus.$on('verifyAuthenticatedUser', function (data) {
+      _this.authUser = data;
+    });
   }
 });
 
@@ -7075,7 +7087,8 @@ __webpack_require__.r(__webpack_exports__);
       fullscreenLoading: false,
       error: 0,
       mensajeError: [],
-      listRolPermisosByUsuario: []
+      listRolPermisosByUsuario: [],
+      fillPermiso: []
     };
   },
   methods: {
@@ -7097,6 +7110,8 @@ __webpack_require__.r(__webpack_exports__);
         } else if (response.data.code == 200) {
           //this.loginSuccess();
           _this.getListarRolPermisosByUsuario(response.data.authUser.id);
+
+          console.log(response.data);
         }
 
         _this.fullscreenLoading = false;
@@ -7141,7 +7156,7 @@ __webpack_require__.r(__webpack_exports__);
     getListarRolPermisosByUsuario: function getListarRolPermisosByUsuario(id) {
       var _this2 = this;
 
-      var ruta = '/administracion/usuarios/getListarRolPermisosByUsuario';
+      var ruta = '/getListarRolPermisosByUsuario';
       axios.get(ruta, {
         params: {
           'nIdUsuario': id
@@ -11026,6 +11041,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EventBus": () => (/* binding */ EventBus)
+/* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! element-ui */ "./node_modules/element-ui/lib/element-ui.common.js");
 /* harmony import */ var element_ui__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(element_ui__WEBPACK_IMPORTED_MODULE_0__);
@@ -11049,6 +11067,8 @@ window.Vue.use((element_ui__WEBPACK_IMPORTED_MODULE_0___default()));
 window.Swal = (sweetalert2__WEBPACK_IMPORTED_MODULE_2___default());
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('app', (__webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue")["default"]));
 vue__WEBPACK_IMPORTED_MODULE_3__["default"].component('Auth', (__webpack_require__(/*! ./components/Auth.vue */ "./resources/js/components/Auth.vue")["default"]));
+var EventBus = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]();
+window.EventBus = EventBus;
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
   el: '#app',
@@ -101005,7 +101025,7 @@ var render = function () {
     [
       _c("Navbar", { attrs: { ruta: _vm.ruta } }),
       _vm._v(" "),
-      _c("Sidebar", { attrs: { ruta: _vm.ruta, usuario: _vm.usuario } }),
+      _c("Sidebar", { attrs: { ruta: _vm.ruta, usuario: _vm.authUser } }),
       _vm._v(" "),
       _c(
         "div",

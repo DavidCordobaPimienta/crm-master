@@ -79,7 +79,8 @@ export default {
             fullscreenLoading: false,
             error: 0,
             mensajeError: [],
-            listRolPermisosByUsuario: []
+            listRolPermisosByUsuario: [],
+            fillPermiso: []
         };
     },
     methods: {
@@ -100,6 +101,7 @@ export default {
                     } else if (response.data.code == 200) {
                         //this.loginSuccess();
                         this.getListarRolPermisosByUsuario(response.data.authUser.id)
+                        console.log(response.data);
                     }
                     this.fullscreenLoading = false;
                 });
@@ -138,7 +140,7 @@ export default {
             location.reload();
         },
         getListarRolPermisosByUsuario(id){
-          var ruta = '/administracion/usuarios/getListarRolPermisosByUsuario'
+          var ruta = '/getListarRolPermisosByUsuario'
                 axios.get(ruta,{
                   params:{
                     'nIdUsuario': id
