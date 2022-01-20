@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\Auth;
 
 class UsersController extends Controller
 {
@@ -56,7 +56,7 @@ class UsersController extends Controller
         $cContrasena = ($cContrasena == NULL) ? ($cContrasena = ''): $cContrasena;
 
         $rpta = DB::select('call sp_Usuario_setRegistrarUsuarios (?, ?, ?, ?, ?, ?)',
-                                                            [
+                                                            [   
                                                                 $cPrimerNombre, 
                                                                 $cSegundoNombre, 
                                                                 $cApellidos, 

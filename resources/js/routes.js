@@ -34,7 +34,9 @@ export default new Router ({
 
         //MODULO TIPOLOGÍAS:
         { path: '/tipologias', name: 'tipologias.index',  component: require('./components/modulos/tipologias/Index.vue').default },
-        
+        { path: '/tipologias/crear', name: 'tipologias.crear',  component: require('./components/modulos/tipologias/Create.vue').default },
+
+
         //MODULO USUARIOS:
         { path: '/usuarios', name: 'usuarios.index',  component: require('./components/modulos/usuarios/Index.vue').default },
         { path: '/usuarios/crear', name: 'usuarios.crear',  component: require('./components/modulos/usuarios/Create.vue').default },

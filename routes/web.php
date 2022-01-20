@@ -12,19 +12,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//MODULO TIPOLOGIAS
+Route::get('configuracion/categorias/getListarCategorias', 'Configuracion\TipologiaController@getListarCategorias');
+
+//MODULO LOGIN
 Route::post('/authenticate/login', 'Auth\LoginController@login');
 Route::post('/authenticate/logout', 'Auth\LoginController@logout');
 
-
+//MODULO ROLES
 Route::get('/getListarRoles', 'Administracion\RolesController@getListarRoles');
 Route::get('/administracion/roles/getListarPermisosByRol', 'Administracion\RolesController@getListarPermisosByRol');
 Route::post('/setRegistrarRolPermisos','Administracion\RolesController@setRegistrarRolPermisos');
 Route::post('/setEditarRolPermisos','Administracion\RolesController@setEditarRolPermisos');
 
+//MODULO PERMISOS
 Route::get('/administracion/permisos/getListarPermisos', 'Administracion\PermissionController@getListarPermisos');
 Route::post('/setRegistrarPermiso','Administracion\PermissionController@setRegistrarPermiso');
 Route::post('/setEditarPermiso','Administracion\PermissionController@setEditarPermiso');
 
+//MODULO USUARIOS
 Route::post('/setRegistrarUsuarios', 'Administracion\UsersController@setRegistrarUsuarios');
 Route::post('/setEditarUsuarios', 'Administracion\UsersController@setEditarUsuarios');
 Route::post('/setCambiarEstadoUsuario', 'Administracion\UsersController@setCambiarEstadoUsuario');
@@ -34,6 +41,7 @@ Route::get('/getRolByUsuario', 'Administracion\UsersController@getRolByUsuario')
 Route::get('/getListarPermisosByRolAsignado', 'Administracion\UsersController@getListarPermisosByRolAsignado');
 Route::get('/getListarRolPermisosByUsuario', 'Administracion\UsersController@getListarRolPermisosByUsuario');
 
+//Configuración de rutas
 Route::get('/{optional?}', function () {
     return view('app');
 })->name('basepath')

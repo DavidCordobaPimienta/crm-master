@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0"><strong>CREAR USUARIO</strong></h1>
+                    <h1 class="m-0"><strong>CREAR TIPOLOGÍA</strong></h1>
                 </div>
                 <!-- /.col -->
             </div>
@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="card-tools">
-                        <router-link class="btn btn-info btn-sm" to="/usuarios">
+                        <router-link class="btn btn-info btn-sm" to="/tipologias">
                             <i class="fas fa-arrow-left"></i>
                             Regresar
                         </router-link>
@@ -28,7 +28,7 @@
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    <strong>REGISTRAR USUARIO</strong>
+                                    <strong>REGISTRAR TIPOLOGÍA</strong>
                                 </h3>
                             </div>
                             <div class="card-body">

@@ -99,7 +99,7 @@ export default {
                     if (response.data.code == 401) {
                         this.loginFailed();
                     } else if (response.data.code == 200) {
-                        //this.loginSuccess();
+                        this.loginSuccess();
                         this.getListarRolPermisosByUsuario(response.data.authUser.id)
                         console.log(response.data);
                     }
