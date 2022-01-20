@@ -31,7 +31,7 @@
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    <strong>REGISTRAR TIPOLOGÍA</strong>
+                                    <strong>REGISTRAR PRODUCTO</strong>
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -41,17 +41,17 @@
                                             <div class="form-group row">
                                                 <label
                                                     class="col-md-4 col-form-label"
-                                                    >Nombre de la Tipología</label
+                                                    >Nombre del Producto</label
                                                 >
                                                 <div class="col-md-7">
                                                     <input
                                                         type="text"
                                                         class="form-control"
                                                         v-model="
-                                                            fillCrearCategoria.cNombre
+                                                            fillCrearProducto.cNombre
                                                         "
                                                         @:keyup.enter="
-                                                            setRegistrarCategoria
+                                                            setRegistrarProducto
                                                         "
                                                     />
                                                 </div>
@@ -68,12 +68,37 @@
                                                         type="text"
                                                         class="form-control"
                                                         v-model="
-                                                            fillCrearCategoria.cDescripcion
+                                                            fillCrearProducto.cDescripcion
                                                         "
                                                         @:keyup.enter="
-                                                            setRegistrarCategoria
+                                                            setRegistrarProducto
                                                         "
                                                     />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label
+                                                    class="col-md-4 col-form-label"
+                                                    >Categoría</label
+                                                >
+                                                <div class="col-md-7">
+                                                    <el-select
+                                                        v-model="
+                                                            fillCrearProducto.nIdCategoria
+                                                        "
+                                                        placeholder="Seleccione una Categoría"
+                                                        cleareable
+                                                    >
+                                                        <el-option
+                                                            v-for="item in listCategorias"
+                                                            :key="item.id"
+                                                            :label="item.name"
+                                                            :value="item.id"
+                                                        >
+                                                        </el-option>
+                                                    </el-select>
                                                 </div>
                                             </div>
                                         </div>
@@ -87,7 +112,7 @@
                                 <div class="col-md-4 offset-4">
                                     <button
                                         class="btn btn-info btnWidth"
-                                        @click.prevent="setRegistrarCategoria"
+                                        @click.prevent="setRegistrarProducto"
                                     >
                                         <strong>Registrar</strong>
                                     </button>
@@ -152,10 +177,17 @@
 export default {
     data() {
         return {
-            fillCrearCategoria: {
-                cNombre: "",
-                cDescripcion: "",
+            fillBusqProducto: {
+                cNombre: '',
+                cDescripcion: '',
+                nIdCategoria: ''
             },
+            fillCrearProducto: {
+                cNombre: '',
+                cDescripcion: '',
+                nIdCategoria: ''
+            },
+            listCategorias: [],
             fullscreenLoading: false,
             modalShow: false,
             mostrarModal: {
@@ -169,48 +201,61 @@ export default {
             mensajeError: [],
         };
     },
-    computed: {},
+    mounted() {
+        this.getListarCategorias();
+    },
     methods: {
         limpiarCriteriosBsq() {
-            this.fillCrearCategoria.cNombre = "";
-            this.fillCrearCategoria.cDescripcion = "";
+            this.fillCrearProducto.cNombre = "";
+            this.fillCrearProducto.cDescripcion = "";
+            this.fillCrearProducto.nIdCategoria = "";
         },
         abrirModal() {
             this.modalShow = !this.modalShow;
         },
-        setRegistrarCategoria() {
-            if (this.validarRegistrarCategorias()) {
+        getListarCategorias() {
+            this.fullscreenLoading = true;
+            var url = "/getListarCategorias";
+            axios
+                .get(url).then((response) => {
+                    this.fullscreenLoading = false;
+                    this.listCategorias = response.data;
+                });
+        },
+        setRegistrarProducto() {
+            if (this.validarRegistrarProductos()) {
                 this.modalShow = true;
                 return;
             }
 
             this.fullscreenLoading = true;
 
-            var url = "/setRegistrarCategoria";
+            var url = "/setRegistrarProducto";
             axios
                 .post(url, {
-                    cNombre: this.fillCrearCategoria.cNombre,
-                    cDescripcion: this.fillCrearCategoria.cDescripcion,
+                    'cNombre': this.fillCrearProducto.cNombre,
+                    'cDescripcion': this.fillCrearProducto.cDescripcion,
+                    'nIdCategoria': this.fillCrearProducto.nIdCategoria
                 })
                 .then((response) => {
                     this.fullscreenLoading = false;
                     Swal.fire({
                         icon: "success",
-                        title: "¡La tipología ha sido creada correctamente!",
+                        title: "¡El producto ha sido creado correctamente!",
                         showConfirmButton: false,
                         timer: 1700,
                     });
-                    this.$router.push("/tipologias");
+                    this.$router.push("/productos");
                 });
         },
-        validarRegistrarCategorias() {
+        validarRegistrarProductos() {
             this.error = 0;
             this.mensajeError = [];
 
-            if (!this.fillCrearCategoria.cNombre) {
+            if (!this.fillCrearProducto.cNombre) {
                 this.mensajeError.push("El Nombre es un campo obligatorio.");
             }
-
+        
             if (this.mensajeError.length) {
                 this.error = 1;
             }

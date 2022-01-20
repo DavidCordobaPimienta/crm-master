@@ -153,6 +153,7 @@
                                             <tr>
                                                 <th>Nombre</th>
                                                 <th>Descripción</th>
+                                                <th>Categoría</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -166,6 +167,9 @@
                                                 <td v-text="item.name"></td>
                                                 <td
                                                     v-text="item.description"
+                                                ></td>
+                                                <td
+                                                    v-text="item.categoria"
                                                 ></td>
                                                 <td>
                                                     <router-link
