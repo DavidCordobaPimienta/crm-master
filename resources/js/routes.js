@@ -23,7 +23,8 @@ export default new Router ({
 
         //MODULO PRODUCTOS:
         { path: '/productos', name: 'productos.index',  component: require('./components/modulos/productos/Index.vue').default },
-        
+        { path: '/productos/crear', name: 'productos.crear',  component: require('./components/modulos/productos/Create.vue').default },
+
         //MODULO REPORTES:
         { path: '/reportes', name: 'reportes.index',  component: require('./components/modulos/reportes/Index.vue').default },
         
