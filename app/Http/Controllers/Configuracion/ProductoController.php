@@ -36,13 +36,11 @@ class ProductoController extends Controller
     public function setRegistrarProducto(Request $request){
         if(!$request->ajax()) return redirect('/');
 
-        //$nIdProducto    = $request->nIdProducto;
         $cNombre        = $request->cNombre;
         $cDescripcion   = $request->cDescripcion;
         $nIdCategoria   = $request->nIdCategoria;
         $nIdUserAut = Auth::id();
 
-        //$nIdProducto = ($nIdProducto == NULL) ? ($nIdProducto = 0): $nIdProducto;
         $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
         $cDescripcion = ($cDescripcion == NULL) ? ($cDescripcion = ''): $cDescripcion;
         $nIdCategoria = ($nIdCategoria == NULL) ? ($nIdCategoria = 0): $nIdCategoria;
@@ -50,7 +48,31 @@ class ProductoController extends Controller
 
         DB::select('call sp_Producto_setRegistrarProducto (?, ?, ?, ?)',
                                                             [   
-                                                                //$nIdProducto,
+                                                                $cNombre,
+                                                                $cDescripcion,
+                                                                $nIdCategoria,
+                                                                $nIdUserAut
+                                                            ]);
+    }
+
+    public function setEditarProducto(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdProducto    = $request->nIdProducto;
+        $cNombre        = $request->cNombre;
+        $cDescripcion   = $request->cDescripcion;
+        $nIdCategoria   = $request->nIdCategoria;
+        $nIdUserAut = Auth::id();
+
+        $nIdProducto = ($nIdProducto == NULL) ? ($nIdProducto = 0): $nIdProducto;
+        $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
+        $cDescripcion = ($cDescripcion == NULL) ? ($cDescripcion = ''): $cDescripcion;
+        $nIdCategoria = ($nIdCategoria == NULL) ? ($nIdCategoria = 0): $nIdCategoria;
+
+
+        DB::select('call sp_Producto_setEditarProducto (?, ?, ?, ?, ?)',
+                                                            [   
+                                                                $nIdProducto,
                                                                 $cNombre,
                                                                 $cDescripcion,
                                                                 $nIdCategoria,

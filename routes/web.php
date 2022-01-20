@@ -14,8 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //MODULO PRODUCTOS
-Route::get('configuracion/productos/getListarProductos', 'Configuracion\ProductoController@getListarProductos');
+Route::get('/getListarProductos', 'Configuracion\ProductoController@getListarProductos');
 Route::post('/setRegistrarProducto', 'Configuracion\ProductoController@setRegistrarProducto');
+Route::post('/setEditarProducto', 'Configuracion\ProductoController@setEditarProducto');
 
 //MODULO TIPOLOGIAS
 Route::get('/getListarCategorias', 'Configuracion\TipologiaController@getListarCategorias');

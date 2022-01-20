@@ -328,7 +328,7 @@ export default {
         },
         getListarProductos() {
             this.fullscreenLoading = true;
-            var url = "configuracion/productos/getListarProductos";
+            var url = "/getListarProductos";
             axios
                 .get(url, {
                     params: {
