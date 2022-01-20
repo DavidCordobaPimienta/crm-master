@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 //MODULO TIPOLOGIAS
 Route::get('configuracion/categorias/getListarCategorias', 'Configuracion\TipologiaController@getListarCategorias');
 Route::post('/setRegistrarCategoria', 'Configuracion\TipologiaController@setRegistrarCategoria');
+Route::post('/setEditarCategoria', 'Configuracion\TipologiaController@setEditarCategoria');
+
 
 //MODULO LOGIN
 Route::post('/authenticate/login', 'Auth\LoginController@login');
