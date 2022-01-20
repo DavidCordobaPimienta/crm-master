@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group row">
-                    <label class="col-md-4 col-form-label">Tipología</label>
+                    <label class="col-md-4 col-form-label">Descripción</label>
                     <div class="col-md-7">
                       <input type="text" class="form-control" v-model="fillBusqCategoria.cDescripcion" @keyup.enter="getListarCategorias">
                     </div>
@@ -75,8 +75,6 @@
                   <td v-text="item.name">
                   </td>
                   <td v-text="item.description">
-                  </td>
-                  <td v-text="item.username">
                   </td>
                   <td>
                     <router-link class="btn btn-primary btn-sm" :to="{name:'tipologias.editar', params:{id: item.id}}">

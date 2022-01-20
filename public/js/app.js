@@ -7353,21 +7353,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       fillCrearPermiso: {
-        cNombre: '',
-        cUrl: ''
+        cNombre: "",
+        cUrl: ""
       },
       fullscreenLoading: false,
       modalShow: false,
       mostrarModal: {
-        display: 'block',
-        background: '#0000006b'
+        display: "block",
+        background: "#0000006b"
       },
       ocultarModal: {
-        display: 'none'
+        display: "none"
       },
       error: 0,
       mensajeError: []
@@ -7376,8 +7436,8 @@ __webpack_require__.r(__webpack_exports__);
   computed: {},
   methods: {
     limpiarCriteriosBsq: function limpiarCriteriosBsq() {
-      this.fillCrearPermiso.cNombre = '';
-      this.fillCrearPermiso.cUrl = '';
+      this.fillCrearPermiso.cNombre = "";
+      this.fillCrearPermiso.cUrl = "";
     },
     abrirModal: function abrirModal() {
       this.modalShow = !this.modalShow;
@@ -7391,20 +7451,20 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.fullscreenLoading = true;
-      var url = '/setRegistrarPermiso';
+      var url = "/setRegistrarPermiso";
       axios.post(url, {
-        'cNombre': this.fillCrearPermiso.cNombre,
-        'cUrl': this.fillCrearPermiso.cUrl
+        cNombre: this.fillCrearPermiso.cNombre,
+        cUrl: this.fillCrearPermiso.cUrl
       }).then(function (response) {
         _this.fullscreenLoading = false;
         Swal.fire({
-          icon: 'success',
-          title: '¡El permiso ha sido creado correctamente!',
+          icon: "success",
+          title: "¡El permiso ha sido creado correctamente!",
           showConfirmButton: false,
           timer: 1700
         });
 
-        _this.$router.push('/permisos');
+        _this.$router.push("/permisos");
       });
     },
     validarRegistrarPermisos: function validarRegistrarPermisos() {
@@ -8822,111 +8882,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      fillCrearUsuario: {
-        cPrimerNombre: "",
-        cSegundoNombre: "",
-        cApellidos: "",
-        cUsuario: "",
-        cCorreo: "",
-        cContrasena: "",
-        nIdRol: ""
+      fillCrearCategoria: {
+        cNombre: "",
+        cDescripcion: ""
       },
-      listRoles: [],
       fullscreenLoading: false,
-      form: new FormData(),
       modalShow: false,
       mostrarModal: {
         display: "block",
@@ -8939,100 +8902,46 @@ __webpack_require__.r(__webpack_exports__);
       mensajeError: []
     };
   },
-  mounted: function mounted() {
-    this.getListarRoles();
-  },
+  computed: {},
   methods: {
-    getListarRoles: function getListarRoles() {
-      var _this = this;
-
-      this.fullscreenLoading = true;
-      var url = "/getListarRoles";
-      axios.get(url).then(function (response) {
-        _this.fullscreenLoading = false;
-        _this.listRoles = response.data;
-      });
-    },
     limpiarCriteriosBsq: function limpiarCriteriosBsq() {
-      this.fillCrearUsuario.cPrimerNombre = "";
-      this.fillCrearUsuario.cSegundoNombre = "";
-      this.fillCrearUsuario.cApellidos = "";
-      this.fillCrearUsuario.cUsuario = "";
-      this.fillCrearUsuario.cCorreo = "";
-      this.fillCrearUsuario.cContrasena = "";
+      this.fillCrearCategoria.cNombre = "";
+      this.fillCrearCategoria.cDescripcion = "";
     },
     abrirModal: function abrirModal() {
       this.modalShow = !this.modalShow;
     },
-    setRegistrarUsuarios: function setRegistrarUsuarios() {
-      if (this.validarRegistrarUsuario()) {
+    setRegistrarCategoria: function setRegistrarCategoria() {
+      var _this = this;
+
+      if (this.validarRegistrarCategorias()) {
         this.modalShow = true;
         return;
       }
 
-      this.setGuardarUsuario();
       this.fullscreenLoading = true;
-    },
-    setGuardarUsuario: function setGuardarUsuario() {
-      var _this2 = this;
-
-      var url = "/setRegistrarUsuarios";
+      var url = "/setRegistrarCategoria";
       axios.post(url, {
-        cPrimerNombre: this.fillCrearUsuario.cPrimerNombre,
-        cSegundoNombre: this.fillCrearUsuario.cSegundoNombre,
-        cApellidos: this.fillCrearUsuario.cApellidos,
-        cUsuario: this.fillCrearUsuario.cUsuario,
-        cCorreo: this.fillCrearUsuario.cCorreo,
-        cContrasena: this.fillCrearUsuario.cContrasena
+        cNombre: this.fillCrearCategoria.cNombre,
+        cDescripcion: this.fillCrearCategoria.cDescripcion
       }).then(function (response) {
-        _this2.setEditarRolByUsuario(response.data);
-      });
-    },
-    setEditarRolByUsuario: function setEditarRolByUsuario(nIdUsuario) {
-      var _this3 = this;
-
-      var url = "/setEditarRolByUsuario";
-      axios.post(url, {
-        nIdUsuario: nIdUsuario,
-        nIdRol: this.fillCrearUsuario.nIdRol
-      }).then(function (response) {
-        _this3.fullscreenLoading = false;
+        _this.fullscreenLoading = false;
         Swal.fire({
           icon: "success",
-          title: "¡El usuario ha sido creado correctamente!",
+          title: "¡La tipología ha sido creada correctamente!",
           showConfirmButton: false,
           timer: 1700
         });
 
-        _this3.$router.push("/usuarios");
+        _this.$router.push("/tipologias");
       });
     },
-    validarRegistrarUsuario: function validarRegistrarUsuario() {
+    validarRegistrarCategorias: function validarRegistrarCategorias() {
       this.error = 0;
       this.mensajeError = [];
 
-      if (!this.fillCrearUsuario.cPrimerNombre) {
-        this.mensajeError.push("El Primer Nombre es un campo obligatorio.");
-      }
-
-      if (!this.fillCrearUsuario.cApellidos) {
-        this.mensajeError.push("Los Apellidos son un campo obligatorio.");
-      }
-
-      if (!this.fillCrearUsuario.cUsuario) {
-        this.mensajeError.push("El Usuario de Red es un campo obligatorio.");
-      }
-
-      if (!this.fillCrearUsuario.cCorreo) {
-        this.mensajeError.push("El Correo Electrónico es un campo obligatorio.");
-      }
-
-      if (!this.fillCrearUsuario.cContrasena) {
-        this.mensajeError.push("La Contraseña es un campo obligatorio.");
-      }
-
-      if (!this.fillCrearUsuario.nIdRol) {
-        this.mensajeError.push("El Rol es un campo obligatorio.");
+      if (!this.fillCrearCategoria.cNombre) {
+        this.mensajeError.push("El Nombre es un campo obligatorio.");
       }
 
       if (this.mensajeError.length) {
@@ -9057,8 +8966,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
 //
 //
 //
@@ -102176,7 +102083,9 @@ var render = function () {
                 },
                 [
                   _c("i", { staticClass: "fas fa-arrow-left" }),
-                  _vm._v("\n            Regresar\n            "),
+                  _vm._v(
+                    "\n                        Regresar\n                    "
+                  ),
                 ]
               ),
             ],
@@ -102209,7 +102118,8 @@ var render = function () {
                                 name: "model",
                                 rawName: "v-model",
                                 value: _vm.fillCrearPermiso.cNombre,
-                                expression: "fillCrearPermiso.cNombre",
+                                expression:
+                                  "\n                                                        fillCrearPermiso.cNombre\n                                                    ",
                               },
                             ],
                             staticClass: "form-control",
@@ -102265,7 +102175,8 @@ var render = function () {
                                 name: "model",
                                 rawName: "v-model",
                                 value: _vm.fillCrearPermiso.cUrl,
-                                expression: "fillCrearPermiso.cUrl",
+                                expression:
+                                  "\n                                                        fillCrearPermiso.cUrl\n                                                    ",
                               },
                             ],
                             staticClass: "form-control",
@@ -102392,7 +102303,11 @@ var render = function () {
                           staticClass: "btn btn-secundary",
                           on: { click: _vm.abrirModal },
                         },
-                        [_vm._v("Cerrar")]
+                        [
+                          _vm._v(
+                            "\n                                    Cerrar\n                                "
+                          ),
+                        ]
                       ),
                     ]),
                   ]),
@@ -104607,8 +104522,10 @@ var render = function () {
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c("div", { staticClass: "containter" }, [
+            _vm._m(1),
+            _vm._v(" "),
             _c("div", { staticClass: "card card-info" }, [
-              _vm._m(1),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "card-body" }, [
                 _c("form", { attrs: { role: "form" } }, [
@@ -104617,253 +104534,56 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-5 col-form-label" },
-                          [_vm._v("Primer Nombre")]
+                          { staticClass: "col-md-4 col-form-label" },
+                          [_vm._v("Nombre de la Tipología")]
                         ),
                         _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
+                        _c("div", { staticClass: "col-md-7" }, [
                           _c("input", {
                             directives: [
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.fillCrearUsuario.cPrimerNombre,
+                                value: _vm.fillCrearCategoria.cNombre,
                                 expression:
-                                  "\n                                                        fillCrearUsuario.cPrimerNombre\n                                                    ",
+                                  "\n                                                        fillCrearCategoria.cNombre\n                                                    ",
                               },
                             ],
                             staticClass: "form-control",
                             attrs: { type: "text" },
-                            domProps: {
-                              value: _vm.fillCrearUsuario.cPrimerNombre,
-                            },
+                            domProps: { value: _vm.fillCrearCategoria.cNombre },
                             on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.fillCrearUsuario,
-                                  "cPrimerNombre",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          { staticClass: "col-md-5 col-form-label" },
-                          [_vm._v("Segundo Nombre")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.fillCrearUsuario.cSegundoNombre,
-                                expression:
-                                  "\n                                                        fillCrearUsuario.cSegundoNombre\n                                                    ",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text" },
-                            domProps: {
-                              value: _vm.fillCrearUsuario.cSegundoNombre,
-                            },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.fillCrearUsuario,
-                                  "cSegundoNombre",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          { staticClass: "col-md-5 col-form-label" },
-                          [_vm._v("Apellidos")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.fillCrearUsuario.cApellidos,
-                                expression:
-                                  "\n                                                        fillCrearUsuario.cApellidos\n                                                    ",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text" },
-                            domProps: {
-                              value: _vm.fillCrearUsuario.cApellidos,
-                            },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.fillCrearUsuario,
-                                  "cApellidos",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          { staticClass: "col-md-5 col-form-label" },
-                          [_vm._v("Usuario de Red")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.fillCrearUsuario.cUsuario,
-                                expression:
-                                  "\n                                                        fillCrearUsuario.cUsuario\n                                                    ",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "text" },
-                            domProps: { value: _vm.fillCrearUsuario.cUsuario },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.fillCrearUsuario,
-                                  "cUsuario",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          { staticClass: "col-md-5 col-form-label" },
-                          [_vm._v("Correo Electrónico")]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.fillCrearUsuario.cCorreo,
-                                expression:
-                                  "\n                                                        fillCrearUsuario.cCorreo\n                                                    ",
-                              },
-                            ],
-                            staticClass: "form-control",
-                            attrs: { type: "email" },
-                            domProps: { value: _vm.fillCrearUsuario.cCorreo },
-                            on: {
-                              input: function ($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(
-                                  _vm.fillCrearUsuario,
-                                  "cCorreo",
-                                  $event.target.value
-                                )
-                              },
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-6" }, [
-                      _c("div", { staticClass: "form-group row" }, [
-                        _c(
-                          "label",
-                          { staticClass: "col-md-5 col-form-label" },
-                          [_vm._v("Contraseña")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6" },
-                          [
-                            _c("el-input", {
-                              attrs: { "show-password": "" },
-                              on: {
-                                keyup: function ($event) {
-                                  if (
-                                    !$event.type.indexOf("key") &&
-                                    _vm._k(
-                                      $event.keyCode,
-                                      "enter",
-                                      13,
-                                      $event.key,
-                                      "Enter"
-                                    )
-                                  ) {
-                                    return null
-                                  }
-                                  return _vm.setRegistrarUsuarios.apply(
-                                    null,
-                                    arguments
+                              ":keyup": function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
                                   )
-                                },
+                                ) {
+                                  return null
+                                }
+                                return _vm.setRegistrarCategoria.apply(
+                                  null,
+                                  arguments
+                                )
                               },
-                              model: {
-                                value: _vm.fillCrearUsuario.cContrasena,
-                                callback: function ($$v) {
-                                  _vm.$set(
-                                    _vm.fillCrearUsuario,
-                                    "cContrasena",
-                                    $$v
-                                  )
-                                },
-                                expression:
-                                  "\n                                                        fillCrearUsuario.cContrasena\n                                                    ",
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fillCrearCategoria,
+                                  "cNombre",
+                                  $event.target.value
+                                )
                               },
-                            }),
-                          ],
-                          1
-                        ),
+                            },
+                          }),
+                        ]),
                       ]),
                     ]),
                     _vm._v(" "),
@@ -104871,45 +104591,58 @@ var render = function () {
                       _c("div", { staticClass: "form-group row" }, [
                         _c(
                           "label",
-                          { staticClass: "col-md-5 col-form-label" },
-                          [_vm._v("Rol")]
+                          { staticClass: "col-md-3 col-form-label" },
+                          [_vm._v("Descripción")]
                         ),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6" },
-                          [
-                            _c(
-                              "el-select",
+                        _c("div", { staticClass: "col-md-8" }, [
+                          _c("input", {
+                            directives: [
                               {
-                                attrs: {
-                                  placeholder: "Seleccione un Rol",
-                                  cleareable: "",
-                                },
-                                model: {
-                                  value: _vm.fillCrearUsuario.nIdRol,
-                                  callback: function ($$v) {
-                                    _vm.$set(
-                                      _vm.fillCrearUsuario,
-                                      "nIdRol",
-                                      $$v
-                                    )
-                                  },
-                                  expression:
-                                    "\n                                                        fillCrearUsuario.nIdRol\n                                                    ",
-                                },
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fillCrearCategoria.cDescripcion,
+                                expression:
+                                  "\n                                                        fillCrearCategoria.cDescripcion\n                                                    ",
                               },
-                              _vm._l(_vm.listRoles, function (item) {
-                                return _c("el-option", {
-                                  key: item.id,
-                                  attrs: { label: item.name, value: item.id },
-                                })
-                              }),
-                              1
-                            ),
-                          ],
-                          1
-                        ),
+                            ],
+                            staticClass: "form-control",
+                            attrs: { type: "text" },
+                            domProps: {
+                              value: _vm.fillCrearCategoria.cDescripcion,
+                            },
+                            on: {
+                              ":keyup": function ($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                return _vm.setRegistrarCategoria.apply(
+                                  null,
+                                  arguments
+                                )
+                              },
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.fillCrearCategoria,
+                                  "cDescripcion",
+                                  $event.target.value
+                                )
+                              },
+                            },
+                          }),
+                        ]),
                       ]),
                     ]),
                   ]),
@@ -104923,21 +104656,14 @@ var render = function () {
                   _c(
                     "button",
                     {
-                      directives: [
-                        {
-                          name: "loading",
-                          rawName: "v-loading.fullscreen.lock",
-                          value: _vm.fullscreenLoading,
-                          expression:
-                            "\n                                        fullscreenLoading\n                                    ",
-                          modifiers: { fullscreen: true, lock: true },
-                        },
-                      ],
                       staticClass: "btn btn-info btnWidth",
                       on: {
                         click: function ($event) {
                           $event.preventDefault()
-                          return _vm.setRegistrarUsuarios.apply(null, arguments)
+                          return _vm.setRegistrarCategoria.apply(
+                            null,
+                            arguments
+                          )
                         },
                       },
                     },
@@ -104980,7 +104706,7 @@ var render = function () {
                 [
                   _c("div", { staticClass: "modal-content" }, [
                     _c("div", { staticClass: "modal-header" }, [
-                      _vm._m(2),
+                      _vm._m(3),
                       _vm._v(" "),
                       _c("button", {
                         staticClass: "close",
@@ -105045,9 +104771,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-5" }),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "card-title" }, [
-        _c("strong", [_vm._v("REGISTRAR TIPOLOGÍA")]),
+        _c("strong", [_vm._v("REGISTRAR TIPOLOGIA")]),
       ]),
     ])
   },
@@ -105177,7 +104911,7 @@ var render = function () {
                         _c(
                           "label",
                           { staticClass: "col-md-4 col-form-label" },
-                          [_vm._v("Tipología")]
+                          [_vm._v("Descripción")]
                         ),
                         _vm._v(" "),
                         _c("div", { staticClass: "col-md-7" }, [
@@ -105310,12 +105044,6 @@ var render = function () {
                                     _c("td", {
                                       domProps: {
                                         textContent: _vm._s(item.description),
-                                      },
-                                    }),
-                                    _vm._v(" "),
-                                    _c("td", {
-                                      domProps: {
-                                        textContent: _vm._s(item.username),
                                       },
                                     }),
                                     _vm._v(" "),
