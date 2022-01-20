@@ -1,21 +1,21 @@
 <template>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
+    <router-link :to="'/'" class="brand-link">
       <img :src="ruta + './img/konecta.png'" alt="Logo Konecta" class="brand-image img-circle elevation-3">
       <span class="brand-text font-weight-light"><strong>CRM</strong></span>
-    </a>
+    </router-link>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img :src="ruta + './img/konecta.png'" class="img-circle elevation-2" alt="Imagen Usuario">
+          <img :src="ruta + './img/konecta.png'" class="img-circle elevation-2" alt="Img User">
         </div>
         <div class="info">
           <router-link class="d-block" :to="{name: 'usuarios.ver', params:{id: usuario.id}}">
-            {{usuario.fullname}}
+            <strong>{{usuario.fullname}}</strong>
           </router-link>
         </div>
       </div>
@@ -23,7 +23,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
           <a href="#" class="d-block" @click.prevent="logout" v-loading.fullscreen.lock="fullscreenLoading">
-            &nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar Sesión
+            &nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;<strong>Cerrar Sesión</strong>
           </a>
         </div>
       </div>

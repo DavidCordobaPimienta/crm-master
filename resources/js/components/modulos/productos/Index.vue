@@ -313,13 +313,14 @@ export default {
         limpiarCriteriosBsq() {
             this.fillBusqProducto.cNombre = "";
             this.fillBusqProducto.cDescripcion = "";
+            this.fillBusqProducto.nIdCategoria ="";
         },
         limipiarBandejaProductos() {
             this.listProductos = [];
         },
         getListarCategorias() {
             this.fullscreenLoading = true;
-            var url = "configuracion/categorias/getListarCategorias";
+            var url = "/getListarCategorias";
             axios
                 .get(url).then((response) => {
                     this.fullscreenLoading = false;
