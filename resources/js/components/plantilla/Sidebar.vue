@@ -2,7 +2,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="../../index3.html" class="brand-link">
-      <img :src="ruta + './img/konecta.png'" alt="Logo Konecta" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img :src="ruta + './img/konecta.png'" alt="Logo Konecta" class="brand-image img-circle elevation-3">
       <span class="brand-text font-weight-light"><strong>CRM</strong></span>
     </a>
 
@@ -11,7 +11,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img :src="ruta + './img/david.jpg'" class="img-circle elevation-2" alt="Imagen Usuario">
+          <img :src="ruta + './img/konecta.png'" class="img-circle elevation-2" alt="Imagen Usuario">
         </div>
         <div class="info">
           <router-link class="d-block" :to="{name: 'usuarios.ver', params:{id: usuario.id}}">
@@ -23,20 +23,8 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
           <a href="#" class="d-block" @click.prevent="logout" v-loading.fullscreen.lock="fullscreenLoading">
-            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            &nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Cerrar Sesión
           </a>
-        </div>
-      </div>
-
-      <!-- SidebarSearch Form -->
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
-          </div>
         </div>
       </div>
 
@@ -49,7 +37,7 @@
             <router-link :to="'/'" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Inicio
               </p>
               </router-link>
           </li>

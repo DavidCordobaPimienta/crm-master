@@ -167,7 +167,7 @@ export default {
     },
     getListarCategorias(){
       this.fullscreenLoading = true;
-      var url = 'configuracion/categorias/getListarCategorias';
+      var url = '/getListarCategorias';
       axios.get(url, {
         params: {
           'cNombre' : this.fillBusqCategoria.cNombre,

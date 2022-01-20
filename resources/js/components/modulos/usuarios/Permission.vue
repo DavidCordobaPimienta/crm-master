@@ -74,25 +74,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <!--Creación de boton registrar y limpiar-->
-                        <div class="row">
-                            <div class="col-md-4 offset-4">
-                                <button
-                                    class="btn btn-info btnWidth"
-                                    @click.prevent="setRegistrarRolPermisos"
-                                >
-                                    <strong>Registrar</strong>
-                                </button>
-                                <button
-                                    class="btn btn-default btnWidth"
-                                    @click.prevent="limpiarCriteriosBsq"
-                                >
-                                    <strong>Limpiar</strong>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div
