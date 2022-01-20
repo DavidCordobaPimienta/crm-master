@@ -280,7 +280,7 @@ export default {
               timer: 1700
             })
             this.fullscreenLoading = false;
-            this.getListarUsuarios;
+            this.getListarUsuarios();
             })
           }
       })

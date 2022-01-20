@@ -10420,7 +10420,8 @@ __webpack_require__.r(__webpack_exports__);
               timer: 1700
             });
             _this2.fullscreenLoading = false;
-            _this2.getListarUsuarios;
+
+            _this2.getListarUsuarios();
           });
         }
       });
