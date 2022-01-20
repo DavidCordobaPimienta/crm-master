@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -47,6 +47,7 @@ class UsersController extends Controller
         $cUsuario = $request->cUsuario;
         $cCorreo = $request->cCorreo;
         $cContrasena = Hash::make($request->cContrasena);
+        $nIdUserAut = Auth::id();
 
         $cPrimerNombre = ($cPrimerNombre == NULL) ? ($cPrimerNombre = ''): $cPrimerNombre;
         $cSegundoNombre = ($cSegundoNombre == NULL) ? ($cSegundoNombre = ''): $cSegundoNombre;
@@ -55,14 +56,15 @@ class UsersController extends Controller
         $cCorreo = ($cCorreo == NULL) ? ($cCorreo = ''): $cCorreo;
         $cContrasena = ($cContrasena == NULL) ? ($cContrasena = ''): $cContrasena;
 
-        $rpta = DB::select('call sp_Usuario_setRegistrarUsuarios (?, ?, ?, ?, ?, ?)',
+        $rpta = DB::select('call sp_Usuario_setRegistrarUsuarios (?, ?, ?, ?, ?, ?, ?)',
                                                             [   
                                                                 $cPrimerNombre, 
                                                                 $cSegundoNombre, 
                                                                 $cApellidos, 
                                                                 $cUsuario,
                                                                 $cCorreo,
-                                                                $cContrasena
+                                                                $cContrasena,
+                                                                $nIdUserAut
                                                             ]);
         return $rpta[0]->nIdUsuario;
     }
@@ -78,6 +80,7 @@ class UsersController extends Controller
         $cUsuario = $request->cUsuario;
         $cCorreo = $request->cCorreo;
         $cContrasena = $request->cContrasena;
+        $nIdUserAut = Auth::id();
 
         if ($cContrasena != NULL) {
             $cContrasena = Hash::make($request->cContrasena);                        
@@ -91,7 +94,7 @@ class UsersController extends Controller
         $cCorreo = ($cCorreo == NULL) ? ($cCorreo = ''): $cCorreo;
         $cContrasena = ($cContrasena == NULL) ? ($cContrasena = ''): $cContrasena;
 
-        DB::select('call sp_Usuario_setEditarUsuarios (?, ?, ?, ?, ?, ?, ?)',
+        DB::select('call sp_Usuario_setEditarUsuarios (?, ?, ?, ?, ?, ?, ?, ?)',
                                                             [
                                                                 $nIdUsuario,
                                                                 $cPrimerNombre, 
@@ -99,7 +102,8 @@ class UsersController extends Controller
                                                                 $cApellidos, 
                                                                 $cUsuario,
                                                                 $cCorreo,
-                                                                $cContrasena
+                                                                $cContrasena,
+                                                                $nIdUserAut
                                                             ]);
     }
 
@@ -108,14 +112,16 @@ class UsersController extends Controller
 
         $nIdUsuario = $request->nIdUsuario;
         $cEstado = $request->cEstado;
+        $nIdUserAut = Auth::id();
 
         $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = ''): $nIdUsuario;    
         $cEstado = ($cEstado == NULL) ? ($cEstado = ''): $cEstado;
 
-        DB::select('call sp_Usuario_setCambiarEstadoUsuario (?, ?)',
+        DB::select('call sp_Usuario_setCambiarEstadoUsuario (?, ?, ?)',
                                                             [
                                                                 $nIdUsuario,
                                                                 $cEstado, 
+                                                                $nIdUserAut
                                                             ]);
     }
 
