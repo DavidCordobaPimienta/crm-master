@@ -11,34 +11,20 @@
 
                 <form method="post">
                     <div class="input-group mb-3">
-                        <input
-                            type="email"
-                            v-model="fillLogin.email"
-                            class="form-control"
-                            placeholder="Correo Electrónico"
-                        />
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
+                        <vs-input icon-after v-model="fillLogin.email" placeholder="Correo Electronico" :state="(error)?'danger':'primary'"> 
+                            <template #icon>
+                                <i class='fas fa-envelope'></i>
+                            </template>
+                        </vs-input>
                     </div>
                     <div class="input-group mb-3">
-                        <input
-                            type="password"
-                            @keyup.enter="login"
-                            v-model="fillLogin.password"
-                            class="form-control"
-                            placeholder="Contraseña"
-                        />
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
+                        <vs-input type="password" icon-after v-model="fillLogin.password" placeholder="Contraseña" :state="(error)?'danger':'primary'">
+                            <template #icon>
+                                <i class='fas fa-lock'></i>
+                            </template>
+                        </vs-input>
                     </div>
                 </form>
-
                 <div class="row">
                     <div class="col-md-12">
                         <span v-if="error">
@@ -55,10 +41,9 @@
                 <div class="social-auth-links text-center mb-3">
                     <button
                         @click.prevent="login"
-                        v-loading.fullscreen.lock="fullscreenLoading"
                         class="btn btn-block btn-primary"
                     >
-                        Iniciar Sesión
+                        <strong>Iniciar Sesión</strong>
                     </button>
                 </div>
                 <!-- /.social-auth-links -->
@@ -88,7 +73,9 @@ export default {
             if (this.validarLogin()) {
                 return;
             }
-            this.fullscreenLoading = true;
+            const loading = this.$vs.loading({
+                type: 'waves'
+            })
             var url = "/authenticate/login";
             axios
                 .post(url, {
@@ -103,7 +90,9 @@ export default {
                         this.getListarRolPermisosByUsuario(response.data.authUser.id)
                         console.log(response.data);
                     }
-                    this.fullscreenLoading = false;
+                    setTimeout(() => {
+                        loading.close()
+                    }, 3000)
                 });
         },
         validarLogin() {
