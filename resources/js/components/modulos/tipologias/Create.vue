@@ -31,7 +31,7 @@
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    <strong>REGISTRAR TIPOLOGÍA</strong>
+                                    <strong>REGISTRAR CATEGORÍA</strong>
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -41,7 +41,7 @@
                                             <div class="form-group row">
                                                 <label
                                                     class="col-md-4 col-form-label"
-                                                    >Nombre de la Tipología</label
+                                                    >Nombre de la Categoría</label
                                                 >
                                                 <div class="col-md-7">
                                                     <input
@@ -196,7 +196,7 @@ export default {
                     this.fullscreenLoading = false;
                     Swal.fire({
                         icon: "success",
-                        title: "¡La tipología ha sido creada correctamente!",
+                        title: "¡La categoría ha sido creada correctamente!",
                         showConfirmButton: false,
                         timer: 1700,
                     });

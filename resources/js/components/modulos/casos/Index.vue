@@ -42,18 +42,18 @@
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label
-                                                    class="col-md-5 col-form-label"
+                                                    class="col-md-4 col-form-label"
                                                     >Nombre</label
                                                 >
-                                                <div class="col-md-6">
+                                                <div class="col-md-7">
                                                     <input
                                                         type="text"
                                                         class="form-control"
                                                         v-model="
-                                                            fillBusqProducto.cNombre
+                                                            fillBusqPedido.cNombre
                                                         "
                                                         @keyup.enter="
-                                                            getListarProductos
+                                                            getListarPedidos
                                                         "
                                                     />
                                                 </div>
@@ -63,17 +63,17 @@
                                             <div class="form-group row">
                                                 <label
                                                     class="col-md-4 col-form-label"
-                                                    >Descripción</label
+                                                    >No. Documento</label
                                                 >
                                                 <div class="col-md-7">
                                                     <input
-                                                        type="text"
+                                                        type="number"
                                                         class="form-control"
                                                         v-model="
-                                                            fillBusqProducto.cDescripcion
+                                                            fillBusqPedido.cDocumento
                                                         "
                                                         @keyup.enter="
-                                                            getListarProductos
+                                                            getListarPedidos
                                                         "
                                                     />
                                                 </div>
@@ -82,22 +82,42 @@
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label
-                                                    class="col-md-5 col-form-label"
-                                                    >Categoría</label
+                                                    class="col-md-4 col-form-label"
+                                                    >No. Caso</label
                                                 >
-                                                <div class="col-md-6">
+                                                <div class="col-md-7">
+                                                    <input
+                                                        type="number"
+                                                        class="form-control"
+                                                        v-model="
+                                                            fillBusqPedido.cPedido
+                                                        "
+                                                        @keyup.enter="
+                                                            getListarPedidos
+                                                        "
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label
+                                                    class="col-md-4 col-form-label"
+                                                    >Estado</label
+                                                >
+                                                <div class="col-md-7">
                                                     <el-select
                                                         v-model="
-                                                            fillBusqProducto.nIdCategoria
+                                                            fillBusqPedido.nIdEstado
                                                         "
-                                                        placeholder="Seleccione una Categoría"
+                                                        placeholder="Seleccione un Estado"
                                                         cleareable
                                                     >
                                                         <el-option
-                                                            v-for="item in listCategorias"
-                                                            :key="item.id"
-                                                            :label="item.name"
-                                                            :value="item.id"
+                                                            v-for="item in listEstados"
+                                                            :key="item.value"
+                                                            :label="item.label"
+                                                            :value="item.value"
                                                         >
                                                         </el-option>
                                                     </el-select>
@@ -115,7 +135,7 @@
                                 <div class="col-md-4 offset-4">
                                     <button
                                         class="btn btn-info btnWidth"
-                                        @click.prevent="getListarProductos"
+                                        @click.prevent="getListarPedidos"
                                         v-loading.fullscreen.lock="
                                             fullscreenLoading
                                         "
@@ -143,7 +163,7 @@
                             </div>
                             <div class="card-body table-responsive">
                                 <template
-                                    v-if="listarProductosPaginated.length"
+                                    v-if="listarPedidosPaginated.length"
                                 >
                                     <table
                                         class="table table-hover table-head-fixed text-nowrap projects"
@@ -151,9 +171,11 @@
                                         <!--Creación de la tabla de resultados-->
                                         <thead>
                                             <tr>
-                                                <th>Nombre</th>
-                                                <th>Descripción</th>
-                                                <th>Categoría</th>
+                                                <th>No. Caso</th>
+                                                <th>No. Documento</th>
+                                                <th>Cliente</th>
+                                                <th>Asesor</th>
+                                                <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -161,31 +183,33 @@
                                             <tr
                                                 v-for="(
                                                     item, index
-                                                ) in listarProductosPaginated"
+                                                ) in listarPedidosPaginated"
                                                 :key="index"
                                             >
-                                                <td v-text="item.name"></td>
+                                                <td 
+                                                    v-text="item.pedido">
+                                                </td>
                                                 <td
-                                                    v-text="item.description"
+                                                    v-text="item.documento"
                                                 ></td>
                                                 <td
-                                                    v-text="item.categoria"
+                                                    v-text="item.cliente"
                                                 ></td>
                                                 <td>
-                                                    <router-link
-                                                        class="btn btn-primary btn-sm"
-                                                        :to="{
-                                                            name: 'productos.editar',
-                                                            params: {
-                                                                id: item.id,
-                                                            },
-                                                        }"
-                                                    >
-                                                        <i
-                                                            class="fas fa-pen"
-                                                        ></i>
-                                                        Editar
-                                                    </router-link>
+
+                                                </td>
+                                                <td
+                                                    v-text="item.estado"
+                                                ></td>
+                                                <td>
+                                                    <button class="btn btn-flat btn-info btn-sm">
+                                                        <i class="far fa-file-pdf"></i>
+                                                            Ver PDF
+                                                    </button>
+                                                    <button class="btn btn-flat btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                            Rechazar
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -267,13 +291,17 @@
 export default {
     data() {
         return {
-            fillBusqProducto: {
+            fillBusqPedido: {
                 cNombre: '',
-                cDescripcion: '',
-                nIdCategoria: ''
+                cDocumento: '',
+                cPedido: '',
+                nIdEstado: ''
             },
-            listProductos: [],
-            listCategorias: [],
+            listPedidos: [],
+            listEstados: [
+                {value: 'A', label: 'Activo'},
+                {value: 'I', label: 'Inactivo'}
+            ],
             fullscreenLoading: false,
             pageNumber: 0,
             perPage: 5,
@@ -282,17 +310,17 @@ export default {
     computed: {
         pageCount() {
             //Obtener el número de páginas
-            let a = this.listProductos.length,
+            let a = this.listPedidos.length,
                 b = this.perPage;
             return Math.ceil(a / b);
         },
-        listarProductosPaginated() {
+        listarPedidosPaginated() {
             let inicio = this.pageNumber * this.perPage,
                 fin = inicio + this.perPage;
-            return this.listProductos.slice(inicio, fin);
+            return this.listPedidos.slice(inicio, fin);
         },
         pagesList() {
-            let a = this.listProductos.length,
+            let a = this.listPedidos.length,
                 b = this.perPage;
             let pageCount = Math.ceil(a / b);
             let count = 0,
@@ -307,40 +335,33 @@ export default {
         },
     },
     mounted() {
-      this.getListarCategorias();
     },
     methods: {
         limpiarCriteriosBsq() {
-            this.fillBusqProducto.cNombre = "";
-            this.fillBusqProducto.cDescripcion = "";
+            this.fillBusqPedido.cNombre = "";
+            this.fillBusqPedido.cDocumento = "";
+            this.fillBusqPedido.cPedido = "";
+            this.fillBusqPedido.nIdEstado = "";
         },
         limipiarBandejaProductos() {
-            this.listProductos = [];
+            this.listPedidos = [];
         },
-        getListarCategorias() {
+        getListarPedidos() {
             this.fullscreenLoading = true;
-            var url = "configuracion/categorias/getListarCategorias";
-            axios
-                .get(url).then((response) => {
-                    this.fullscreenLoading = false;
-                    this.listCategorias = response.data;
-                });
-        },
-        getListarProductos() {
-            this.fullscreenLoading = true;
-            var url = "/getListarProductos";
+            var url = "/getListarPedidos";
             axios
                 .get(url, {
                     params: {
-                        'cNombre': this.fillBusqProducto.cNombre,
-                        'cDescripcion': this.fillBusqProducto.cDescripcion,
-                        'nIdCategoria': this.fillBusqProducto.nIdCategoria
+                        'cNombre': this.fillBusqPedido.cNombre,
+                        'cDocumento': this.fillBusqPedido.cDocumento,
+                        'cPedido':this.fillBusqPedido.cPedido,
+                        'nIdEstado': this.fillBusqPedido.nIdEstado
                     },
                 })
                 .then((response) => {
                     this.fullscreenLoading = false;
                     this.inicializarPaginacion();
-                    this.listProductos = response.data;
+                    this.listPedidos = response.data;
                 });
         },
         nextPage() {

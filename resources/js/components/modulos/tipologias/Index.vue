@@ -3,7 +3,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0"><strong>TIPOLOGÍAS</strong></h1>
+            <h1 class="m-0"><strong>CATEGORÍAS</strong></h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -14,7 +14,7 @@
         <div class="card-tools">
           <router-link class="btn btn-info btn-sm" to="/tipologias/crear">
             <i class="fas fa-plus-square"></i>
-            Nueva Tipología
+            Nueva Categoría
             </router-link>
         </div>
         </div>

@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0"><strong>EDITAR TIPOLOGÍA</strong></h1>
+                    <h1 class="m-0"><strong>EDITAR CATEGORÍA</strong></h1>
                 </div>
                 <!-- /.col -->
             </div>
@@ -31,7 +31,7 @@
                         <div class="card card-info">
                             <div class="card-header">
                                 <h3 class="card-title">
-                                    <strong>ACTUALIZAR TIPOLOGÍA</strong>
+                                    <strong>ACTUALIZAR CATEGORÍA</strong>
                                 </h3>
                             </div>
                             <div class="card-body">
@@ -41,7 +41,7 @@
                                             <div class="form-group row">
                                                 <label
                                                     class="col-md-4 col-form-label"
-                                                    >Nombre de la Tipología</label
+                                                    >Nombre de la Categoría</label
                                                 >
                                                 <div class="col-md-8">
                                                     <input
@@ -216,7 +216,7 @@ export default {
                     this.fullscreenLoading = false;
                     Swal.fire({
                         icon: "success",
-                        title: "¡La tipología ha sido actualizada correctamente!",
+                        title: "¡La categoría ha sido actualizada correctamente!",
                         showConfirmButton: false,
                         timer: 1700,
                     });

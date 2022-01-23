@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-    public function getListarUsuarios(Request $request)
+    public function getListarUsuarios(Request $request) //Falta el filtro de busqueda
     {
         if(!$request->ajax()) return redirect('/');
 

@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//MODULO CASOS:
+Route::get('/getListarPedidos', 'Operacion\OrdersController@getListarPedidos');
+
 //MODULO PRODUCTOS
 Route::get('/getListarProductos', 'Configuracion\ProductoController@getListarProductos');
 Route::post('/setRegistrarProducto', 'Configuracion\ProductoController@setRegistrarProducto');
