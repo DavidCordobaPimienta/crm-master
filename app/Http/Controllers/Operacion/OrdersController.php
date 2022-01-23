@@ -31,4 +31,43 @@ class OrdersController extends Controller
                                                             ]);
         return $rpta;
     }
+
+    public function setRegistrarPedido(Request $request){
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdCliente = $request->nIdCliente;
+        $cComentario = $request->cComentario;
+        $nIdUserAut = Auth::id(); 
+
+        $cComentario = ($cComentario == NULL) ? ($cComentario = ''): $cComentario;
+
+        try {
+            DB::beginTransaction();
+            $rpta = DB::select('call sp_Pedidos_setRegistrarPedido (?, ?, ?)',
+                                                            [
+                                                                $nIdCliente,
+                                                                $cComentario,
+                                                                $nIdUserAut
+                                                            ]);
+            $nIdPedido = $rpta[0]->nIdPedido;
+
+
+            $listPedido = $request->listPedido;
+            $listPedidoSize = sizeof((array)$listPedido);
+            
+            if ($listPedidoSize>0) {
+                foreach ($listPedido as $key => $value) {
+                        DB::select('call sp_Pedidos_setRegistrarDetallePedido (?, ?)',
+                                                            [
+                                                                $nIdPedido,
+                                                                $value['nIdProducto']
+                                                            ]);
+                }
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+        }
+                
+    }
 }

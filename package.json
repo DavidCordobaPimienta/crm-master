@@ -34,6 +34,7 @@
         "sweetalert2": "^11.3.5",
         "tailwindcss": "^3.0.9",
         "urix": "^0.1.0",
-        "vue-router": "^3.5.3"
+        "vue-router": "^3.5.3",
+        "vuesax": "^4.0.1-alpha.25"
     }
 }

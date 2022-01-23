@@ -140,7 +140,7 @@ export default {
       },
       getUsuarioById(){
           this.fullscreenLoading = true;
-          var url = '/administracion/usuarios/getListarUsuarios';
+          var url = '/getListarUsuarios';
             axios.get(url, {
             params: {
                 'nIdUsuario' : this.fillEditarUsuario.nIdUsuario

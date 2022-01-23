@@ -175,6 +175,7 @@
                                                 <th>No. Documento</th>
                                                 <th>Cliente</th>
                                                 <th>Asesor</th>
+                                                <th>Comentario</th>
                                                 <th>Estado</th>
                                                 <th>Acciones</th>
                                             </tr>
@@ -195,9 +196,12 @@
                                                 <td
                                                     v-text="item.cliente"
                                                 ></td>
-                                                <td>
-
-                                                </td>
+                                                <td
+                                                    v-text="item.agente"
+                                                ></td>
+                                                <td
+                                                    v-text="item.comentario"
+                                                ></td>
                                                 <td
                                                     v-text="item.estado"
                                                 ></td>

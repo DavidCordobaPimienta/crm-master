@@ -40,3 +40,8 @@
 .el-select{
     width: 100% !important;
 }
+
+.vs-input{
+    width: 100% !important;
+    border-radius: none !important;
+}

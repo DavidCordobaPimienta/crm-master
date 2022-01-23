@@ -12,7 +12,8 @@ export default new Router ({
 
         //MODULO CASOS:
         { path: '/casos', name: 'casos.index', component: require('./components/modulos/casos/Index.vue').default },
-        
+        { path: '/casos/crear', name: 'casos.crear', component: require('./components/modulos/casos/Create.vue').default },
+
         //MODULO CUENTAS:
         { path: '/cuentas', name: 'cuentas.index',  component: require('./components/modulos/cuentas/Index.vue').default },
 
