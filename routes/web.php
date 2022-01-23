@@ -19,7 +19,7 @@ Route::post('/setRegistrarCliente', 'Operacion\CustomersController@setRegistrarC
 //MODULO CASOS:
 Route::get('/getListarPedidos', 'Operacion\OrdersController@getListarPedidos');
 Route::post('/setRegistrarPedido', 'Operacion\OrdersController@setRegistrarPedido');
-
+Route::post('/setGenerarDocumento', 'Operacion\OrdersController@setGenerarDocumento');
 
 //MODULO PRODUCTOS
 Route::get('/getListarProductos', 'Configuracion\ProductoController@getListarProductos');

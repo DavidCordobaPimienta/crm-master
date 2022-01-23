@@ -11,7 +11,7 @@
 
                 <form method="post">
                     <div class="input-group mb-3">
-                        <vs-input icon-after v-model="fillLogin.email" placeholder="Correo Electronico" :state="(error)?'danger':'primary'"> 
+                        <vs-input icon-after v-model="fillLogin.email" placeholder="Correo Electronico" autocomplete="off" :state="(error)?'danger':'primary'"> 
                             <template #icon>
                                 <i class='fas fa-envelope'></i>
                             </template>

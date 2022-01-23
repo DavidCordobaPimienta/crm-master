@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Operacion;
 
+use PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,5 +70,10 @@ class OrdersController extends Controller
             DB::rollBack();
         }
                 
+    }
+
+    public function setGenerarDocumento(Request $request){
+        $pdf = PDF::loadView('reportes.caso.pdf.ver');
+        return $pdf->download('invoice.pdf');
     }
 }

@@ -206,7 +206,7 @@
                                                     v-text="item.estado"
                                                 ></td>
                                                 <td>
-                                                    <button class="btn btn-flat btn-info btn-sm">
+                                                    <button class="btn btn-flat btn-info btn-sm" @click.prevent="setGenerarDocumento(item.id)" v-loading.fullscreen.lock="fullscreenLoading">
                                                         <i class="far fa-file-pdf"></i>
                                                             Ver PDF
                                                     </button>
@@ -366,6 +366,27 @@ export default {
                     this.fullscreenLoading = false;
                     this.inicializarPaginacion();
                     this.listPedidos = response.data;
+                });
+        },
+        setGenerarDocumento(nIdPedido){
+            this.fullscreenLoading = true;
+
+            var url = "/setGenerarDocumento";
+             var config = {
+                responseType: 'blob'
+            };
+            
+            axios
+                .post(url, {
+                    'nIdPedido': nIdPedido
+                }, config)
+                .then((response) => {
+                    var oMyBlob = new Blob([response.data], {type : 'application/pdf'});
+                    var url = URL.createObjectURL(oMyBlob);
+                    this.inicializarPaginacion();
+                    this.listPedidos = response.data;
+                    this.fullscreenLoading = false;
+                    window.open(url);
                 });
         },
         nextPage() {
