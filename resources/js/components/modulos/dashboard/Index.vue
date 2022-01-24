@@ -74,7 +74,7 @@
             let parametro1 = Math.floor(Math.random() * 256);
             let parametro2 = Math.floor(Math.random() * 256);
             let parametro3 = Math.floor(Math.random() * 256);
-            let color = 'rgba('+parametro1+', '+parametro2+', '+parametro3+', 0.2)';
+            let color = 'rgba('+parametro1+', '+parametro2+', '+parametro3+', 0.7)';
             me.listCasosMasUsados.colores.push(color);
           })
           this.getGraficoBar();
@@ -133,8 +133,13 @@
               data: {
                   labels:  (me.listCasosDiarios.name),
                   datasets: [{
-                      label: 'CASOS DIARIOS',
-                      data: me.listCasosDiarios.cantidad
+                      label: 'CASOS DIARIOS DURANTE MES ACTUAL',
+                      data: me.listCasosDiarios.cantidad,
+                      fill: true,
+                      borderColor: 'rgb(0,0,0)',
+                      backgroundColor: 'rgb(75, 192, 192)',
+                      tension: 0,
+                      borderWidth: 1
                   }]
               },
               options: {

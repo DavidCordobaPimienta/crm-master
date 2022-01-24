@@ -6,10 +6,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <router-link class="nav-link" :to="{name: 'productos.index'}">Productos</router-link>
+        <router-link class="nav-link" :to="{name: 'casos.index'}">Casos</router-link>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <router-link class="nav-link" :to="{name: 'usuarios.index'}">Usuarios</router-link>      </li>
+        <router-link class="nav-link" :to="{name: 'productos.index'}">Productos</router-link>      </li>
     </ul>
     <!-- Right navbar links -->
 
