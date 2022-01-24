@@ -73,7 +73,24 @@ class OrdersController extends Controller
     }
 
     public function setGenerarDocumento(Request $request){
-        $pdf = PDF::loadView('reportes.caso.pdf.ver');
+        if(!$request->ajax()) return redirect('/');
+
+        $nIdPedido = $request->nIdPedido;
+
+        $rpta1 = DB::select('call sp_Pedidos_getPedido (?)',
+                                                            [
+                                                                $nIdPedido
+                                                            ]);
+
+        $rpta2 = DB::select('call sp_Pedidos_getDetallePedido (?)',
+                                                            [
+                                                                $nIdPedido
+                                                            ]);
+
+        $pdf = PDF::loadView('reportes.caso.pdf.ver', [
+            'rpta1' => $rpta1,
+            'rpta2' => $rpta2
+        ]);
         return $pdf->download('invoice.pdf');
     }
 }
