@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$rpta1[0]->nNumeroPedido}}</title>
+    <title>CASO_CRM_{{$rpta1[0]->nNumeroPedido}}</title>
     <style>
         @page{
             margin: 1.3rem;
@@ -60,11 +60,11 @@
                             <td>{{$rpta1[0]->nNumeroPedido}}</td>
                         </tr>
                         <tr>
-                            <td><strong>Fecha del Caso</strong></td>
+                            <td><strong>Fecha de Creación</strong></td>
                             <td>{{$rpta1[0]->dFechaPedido}}</td>
                         </tr>
                         <tr>
-                            <td><strong>Estado del Caso</strong></td>
+                            <td><strong>Estado</strong></td>
                             <td>{{$rpta1[0]->cEstadoPedido}}</td>
                         </tr>
                         <tr>
@@ -132,6 +132,17 @@
                 </tr>
             </table>
         @endif
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <table width="100%" cellspacing="0" cellspacing="1" align="center" >
+            <thead>
+                <tr align="center" align="middle">
+                    <th colspan="1" style="color: rgb(3, 11, 53)"><strong>INFORMACIÓN AUTOGENERADA</strong></th>
+                </tr>
+                <tr>
+                    <th><small>La información que aparece en este documento nombrado CASO_CRM_{{$rpta1[0]->nNumeroPedido}} es de uso confidencial y fue suministrada por el Grupo Konecta. Cualquier tipo de divulgación no autorizada por el BPO, entidad bancaria o el cliente puede ser penalizada según la ley.</small></th>
+                </tr>
+            </thead>
+        </table>
 
     </div>
 </body>
