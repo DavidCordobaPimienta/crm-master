@@ -30,6 +30,7 @@
         "webpack-cli": "^4.9.1"
     },
     "dependencies": {
+        "chart.js": "^3.7.0",
         "element-ui": "^2.15.6",
         "sweetalert2": "^11.3.5",
         "tailwindcss": "^3.0.9",

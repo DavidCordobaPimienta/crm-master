@@ -422,7 +422,6 @@
                     'listPedido'    :   this.listPedidos
                 }).then(response => {
                     this.$router.push({name: 'casos.index'})
-                    
                 }).catch(error => {
                     if (error.response.status == 401) {
                         this.$router.push({name: 'casos.index'})
@@ -432,22 +431,6 @@
                     }
                 })
             },
-            /*setGenerarEmail(nIdPedido){
-                var url = '/setGenerarEmail'
-                axios.post(url, {
-                    'nIdPedido' :   nIdPedido
-                }).then(response => {
-                    this.setGenerarDocumento(nIdPedido)
-                }).catch(error => {
-                    console.log(error)
-                    if (error.response.status == 401) {
-                        this.$router.push({name: 'login'})
-                        location.reload();
-                        sessionStorage.clear();
-                        this.fullscreenLoading = false;
-                    }
-                })
-            },*/
             validarRegistrarPedido(){
                 this.error = 0;
                 this.mensajeError = [];
