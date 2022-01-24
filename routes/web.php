@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 //MODULO CUENTAS:
 Route::get('/getListarClientes', 'Operacion\CustomersController@getListarClientes');
 Route::post('/setRegistrarCliente', 'Operacion\CustomersController@setRegistrarCliente');
+Route::post('/setEditarCliente', 'Operacion\CustomersController@setEditarCliente');
 
 //MODULO CASOS:
 Route::get('/getListarPedidos', 'Operacion\OrdersController@getListarPedidos');
