@@ -364,7 +364,7 @@ export default {
                         'cNombre': this.fillBusqPedido.cNombre,
                         'cDocumento': this.fillBusqPedido.cDocumento,
                         'cPedido':this.fillBusqPedido.cPedido,
-                        'nIdEstado': this.fillBusqPedido.nIdEstado
+                        'nIdEstado': this.fillBusqPedido.nIdEstado,
                     },
                 })
                 .then((response) => {

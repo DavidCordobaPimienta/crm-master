@@ -31,8 +31,8 @@ class UsersController extends Controller
                                                                 $nIdUsuario,
                                                                 $cNombre, 
                                                                 $cUsuario, 
+                                                                $cEstado,
                                                                 $cCorreo, 
-                                                                $cEstado
                                                             ]);
         return $rpta;
     }
