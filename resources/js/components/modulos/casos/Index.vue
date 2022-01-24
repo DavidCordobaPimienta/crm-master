@@ -202,17 +202,22 @@
                                                 <td
                                                     v-text="item.comentario"
                                                 ></td>
-                                                <td
-                                                    v-text="item.estado"
-                                                ></td>
                                                 <td>
-                                                    <button class="btn btn-flat btn-info btn-sm" @click.prevent="setGenerarDocumento(item.id)" v-loading.fullscreen.lock="fullscreenLoading">
+                                                    <template v-if="item.state=='A'">
+                                                        <span class="badge badge-success" v-text="item.estado"></span>
+                                                        </template>
+                                                        <template v-else>
+                                                        <span class="badge badge-danger" v-text="item.estado"></span>
+                                                    </template> 
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-info btn-sm" @click.prevent="setGenerarDocumento(item.id)" v-loading.fullscreen.lock="fullscreenLoading">
                                                         <i class="far fa-file-pdf"></i>
                                                             Ver PDF
                                                     </button>
-                                                    <button class="btn btn-flat btn-danger btn-sm">
-                                                        <i class="fas fa-trash"></i>
-                                                            Rechazar
+                                                    <button v-if="item.state == 'A'" class="btn btn-danger btn-sm" @click.prevent="setCambiarEstadoPedido(1, item.id)">
+                                                        <i class="fas fa-times-circle"></i>
+                                                            Cerrar
                                                     </button>
                                                 </td>
                                             </tr>
@@ -304,7 +309,7 @@ export default {
             listPedidos: [],
             listEstados: [
                 {value: 'A', label: 'Activo'},
-                {value: 'I', label: 'Inactivo'}
+                {value: 'I', label: 'Cerrado'}
             ],
             fullscreenLoading: false,
             pageNumber: 0,
@@ -388,6 +393,34 @@ export default {
                     this.listPedidos = response.data;
                     this.fullscreenLoading = false;
                 });
+        },
+        setCambiarEstadoPedido(op, id){
+        Swal.fire({
+        title: '¿Está completamente seguro de' + ((op == 1) ? ' cerrar' : ' activar') + ' el caso?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: ((op == 1) ? 'Sí, cerrar' : 'Sí, activar')
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.fullscreenLoading = true;
+            var url = '/setCambiarEstadoPedido';
+            axios.post(url, {
+              'nIdPedido' : id,
+              'cEstado'    : (op == 1) ? 'I' : 'A'
+            }).then(response =>{
+              Swal.fire({
+              icon: 'success',
+              title: '¡Se' + ((op == 1) ? ' cerró ' : ' activó ') + 'el caso correctamente!',
+              showConfirmButton: false,
+              timer: 1700
+            })
+            this.fullscreenLoading = false;
+            this.getListarPedidos();
+            })
+          }
+        })
         },
         nextPage() {
             this.pageNumber++;

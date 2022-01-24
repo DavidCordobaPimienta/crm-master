@@ -20,6 +20,7 @@ Route::post('/setRegistrarCliente', 'Operacion\CustomersController@setRegistrarC
 Route::get('/getListarPedidos', 'Operacion\OrdersController@getListarPedidos');
 Route::post('/setRegistrarPedido', 'Operacion\OrdersController@setRegistrarPedido');
 Route::post('/setGenerarDocumento', 'Operacion\OrdersController@setGenerarDocumento');
+Route::post('/setCambiarEstadoPedido', 'Operacion\OrdersController@setCambiarEstadoPedido');
 
 //MODULO PRODUCTOS
 Route::get('/getListarProductos', 'Configuracion\ProductoController@getListarProductos');
