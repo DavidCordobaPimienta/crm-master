@@ -270,7 +270,7 @@
                 };
             },
             getListarClientes(){
-                var ruta = '/operacion/cuentas/getListarClientes'
+                var ruta = '/getListarClientes'
                 axios.get(ruta).then( response => {
                     this.listClientes = response.data;
                     this.filterListarClientes();

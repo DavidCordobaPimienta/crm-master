@@ -37,7 +37,7 @@
             <router-link :to="'/'" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Inicio
+                Tablero de Mando
               </p>
               </router-link>
           </li>

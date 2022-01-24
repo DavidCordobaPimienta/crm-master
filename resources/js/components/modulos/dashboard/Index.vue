@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard</h1>
+                        <h1 class="m-0 text-dark"><strong>TABLERO DE MANDO</strong></h1>
                     </div>
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -15,8 +15,11 @@
                 <div class="card-body">
                   <div class="container-fluid">
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <canvas id="myChart" width="400" height="400"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                      <canvas id="myChart2" width="400" height="400"></canvas>
                     </div>
                   </div>
                 </div>
@@ -29,36 +32,109 @@
 <script>
     import Chart from 'chart.js/auto'
     export default {
+      data() {
+        return {
+          listCasosMasUsados: {
+            all: [],
+            name: [],
+            cantidad: [],
+            colores: []
+          },
+          listCasosDiarios: {
+            all: [],
+            name: [],
+            cantidad: []
+          },
+        }
+      },
       mounted() {
-        this.getGraficoBar();       
+        this.getCasosMasUsados(); 
+        this.getCasosPorDia();      
       },
       methods: {
+        getCasosMasUsados(){
+                var ruta = '/getCasosMasUsados'
+                axios.get(ruta).then( response => {
+                    this.listCasosMasUsados.all = response.data;
+                    this.getCasosMasUsadosFiltrar();
+                }).catch(error => {
+                    if (error.response.status == 401) {
+                        this.$router.push({name: 'login'})
+                        location.reload();
+                        sessionStorage.clear();
+                        this.fullscreenLoading = false;
+                    }
+                })
+        },
+        getCasosMasUsadosFiltrar(){
+          let me = this;
+          this.listCasosMasUsados.all.map(function(x,y){
+            me.listCasosMasUsados.name.push(x.name);
+            me.listCasosMasUsados.cantidad.push(x.cantidad);
+            let parametro1 = Math.floor(Math.random() * 256);
+            let parametro2 = Math.floor(Math.random() * 256);
+            let parametro3 = Math.floor(Math.random() * 256);
+            let color = 'rgba('+parametro1+', '+parametro2+', '+parametro3+', 0.2)';
+            me.listCasosMasUsados.colores.push(color);
+          })
+          this.getGraficoBar();
+        },
         getGraficoBar(){
+          let me = this;
           const ctx = document.getElementById('myChart').getContext('2d');
           const myChart = new Chart(ctx, {
               type: 'bar',
               data: {
-                  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                  labels:  me.listCasosMasUsados.name,
                   datasets: [{
-                      label: '# of Votes',
-                      data: [12, 19, 3, 5, 2, 3],
-                      backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                          'rgba(54, 162, 235, 0.2)',
-                          'rgba(255, 206, 86, 0.2)',
-                          'rgba(75, 192, 192, 0.2)',
-                          'rgba(153, 102, 255, 0.2)',
-                          'rgba(255, 159, 64, 0.2)'
-                      ],
-                      borderColor: [
-                          'rgba(255, 99, 132, 1)',
-                          'rgba(54, 162, 235, 1)',
-                          'rgba(255, 206, 86, 1)',
-                          'rgba(75, 192, 192, 1)',
-                          'rgba(153, 102, 255, 1)',
-                          'rgba(255, 159, 64, 1)'
-                      ],
-                      borderWidth: 1
+                      label: 'TIPOLOGÍAS DE CASOS FRECUENTES',
+                      data: me.listCasosMasUsados.cantidad,
+                      backgroundColor: me.listCasosMasUsados.colores,
+                      borderColor: me.listCasosMasUsados.colores,
+                      borderWidth: 2
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+        },
+        getCasosPorDia(){
+                var ruta = '/getCasosPorDia'
+                axios.get(ruta).then( response => {
+                    this.listCasosDiarios.all = response.data;
+                    this.getCasosPorDiaFiltrar();
+                }).catch(error => {
+                    if (error.response.status == 401) {
+                        this.$router.push({name: 'login'})
+                        location.reload();
+                        sessionStorage.clear();
+                        this.fullscreenLoading = false;
+                    }
+                })
+        },
+        getCasosPorDiaFiltrar(){
+          let me = this;
+          this.listCasosDiarios.all.map(function(x,y){
+            me.listCasosDiarios.name.push(x.dia);
+            me.listCasosDiarios.cantidad.push(x.total);
+          })
+          this.getGraficoLine();
+        },
+        getGraficoLine(){
+          let me = this;
+          const ctx = document.getElementById('myChart2').getContext('2d');
+          const myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                  labels:  (me.listCasosDiarios.name),
+                  datasets: [{
+                      label: 'CASOS DIARIOS',
+                      data: me.listCasosDiarios.cantidad
                   }]
               },
               options: {

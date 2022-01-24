@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//MODULO DASHBOARD:
+Route::get('/getCasosMasUsados', 'DashboardController@getCasosMasUsados');
+Route::get('/getCasosPorDia', 'DashboardController@getCasosPorDia');
+
 //MODULO CUENTAS:
 Route::get('/getListarClientes', 'Operacion\CustomersController@getListarClientes');
 Route::post('/setRegistrarCliente', 'Operacion\CustomersController@setRegistrarCliente');
