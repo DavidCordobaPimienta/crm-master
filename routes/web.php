@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //MODULO CUENTAS:
-Route::get('/operacion/cuentas/getListarClientes', 'Operacion\CustomersController@getListarClientes');
+Route::get('/getListarClientes', 'Operacion\CustomersController@getListarClientes');
 Route::post('/setRegistrarCliente', 'Operacion\CustomersController@setRegistrarCliente');
 
 //MODULO CASOS:

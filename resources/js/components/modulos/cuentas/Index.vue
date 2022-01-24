@@ -18,7 +18,7 @@
                     <div class="card-tools">
                         <router-link
                             class="btn btn-info btn-sm"
-                            to="/productos/crear"
+                            to="/cuentas/crear"
                         >
                             <i class="fas fa-plus-square"></i>
                             Nueva Cuenta
@@ -42,18 +42,18 @@
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label
-                                                    class="col-md-5 col-form-label"
+                                                    class="col-md-4 col-form-label"
                                                     >Nombre</label
                                                 >
-                                                <div class="col-md-6">
+                                                <div class="col-md-7">
                                                     <input
                                                         type="text"
                                                         class="form-control"
                                                         v-model="
-                                                            fillBusqProducto.cNombre
+                                                            fillBusqCliente.cNombre
                                                         "
                                                         @keyup.enter="
-                                                            getListarProductos
+                                                            getListarClientes
                                                         "
                                                     />
                                                 </div>
@@ -63,44 +63,19 @@
                                             <div class="form-group row">
                                                 <label
                                                     class="col-md-4 col-form-label"
-                                                    >Descripción</label
+                                                    >No. Documento</label
                                                 >
                                                 <div class="col-md-7">
                                                     <input
-                                                        type="text"
+                                                        type="number"
                                                         class="form-control"
                                                         v-model="
-                                                            fillBusqProducto.cDescripcion
+                                                            fillBusqCliente.cDocumento
                                                         "
                                                         @keyup.enter="
-                                                            getListarProductos
+                                                            getListarClientes
                                                         "
                                                     />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group row">
-                                                <label
-                                                    class="col-md-5 col-form-label"
-                                                    >Categoría</label
-                                                >
-                                                <div class="col-md-6">
-                                                    <el-select
-                                                        v-model="
-                                                            fillBusqProducto.nIdCategoria
-                                                        "
-                                                        placeholder="Seleccione una Categoría"
-                                                        cleareable
-                                                    >
-                                                        <el-option
-                                                            v-for="item in listCategorias"
-                                                            :key="item.id"
-                                                            :label="item.name"
-                                                            :value="item.id"
-                                                        >
-                                                        </el-option>
-                                                    </el-select>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +90,7 @@
                                 <div class="col-md-4 offset-4">
                                     <button
                                         class="btn btn-info btnWidth"
-                                        @click.prevent="getListarProductos"
+                                        @click.prevent="getListarClientes"
                                         v-loading.fullscreen.lock="
                                             fullscreenLoading
                                         "
@@ -143,7 +118,7 @@
                             </div>
                             <div class="card-body table-responsive">
                                 <template
-                                    v-if="listarProductosPaginated.length"
+                                    v-if="listarClientesPaginated.length"
                                 >
                                     <table
                                         class="table table-hover table-head-fixed text-nowrap projects"
@@ -152,8 +127,9 @@
                                         <thead>
                                             <tr>
                                                 <th>Nombre</th>
-                                                <th>Descripción</th>
-                                                <th>Categoría</th>
+                                                <th>Documento</th>
+                                                <th>Correo</th>
+                                                <th>Teléfono</th>
                                                 <th>Acciones</th>
                                             </tr>
                                         </thead>
@@ -161,29 +137,24 @@
                                             <tr
                                                 v-for="(
                                                     item, index
-                                                ) in listarProductosPaginated"
+                                                ) in listarClientesPaginated"
                                                 :key="index"
                                             >
-                                                <td v-text="item.name"></td>
+                                                <td 
+                                                    v-text="item.fullname">
+                                                </td>
                                                 <td
-                                                    v-text="item.description"
+                                                    v-text="item.document"
                                                 ></td>
                                                 <td
-                                                    v-text="item.categoria"
+                                                    v-text="item.email"
+                                                ></td>
+                                                <td
+                                                    v-text="item.phone"
                                                 ></td>
                                                 <td>
-                                                    <router-link
-                                                        class="btn btn-primary btn-sm"
-                                                        :to="{
-                                                            name: 'productos.editar',
-                                                            params: {
-                                                                id: item.id,
-                                                            },
-                                                        }"
-                                                    >
-                                                        <i
-                                                            class="fas fa-pen"
-                                                        ></i>
+                                                    <router-link class="btn btn-primary btn-sm" :to="{name:'cuentas.editar', params:{id: item.id}}">
+                                                        <i class="fas fa-pen"></i>
                                                         Editar
                                                     </router-link>
                                                 </td>
@@ -267,13 +238,11 @@
 export default {
     data() {
         return {
-            fillBusqProducto: {
+            fillBusqCliente: {
                 cNombre: '',
-                cDescripcion: '',
-                nIdCategoria: ''
+                cDocumento: '',
             },
-            listProductos: [],
-            listCategorias: [],
+            listClientes: [],
             fullscreenLoading: false,
             pageNumber: 0,
             perPage: 5,
@@ -282,17 +251,17 @@ export default {
     computed: {
         pageCount() {
             //Obtener el número de páginas
-            let a = this.listProductos.length,
+            let a = this.listClientes.length,
                 b = this.perPage;
             return Math.ceil(a / b);
         },
-        listarProductosPaginated() {
+        listarClientesPaginated() {
             let inicio = this.pageNumber * this.perPage,
                 fin = inicio + this.perPage;
-            return this.listProductos.slice(inicio, fin);
+            return this.listClientes.slice(inicio, fin);
         },
         pagesList() {
-            let a = this.listProductos.length,
+            let a = this.listClientes.length,
                 b = this.perPage;
             let pageCount = Math.ceil(a / b);
             let count = 0,
@@ -307,40 +276,26 @@ export default {
         },
     },
     mounted() {
-      this.getListarCategorias();
     },
     methods: {
         limpiarCriteriosBsq() {
-            this.fillBusqProducto.cNombre = "";
-            this.fillBusqProducto.cDescripcion = "";
+            this.fillBusqCliente.cNombre = "";
+            this.fillBusqCliente.cDocumento = "";
         },
-        limipiarBandejaProductos() {
-            this.listProductos = [];
-        },
-        getListarCategorias() {
+        getListarClientes() {
             this.fullscreenLoading = true;
-            var url = "configuracion/categorias/getListarCategorias";
-            axios
-                .get(url).then((response) => {
-                    this.fullscreenLoading = false;
-                    this.listCategorias = response.data;
-                });
-        },
-        getListarProductos() {
-            this.fullscreenLoading = true;
-            var url = "/getListarProductos";
+            var url = "/getListarClientes";
             axios
                 .get(url, {
                     params: {
-                        'cNombre': this.fillBusqProducto.cNombre,
-                        'cDescripcion': this.fillBusqProducto.cDescripcion,
-                        'nIdCategoria': this.fillBusqProducto.nIdCategoria
+                        'cNombre': this.fillBusqCliente.cNombre,
+                        'cDocumento': this.fillBusqCliente.cDocumento,
                     },
                 })
                 .then((response) => {
                     this.fullscreenLoading = false;
                     this.inicializarPaginacion();
-                    this.listProductos = response.data;
+                    this.listClientes = response.data;
                 });
         },
         nextPage() {
