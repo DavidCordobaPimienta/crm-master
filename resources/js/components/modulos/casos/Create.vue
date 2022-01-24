@@ -91,7 +91,6 @@
                                                                 <template v-if="validEmail" #message-success>Correo Electronico válido</template>
                                                                 <template v-if="!validEmail && fillCrearCliente.cEmail !== ''" #message-danger>Correo Electronico invalido</template>
                                                             </vs-input>
-                                                            <!-- <input type="email" class="form-control" v-model="fillCrearCliente.cEmail" @keyup.enter="setRegistrarPedido" :disabled="(switchCliente) ? false : true"> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -388,13 +387,6 @@
                     this.modalShow = true;
                     return;
                 }
-                this.loading = this.$vs.loading({
-                    type: 'square',
-                    color: '#D5397B',
-                    background: '#FFFFFF',
-                    text: 'Cargando...'
-                })
-
                 if (this.switchCliente) {
                     this.setRegistrarCliente();
                 } else {
@@ -429,17 +421,18 @@
                     'cComentario'   :   this.cComentario,
                     'listPedido'    :   this.listPedidos
                 }).then(response => {
-                    this.setGenerarEmail(response.data);
+                    this.$router.push({name: 'casos.index'})
+                    
                 }).catch(error => {
                     if (error.response.status == 401) {
-                        this.$router.push({name: 'login'})
+                        this.$router.push({name: 'casos.index'})
                         location.reload();
                         sessionStorage.clear();
                         this.fullscreenLoading = false;
                     }
                 })
             },
-            setGenerarEmail(nIdPedido){
+            /*setGenerarEmail(nIdPedido){
                 var url = '/setGenerarEmail'
                 axios.post(url, {
                     'nIdPedido' :   nIdPedido
@@ -454,30 +447,7 @@
                         this.fullscreenLoading = false;
                     }
                 })
-            },
-            setGenerarDocumento(nIdPedido){
-                var config = {
-                    responseType: 'blob'
-                }
-                var url = '/setGenerarDocumento'
-                axios.post(url, {
-                    'nIdPedido'       :   nIdPedido
-                }, config).then(response => {
-                    var oMyBlob = new Blob([response.data], {type : 'application/pdf'}); // the blob
-                    var url = URL.createObjectURL(oMyBlob);
-                    window.open(url)
-                    this.loading.close()
-                    this.$router.push('/pedido')
-                }).catch(error => {
-                    console.log(error)
-                    if (error.response.status == 401) {
-                        this.$router.push({name: 'login'})
-                        location.reload();
-                        sessionStorage.clear();
-                        this.fullscreenLoading = false;
-                    }
-                })
-            },
+            },*/
             validarRegistrarPedido(){
                 this.error = 0;
                 this.mensajeError = [];

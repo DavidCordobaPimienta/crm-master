@@ -52,7 +52,6 @@ class OrdersController extends Controller
                                                             ]);
             $nIdPedido = $rpta[0]->nIdPedido;
 
-
             $listPedido = $request->listPedido;
             $listPedidoSize = sizeof((array)$listPedido);
             
@@ -66,6 +65,7 @@ class OrdersController extends Controller
                 }
             }
             DB::commit();
+            return $nIdPedido;
         } catch (Exception $e) {
             DB::rollBack();
         }

@@ -102,13 +102,13 @@
 
         @if (count($rpta2) > 0)
             <table width="100%" cellspacing="0" cellspacing="1" border="1" align="center" style="bordercolor: black">
-                <thead style="background-color: #010c3d; color:white;">
+                <thead style="background-color: #010c3d; color:white; bordercolor: black">
                     <tr align="center" align="middle">
                         <th colspan="2">DETALLE DEL CASO</th>
                     </tr>
                     <tr>
                         <th>#</th>
-                        <th>Producto</th>
+                        <th>PRODUCTO</th>
                     </tr>
                 </thead>
                 <tbody>

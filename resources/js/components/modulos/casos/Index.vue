@@ -383,10 +383,10 @@ export default {
                 .then((response) => {
                     var oMyBlob = new Blob([response.data], {type : 'application/pdf'});
                     var url = URL.createObjectURL(oMyBlob);
+                    window.open(url);
                     this.inicializarPaginacion();
                     this.listPedidos = response.data;
                     this.fullscreenLoading = false;
-                    window.open(url);
                 });
         },
         nextPage() {
