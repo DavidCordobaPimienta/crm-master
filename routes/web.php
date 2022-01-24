@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//MODULO REPORTES:
-Route::get('/getListarPedidosR', 'ReportesController@getListarPedidosR');
-
 //MODULO DASHBOARD:
 Route::get('/getCasosMasUsados', 'DashboardController@getCasosMasUsados');
 Route::get('/getCasosPorDia', 'DashboardController@getCasosPorDia');

@@ -91,13 +91,6 @@
                   <p>Permisos</p>
                 </router-link>
               </li>
-          <li class="nav-header"><strong>REPORTES</strong></li>
-            <li class="nav-item">
-              <router-link :to="'/reportes'" class="nav-link">
-              <i class="nav-icon fas fa-file-export"></i>
-              <p>Indicadores</p>
-              </router-link>
-          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

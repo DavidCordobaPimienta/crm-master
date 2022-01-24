@@ -28,9 +28,6 @@ export default new Router ({
         { path: '/productos', name: 'productos.index',  component: require('./components/modulos/productos/Index.vue').default },
         { path: '/productos/crear', name: 'productos.crear',  component: require('./components/modulos/productos/Create.vue').default },
         { path: '/productos/editar/:id', name: 'productos.editar',  component: require('./components/modulos/productos/Edit.vue').default, props: true },
-
-        //MODULO REPORTES:
-        { path: '/reportes', name: 'reportes.index',  component: require('./components/modulos/reportes/Index.vue').default },
         
         //MODULO ROLES:
         { path: '/roles', name: 'roles.index',  component: require('./components/modulos/roles/Index.vue').default },
