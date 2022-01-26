@@ -42,20 +42,20 @@
                 <strong><i class="fas fa-book mr-1"></i>Educación</strong>
 
                 <p class="text-muted">
-                  Bachiller
+                  {{fillVerUsuario.cEducacion}}
                 </p>
 
                 <hr>
 
                 <strong><i class="fas fa-map-marker-alt mr-1"></i>Sede</strong>
 
-                <p class="text-muted">Puerto Seco - Medellín</p>
+                <p class="text-muted">{{fillVerUsuario.cSede}}</p>
 
                 <hr>
 
                 <strong><i class="far fa-file-alt mr-1"></i> Notas</strong>
 
-                <p class="text-muted">El Asesor actualmente se encuentra en operación.</p>
+                <p class="text-muted">{{fillVerUsuario.cNotas}}</p>
               </div>
               <!-- /.card-body -->
             </div>
@@ -106,7 +106,10 @@ export default {
             cUsuario: '',
             cCorreo: '',
             cContrasena: '',
-            cNombreRol: ''
+            cNombreRol: '',
+            cEducacion: '',
+            cSede: '',
+            cNotas: '',
         },
         fullscreenLoading: false,
         form: new FormData,
@@ -159,6 +162,9 @@ export default {
         this.fillVerUsuario.cApellidos = data.lastname;
         this.fillVerUsuario.cUsuario = data.username;
         this.fillVerUsuario.cCorreo = data.email;
+        this.fillVerUsuario.cEducacion = data.educacion;
+        this.fillVerUsuario.cSede =  data.sede;
+        this.fillVerUsuario.cNotas = data.notas;
       },
     }
 }

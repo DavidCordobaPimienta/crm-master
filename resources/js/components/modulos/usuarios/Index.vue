@@ -230,7 +230,7 @@ export default {
     },
     getListarUsuarios(){
       this.fullscreenLoading = true;
-      var url = 'administracion/usuarios/getListarUsuarios';
+      var url = '/getListarUsuarios';
       axios.get(url, {
         params: {
           'cNombre' : this.fillBusqUsuario.cNombre,
