@@ -19,29 +19,20 @@ class UsersController extends Controller
         $cUsuario = $request->cUsuario;
         $cCorreo = $request->cCorreo;
         $cEstado = $request->cEstado;
-        $cEducacion = $request->cEducacion;
-        $cSede = $request->cSede;
-        $cNotas = $request->cNotas;
         
         $nIdUsuario = ($nIdUsuario == NULL) ? ($nIdUsuario = 0): $nIdUsuario;
         $cNombre = ($cNombre == NULL) ? ($cNombre = ''): $cNombre;
         $cUsuario = ($cUsuario == NULL) ? ($cUsuario = ''): $cUsuario;
         $cCorreo = ($cCorreo == NULL) ? ($cCorreo = ''): $cCorreo;
         $cEstado = ($cEstado == NULL) ? ($cEstado = ''): $cEstado;
-        $cEducacion = ($cEducacion == NULL) ? ($cEducacion = ''): $cEducacion;
-        $cSede = ($cSede == NULL) ? ($cSede = ''): $cSede;
-        $cNotas = ($cNotas == NULL) ? ($cNotas = ''): $cNotas;
 
-        $rpta = DB::select('call sp_Usuario_getListarUsuarios (?, ?, ?, ?, ?, ?, ?, ?)',
+        $rpta = DB::select('call sp_Usuario_getListarUsuarios (?, ?, ?, ?, ?)',
                                                             [   
                                                                 $nIdUsuario,
                                                                 $cNombre, 
                                                                 $cUsuario, 
                                                                 $cEstado,
-                                                                $cCorreo, 
-                                                                $cEducacion,
-                                                                $cSede,
-                                                                $cNotas,
+                                                                $cCorreo,
                                                             ]);
         return $rpta;
     }
