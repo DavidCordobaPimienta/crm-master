@@ -43,7 +43,7 @@ export default new Router ({
         { path: '/usuarios', name: 'usuarios.index',  component: require('./components/modulos/usuarios/Index.vue').default },
         { path: '/usuarios/crear', name: 'usuarios.crear',  component: require('./components/modulos/usuarios/Create.vue').default },
         { path: '/usuarios/editar/:id', name: 'usuarios.editar', component: require('./components/modulos/usuarios/Edit.vue').default, props: true },
-        { path: '/usuarios/ver/:id', name: 'usuarios.ver', component: require('./components/modulos/usuarios/View.vue').default, props: true },
+        { path: '/usuarios/ver', name: 'usuarios.ver', component: require('./components/modulos/usuarios/View.vue').default, props: true },
         { path: '/usuarios/permiso/:id', name: 'usuarios.permiso', component: require('./components/modulos/usuarios/Permission.vue').default, props: true },
 
     ],

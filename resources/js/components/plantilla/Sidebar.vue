@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <router-link :to="'/'" class="brand-link">
       <img :src="ruta + './img/konecta.png'" alt="Logo Konecta" class="brand-image img-circle elevation-3">
-      <span class="brand-text font-weight-light"><strong>CRM</strong></span>
+      <span class="brand-text font-weight-bold"><strong>CRM</strong></span>
     </router-link>
 
     <!-- Sidebar -->

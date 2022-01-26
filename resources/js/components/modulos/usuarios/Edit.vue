@@ -175,7 +175,7 @@ export default {
         var url = '/getRolByUsuario';
         axios.get(url, {
           params:{
-            'nIdUsuario': this.fillEditarUsuario.nIdUsuario
+            'nIdUsuario': this.fillEditarUsuario.nIdUsuario,
           }
         }).then(response => {
         this.fullscreenLoading = false;
