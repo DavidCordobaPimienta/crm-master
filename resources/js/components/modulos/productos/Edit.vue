@@ -114,7 +114,7 @@
                                         class="btn btn-info btnWidth"
                                         @click.prevent="setEditarProducto"
                                     >
-                                        <strong>Editar</strong>
+                                        <strong>Actualizar</strong>
                                     </button>
                                     <button
                                         class="btn btn-default btnWidth"

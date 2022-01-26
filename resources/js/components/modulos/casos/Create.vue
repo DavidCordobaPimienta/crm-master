@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="card-footer" >
                                         <div class="row" >
-                                            <button v-if="listPedidos.length > 0" class="btn btn-info btnFull" @click.prevent="setRegistrarPedido"><strong>Registrar Caso</strong></button>
+                                            <button v-if="listPedidos.length > 0" class="btn btn-info btnFull" style="width:100%" @click.prevent="setRegistrarPedido"><strong>Registrar Caso</strong></button>
                                         </div>
                                     </div>
                                 </div>

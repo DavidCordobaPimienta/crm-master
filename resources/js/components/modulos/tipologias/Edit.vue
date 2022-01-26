@@ -92,7 +92,7 @@
                                         class="btn btn-info btnWidth"
                                         @click.prevent="setEditarCategoria"
                                     >
-                                        <strong>Editar</strong>
+                                        <strong>Actualizar</strong>
                                     </button>
                                     <button
                                         class="btn btn-default btnWidth"
